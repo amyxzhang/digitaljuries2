@@ -1,0 +1,21 @@
+{% extends 'juries/base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+	
+
+<nav class="navbar navbar-expand-sm fixed-bottom panel justify-content-end">
+	<a href="/immersive" class="btn btn-lg btn-secondary">Continue when completed</a>
+</nav>
+
+<main class="flex-shrink-0" role="main">
+	<section class="container-fluid">
+		<h3>Please complete the survey before continuing</h3>
+		<div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" src="https://docs.google.com/forms/d/e/1FAIpQLSekHKntKQ52XiI6EZ0YT5DDwAGpMVxtDqI9kcuBiptzlPYFkA/viewform?embedded=true">Loading...</iframe>
+		</div>
+	</section>
+</main>
+
+{% endblock %}

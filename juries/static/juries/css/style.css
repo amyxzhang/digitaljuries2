@@ -1,0 +1,448 @@
+/*------------------------------------*\
+    SITEWIDE SASS VARIABLES
+\*------------------------------------*/
+/* Fonts */
+@font-face {
+  font-family: 'Space Mono';
+  src: url("../fonts/SpaceMono-Regular.ttf") format("truetype");
+  /* Safari, Android, iOS */
+  font-weight: 400; }
+
+@font-face {
+  font-family: 'Space Mono';
+  src: url("../fonts/SpaceMono-BoldItalic.ttf") format("truetype");
+  /* Safari, Android, iOS */
+  font-weight: 700;
+  font-style: italic; }
+
+@font-face {
+  font-family: 'Roboto';
+  src: url("../fonts/Roboto-Light.ttf");
+  /* Safari, Android, iOS */
+  font-weight: 300; }
+
+@font-face {
+  font-family: 'Roboto';
+  src: url("../fonts/Roboto-Regular.ttf");
+  /* Safari, Android, iOS */
+  font-weight: 400; }
+
+@font-face {
+  font-family: 'Roboto';
+  src: url("../fonts/Roboto-Bold.ttf");
+  /* Safari, Android, iOS */
+  font-weight: 700; }
+
+/**** Spacing ****/
+/**** Colors ****/
+.disabled, .overlay {
+  opacity: 0.65; }
+
+.red {
+  color: #CA4040; }
+
+.light {
+  color: #F7FEFF; }
+
+.dark {
+  color: #161D3F; }
+
+.yellow {
+  color: #ECCA5E; }
+
+.grey {
+  color: #637580; }
+
+/*------------------------------------*\
+    STRUCTURE
+\*------------------------------------*/
+/* STRUCTURE */
+html {
+  position: relative;
+  min-height: 100%; }
+
+body {
+  margin: 0;
+  position: relative;
+  background-color: #040423; }
+
+.inner {
+  width: 90%;
+  margin: 0 auto; }
+
+main {
+  margin: 2em auto 6em;
+  width: 90vw;
+  max-width: 1280px;
+  overflow-y: auto; }
+
+section, header {
+  margin: 0;
+  padding: 0;
+  z-index: 1; }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10; }
+
+/*** Special Sections ***/
+.display {
+  z-index: 0;
+  position: absolute;
+  top: 0px;
+  right: 5vw;
+  width: 100%;
+  max-width: 1000px; }
+
+.centered {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; }
+
+/** For use with individual pieces in an <section> **/
+.subsection {
+  text-align: left;
+  margin: 1em auto 2em; }
+
+.jury {
+  padding-top: 1em;
+  background-color: #161D3F; }
+
+.panel {
+  background-color: #F7FEFF;
+  color: #161D3F;
+  filter: drop-shadow(0 -6px 30px #000); }
+
+.card-header, .card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border: 0; }
+
+.card-header > * {
+  align-self: baseline;
+  justify-content: center; }
+
+.card-header:hover {
+  cursor: pointer;
+  background-color: #CCECFF; }
+
+.card {
+  border: 0;
+  justify-content: center; }
+
+.card-group > * {
+  flex-grow: 1;
+  padding: 0 0 16px 16px;
+  align-self: flex-start; }
+
+.btngroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap; }
+
+.survey-container {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%; }
+
+.surveys {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0; }
+
+/*** Tables ***/
+.tr {
+  border-top: 1px solid #e9ecef;
+  vertical-align: top;
+  padding: 0.75rem 0.75rem 1rem 0.75rem; }
+
+.tr:hover {
+  background-color: #FFFF32; }
+
+.tr div {
+  padding: 0; }
+
+.tr .td {
+  width: 100%;
+  margin: 0; }
+
+/*------------------------------------*\
+    TEXT
+\*------------------------------------*/
+/* html element 62.5% font-size for REM use */
+html, body {
+  font-family: "Space Mono", "Roboto", monospace;
+  color: #F7FEFF;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+p, li {
+  font-family: "Roboto", Tahoma, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6em;
+  font-weight: 400;
+  color: #F7FEFF;
+  margin: 1em auto; }
+
+h1 {
+  font-family: "Space Mono", "Roboto", monospace;
+  margin: 0 auto 1em;
+  font-size: 64px;
+  line-height: 72px;
+  font-weight: 400;
+  letter-spacing: -0.02em; }
+  h1.headline {
+    margin-top: 64px;
+    text-align: left; }
+
+h2 {
+  font-family: "Space Mono", "Roboto", monospace;
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 1em;
+  margin: 1em auto; }
+
+h3 {
+  font-family: "Space Mono", "Roboto", monospace;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1em;
+  text-transform: uppercase;
+  margin: 1em auto 2em; }
+
+h4 {
+  font-family: "Space Mono", "Roboto", monospace;
+  font-size: 16px;
+  line-height: 1em;
+  text-transform: uppercase;
+  margin: 1em 0 0.5em 0; }
+
+h5 {
+  font-family: "Roboto", Tahoma, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.25em; }
+
+input, textarea {
+  font-size: 16px;
+  line-height: 1em;
+  font-family: "Roboto", Tahoma, Arial, sans-serif;
+  vertical-align: top; }
+
+footer p {
+  color: #161D3F;
+  line-height: 1.25em; }
+
+/*------------------------------------*\
+    LINKS
+\*------------------------------------*/
+a {
+  color: #007bff;
+  font-weight: 400;
+  text-decoration: none; }
+  a:hover, a:focus, a:active {
+    text-decoration: underline;
+    transition: background-color 0.5s ease; }
+
+navbar a {
+  margin: 0.5em 0.5em 0.5em auto; }
+
+/*------------------------------------*\
+    LIST
+\*------------------------------------*/
+ul {
+  margin: 1em auto 2em; }
+
+ul li:before {
+  padding-left: 8px; }
+
+ul li {
+  line-height: 1.8em; }
+
+/*------------------------------------*\
+    OTHER
+\*------------------------------------*/
+hr {
+  border: 0;
+  background: 0;
+  height: 16px;
+  margin: 0;
+  padding: 0; }
+
+/*------------------------------------*\
+    DECISION PANEL SLIDER
+\*------------------------------------*/
+.instructions {
+  font-family: "Space Mono", "Roboto", monospace;
+  font-size: 16px;
+  line-height: 1.6em;
+  text-transform: uppercase;
+  margin: 1em auto; }
+
+.score {
+  margin: 0;
+  font-family: "Space Mono", "Roboto", monospace;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 1.6em; }
+
+/*------------------------------------*\
+    INPUTS
+\*------------------------------------*/
+/**** BUTTONS ****/
+.btn {
+  font-family: "Space Mono", "Roboto", monospace;
+  border-radius: 8px;
+  font-size: 16px;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0.5em 0.5em 0.5em 0; }
+
+.badge {
+  font-family: "Space Mono", "Roboto", monospace;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0.5em auto; }
+
+input {
+  font-family: "Roboto", Tahoma, Arial, sans-serif;
+  border: 1px solid #637580;
+  background: none;
+  transition: 0.5s;
+  padding: 12px 16px;
+  width: 100%;
+  max-width: 480px; }
+  input:focus {
+    outline: 0;
+    background-color: #CCECFF;
+    transition: 0.5s; }
+  input:invalid {
+    border: 1px solid #CA4040; }
+
+textarea {
+  width: 100%;
+  max-width: 480px; }
+
+/*------------------------------------*\
+    DECISION PANEL SLIDER
+\*------------------------------------*/
+.slider {
+  width: 95% !important;
+  margin: 0.5em auto;
+  text-align: center; }
+
+.slider-low {
+  background: #CCECFF; }
+
+.slider-med {
+  background: #FFFF32; }
+
+.slider-high {
+  background: #CA4040; }
+
+.tooltip.in {
+  opacity: 1; }
+
+.slider .tooltip.top .tooltip-arrow {
+  bottom: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px 5px 0;
+  border-top-color: #000; }
+
+.slider .tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid; }
+
+.slider .tooltip.top {
+  padding: 5px 0; }
+
+/*------------------------------------*\
+    CHAT
+\*------------------------------------*/
+#login {
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  background-color: rgba(255, 255, 255, 0.8);
+  flex-flow: column; }
+
+#login > input {
+  max-width: 240px; }
+
+/*** Post chat messages ***/
+#chat {
+  position: relative;
+  margin: 16px 0 0;
+  display: none; }
+
+#chat > input {
+  max-width: 95%; }
+
+/*** View Chat messages ***/
+#messagebox {
+  display: inline-block;
+  border: 1px solid #637580;
+  margin: 16px 0 0 0;
+  height: 220px;
+  width: 95%;
+  overflow-y: auto; }
+
+#messagebox ul, #messagebox li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  color: #161D3F; }
+
+#messagebox li {
+  padding: 5px 10px;
+  background: rgba(0, 0, 0, 0.05); }
+
+#messagebox li:nth-child(odd) {
+  background: rgba(0, 0, 0, 0.1); }
+
+/*------------------------------------*\
+    IMAGES
+\*------------------------------------*/
+/* EFFECTS */
+.grayscale {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%); }
+
+.grayscale:hover {
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%); }
+
+/* SLIDESHOW */
+.slideshow {
+  margin: 0em auto 2em; }
+
+.slideshow img {
+  max-height: 480px; }
+
+.slick-prev:before,
+.slick-next:before {
+  font-family: 'slick';
+  font-size: 20px;
+  line-height: 1;
+  opacity: .75;
+  color: #007bff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }

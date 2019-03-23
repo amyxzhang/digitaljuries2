@@ -1,0 +1,68 @@
+{% extends 'juries/base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+	<nav class="navbar navbar-expand-sm fixed-bottom panel justify-content-end">
+		<p class="dark">By consenting to participate, I acknowledge that I have read and agree to the above consent form and agree to take part in this research.</p>
+
+		<a href="/survey_pre" class="btn btn-lg btn-primary">I Consent</a>
+	</nav>
+
+<main class="flex-shrink-0" role="main">
+	<section class="container-fluid">
+		<div class="row">
+			<div class="col-sm-1 col-xs-12"></div>
+			<div class="col-sm-5 col-xs-12">
+
+				<h1 class="headline">Informed Consent</h1>
+
+				<h2 class="yellow">About This Study</h1>
+
+				<p>Thank you for participating in this experiment. Your contribution to our research helps us learn more how to better control content posted online in a way that keeps users safe while not preventing their freedom of expression.</p>
+
+				<hr />
+
+				<h2 class="yellow">What to Expect</h2>
+
+				<p>You will be instructed on what to do during this research study. Your participation is completely voluntary, and whether or not you take part is up to you. You may exit the study at any time.</p>
+
+				<p>This experiment will be in 3 parts. You will be shown 3 cases based on content that has been uploaded on social media and asked to decide what the toxicity level of the content is. You will also be asked what punishments should be taken against the original poster, if any. You may be asked to collaborate with other jury participants online to arrive at a single, unanimous decision.</p>
+
+				<hr />
+
+				<h2 class="yellow">Potential Risks</h2>
+
+				<p>Content moderation has inherent risks. The cases in this study have been carefully curated by the researchers to assess potentially objectionable content in a more controlled setting than what content moderators may see on the job every day.</p>
+
+				<p>You will be shown text and image-based content that may contain offensive language, hate speech, slurs, political dogwhistling (coded messages), and other forms of toxic speech.</p>
+
+				<p>You will NOT be shown content containing nudity, pornography, or explicit graphic violence.</p>
+
+				<p>You must be over the <strong>age of 18</strong> to participate.</p>
+
+				<hr /><br />
+
+			</div>
+
+			<div class="col-sm-1 col-xs-12"></div>
+
+			<div class="col-sm-5 col-xs-12">
+				 <h1 class="headline">&nbsp;</h1>
+
+					<h2 class="yellow">Quick Facts</h1>
+
+					<ul>
+						<li>Participation should take approximately <span class="yellow">20 minutes</span></li>
+						<li>Personally identifying information will <span class="yellow">NOT</span> be stored</li>
+						<li>Your data will <span class="yellow">NOT</span> be recorded unless you complete this experiment in its entirety</li>
+					</ul>
+			</div>
+
+		</div>
+	</section>
+
+</main>
+
+{% endblock %}

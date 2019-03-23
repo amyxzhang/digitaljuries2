@@ -1,0 +1,168 @@
+{% extends 'juries/base.html' %}
+{% load staticfiles %}
+
+
+{% block css %}
+	<link rel="stylesheet" href={% static "juries/css/bootstrap-slider.min.css" %}>
+{% endblock %}
+
+{% block content %}
+
+<main class="flex-shrink-0" role="main">
+	<section id="control" class="container-fluid">
+			<div class="row">
+
+				<!-- CASE -->
+				<div class="col-sm-8 col-xs-12" id="case">
+
+					<!-- CASE: Slideshow -->
+					<div id="caseSlideshow" class="slideshow">
+						<img src={% static "juries/cases/pepe1.jpg" %} border="0" alt="" />
+						<img src={% static "juries/cases/pepe2.jpg" %} border="0" alt="" />
+						<img src={% static "juries/cases/pepe3.jpg" %} border="0" alt="" />
+					</div>
+
+					<!-- CASE: Context -->
+					<div id="caseContext" class="inner">
+						<h4 class="yellow">Context</h4>
+
+						<p>Pepe the Frog is a popular internet meme originally in Matt Furie’s comic, Boy’s Club. We think this may violate community standards because of:</p>
+
+						<div id="caseViolations" role="group" aria-label="Violations">
+							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" data-html="true" title="Violation" data-content="Definition">Hate symbol</button>
+
+							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" data-html="true" title="Violation" data-content="Definition">Conspiracy theory</button>
+
+							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" title="Violation" data-html="true" data-content="Definition">Offensive Depiction</button>
+						</div>
+					</div>
+
+			</div>
+			<!-- // END CASE -->
+
+			<!-- JURY -->
+			<div class="col-sm-4 col-xs-12 jury" id="jury">
+				<h3>Jury Decision</h3>
+
+				<h4>Waiting... <span class="yellow">5</span> out of 6 ready</h4>
+
+				<!-- JURY: Score -->
+				<div id="juryDecision" class="subsection">
+					<h4 class="yellow">Toxicity Score:
+					<span id="juryScore" class="score light text-right"></span>
+					</h4>
+
+					<!-- SCORE SLIDER -->
+					<div class="slider">
+						<input type="text" id="sliderJury">
+					</div>
+
+				<!-- JURY: Delib Module -->
+				<div class="subsection">
+					<h4 class="yellow">Recommended Action:</h4>
+					<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Delete Content</button>
+				</div>
+			</div>
+			<!-- // END JURY -->
+
+		</div>
+	</section>
+</main>
+
+<!-- INDIVIDUAL DECISION PANEL -->
+<footer id="panel-control" class="accordion mt-auto panel">
+	<div class="card">
+		<div class="card-header" data-toggle="collapse" data-target="#panelDecision">
+				<p>In this round, you will be deciding a case along a jury of your peers.</p>
+
+					<!-- <button type="submit" class="btn btn-secondary" value="Submit" disabled>Submit Decision</button> -->
+					<a href="/survey_scaleable" class="btn btn-primary">Submit Decision</a>
+		</div>
+
+		<div class="card-group show" id="panelDecision">
+			<!-- INSTRUCTIONS -->
+			<div class="card">
+					<!-- SCORE -->
+					<div id="panelScore" role="group" aria-label="Decision">
+						<h4 class="grey">Drag cursor to select toxicity score:
+							<span id="indivScore" class="score dark text-right"></span>
+							<span id="indivScoreLabel" class="badge badge-pill badge-primary" data-toggle="popover" data-trigger="hover" title="Low toxicity" data-content=""></span>
+						</h4>
+
+						<!-- SCORE SLIDER -->
+						<div class="slider">
+							<input type="text" id="sliderIndiv">
+						</div>
+					</div>
+			</div>
+
+			<div class="card">
+					<div id="panelAction">
+						<!-- ACTION: CONTENT -->
+						<div id="actionContent">
+							<h4 class="dark">What action should the platform take on the content?</h4>
+
+							<div class="btn-group-toggle" data-toggle="buttons">
+								<label class="btn btn-outline-secondary">
+									<input type="checkbox" autocomplete="off">
+									Unlist from search
+								</label>
+
+								<label class="btn btn-outline-secondary">
+									<input type="checkbox" autocomplete="off">
+									Delete
+								</label>
+
+								<label class="btn btn-outline-secondary">
+									<input type="checkbox" autocomplete="off">
+									Report to authorities
+								</label>
+							</div>
+						</div>
+
+						<!-- ACTION: USER -->
+						<div id="actionUser">
+							<h4 class="dark">What action should the platform take on the user?</h4>
+
+							<div class="btn-group-toggle" data-toggle="buttons">
+								<label class="btn btn-outline-secondary">
+									<input type="checkbox" autocomplete="off">
+									Warn
+								</label>
+
+								<label class="btn btn-outline-secondary">
+									<input type="checkbox" autocomplete="off">
+									Ban for 1 week
+								</label>
+
+								<label class="btn btn-outline-secondary">
+									<input type="checkbox" autocomplete="off">
+									Permanently Ban
+								</label>
+							</div>
+						</div>
+
+						<!-- JUSTIFICATION -->
+						<div id="panelJustification">
+							<h4 class="dark">Why do you think so?</h4>
+							<textarea rows="3"></textarea>
+						</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</footer>
+
+{% endblock %}
+
+{% block js %}
+<!-- Slider -->
+<script src={% static "juries/js/bootstrap-slider.min.js" %}></script>
+{% endblock %}
+
+
+
+{% block jury %}
+<script src={% static "juries/js/jury.js" %}></script>
+{% endblock %}

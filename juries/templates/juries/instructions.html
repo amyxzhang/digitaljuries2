@@ -1,0 +1,32 @@
+{% extends 'juries/base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+	<nav class="navbar navbar-expand-sm fixed-bottom panel justify-content-end">
+		<a href="/control" class="btn btn-lg btn-primary">Ready to begin Round 1</a>
+	</nav>
+
+<main class="flex-shrink-0" role="main">
+	<section class="container-fluid">
+		<h1 class="headline">Instructions</h1>
+
+		<p>Thank you for completing the survey. Before continuing with this survey, please watch the following background video to get some context on the challenges of content moderation in balancing free speech and the safety of users.</p>
+
+		<hr />
+
+		<h2>What is content moderation?</h2>
+
+		<div class="embed-responsive embed-responsive-16by9">
+			<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/IpqKRaKiG-w?start=102&end=237&autoplay=1" allow="autoplay" allowfullscreen></iframe>
+		</div>
+
+		<hr />
+
+		<h2>What is toxic content?</h2>
+
+
+	</section>
+</main>
+
+{% endblock %}

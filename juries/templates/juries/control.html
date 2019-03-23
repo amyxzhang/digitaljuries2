@@ -1,0 +1,84 @@
+{% extends 'juries/base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+<main class="flex-shrink-0" role="main">
+	<section class="container-fluid">
+			<div class="row">
+
+				<!-- CASE -->
+				<div class="col-sm-8 col-xs-12" id="case">
+
+					<!-- CASE: Slideshow -->
+					<div id="caseSlideshow" class="slideshow">
+						<img src={% static "juries/cases/pepe1.jpg" %} border="0" alt="" />
+						<img src={% static "juries/cases/pepe2.jpg" %} border="0" alt="" />
+						<img src={% static "juries/cases/pepe3.jpg" %} border="0" alt="" />
+					</div>
+
+					<!-- CASE: Context -->
+					<div id="caseContext" class="inner">
+						<h4 class="yellow">Context</h4>
+
+						<p>Pepe the Frog is a popular internet meme originally in Matt Furie’s comic, Boy’s Club. We think this may violate community standards because of:</p>
+
+						<div class="btngroup" role="group" aria-label="Violations">
+							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" data-html="true" title="Violation" data-content="Definition">Hate symbol</button>
+
+							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" data-html="true" title="Violation" data-content="Definition">Conspiracy theory</button>
+
+							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" title="Violation" data-html="true" data-content="Definition">Offensive Depiction</button>
+						</div>
+					</div>
+
+				</div>
+				<!-- // END CASE -->
+
+				<!-- JURY -->
+				<div class="col-sm-4 col-xs-12 jury" id="jury">
+
+					<h3>Platform Decision</h3>
+
+					<!-- JURY: Score -->
+					<div id="juryDecision" class="subsection">
+						<h4 class="yellow">Toxicity Score:
+
+							<a href="#" data-toggle="popover" data-trigger="focus hover" title="Toxicity score guidelines" data-content="0.0 - 0.4: Unlikely to be toxic<br>0.4 - 0.8: Borderline toxicity<br>0.8 - 1.0: Likely to be toxic"><i class="fas fa-question-circle"></i></a></h4>
+
+
+							<span id="juryScore" class="score light text-right">0</span>
+
+							<span class="badge badge-pill badge-danger" data-toggle="popover" data-trigger="focus hover" title="Delete Content" data-content="Deleted content is purged from the server. Users will be notified and warned.">Delete Content</span>
+					</div>
+
+					<!-- JURY: Delib Module -->
+					<div id="juryDelib" class="subsection">
+						<h4 class="yellow">Justification:</h4>
+						<p>Though this meme can be used in a non-hateful context, this image exacerbates a conspiracy theory and includes an offensive depiction of a protected class.</p>
+					</div>
+				</div>
+				<!-- // END JURY -->
+
+		</div>
+	</section>
+</main>
+
+<footer id="panel-control" class="accordion mt-auto panel">
+	<div class="card">
+		<div class="card-body">
+			<p>In this round, you will be shown flagged content along with the platform’s decision. You do NOT have to make any selections in this round.</p>
+
+			<a href="/survey_control" class="btn btn-primary">Click to continue when ready</a>
+		</div>
+	</div>
+</footer>
+
+
+{% endblock %}
+
+
+{% block jury %}
+<script src={% static "juries/js/jury.js" %}></script>
+{% endblock %}
