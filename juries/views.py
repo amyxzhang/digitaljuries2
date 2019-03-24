@@ -10,8 +10,12 @@ def index(request):
 def consent(request):
     return {}
 
-@render_to('juries/survey_pre.html')
-def survey_pre(request):
+@render_to('juries/survey_demographics.html')
+def survey_demographics(request):
+    return {}
+
+@render_to('juries/survey_morals.html')
+def survey_morals(request):
     return {}
 
 @render_to('juries/instructions.html')

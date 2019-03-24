@@ -1,0 +1,101 @@
+{% extends 'juries/base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+	<nav class="navbar navbar-expand-sm fixed-bottom panel justify-content-end">
+		<a href="/instructions" class="btn btn-lg btn-secondary">Continue when completed</a>
+	</nav>
+
+<main class="flex-shrink-0" role="main">
+	<section class="container-fluid">
+		<h3>Tell us about your moral views</h3>
+
+		<p>When you decide whether something is right or wrong, to what extent are the following conditions relevant to your thinking? Please answer with the following scale extremes in mind:</p>
+
+		<ul>
+			<li><b class="yellow">Not At All Relevant:</b> This consideration has nothing to do with my judgments of right and wrong.</li>
+			<li><b class="yellow">Extremely Relevant:</b> This is one of the most important factors when I judge right and wrong.</li>
+		</ul>
+
+		<form>
+			<div class="form-group">
+				<label for="mv1">Whether or not someone was cruel or caused someone to suffer emotionally.</label>
+
+				<div class="btn-group btn-group-sm" role="group" id="mv1">
+					<button type="button" class="btn btn-secondary">Not at all relevant</button>
+					<button type="button" class="btn btn-secondary">Slightly relevant</button>
+					<button type="button" class="btn btn-secondary">Somewhat relevant</button>
+					<button type="button" class="btn btn-secondary">Very relevant</button>
+					<button type="button" class="btn btn-secondary">Extremely relevant</button>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="mv2">Whether or not some people were treated differently than others.</label>
+
+				<div class="btn-group btn-group-sm" role="group" id="mv2">
+					<button type="button" class="btn btn-secondary">Not at all relevant</button>
+					<button type="button" class="btn btn-secondary">Slightly relevant</button>
+					<button type="button" class="btn btn-secondary">Somewhat relevant</button>
+					<button type="button" class="btn btn-secondary">Very relevant</button>
+					<button type="button" class="btn btn-secondary">Extremely relevant</button>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="mv3">Whether or not someone did something disgusting (violating standards of purity and decency).</label>
+
+				<div class="btn-group btn-group-sm" role="group" id="mv3">
+					<button type="button" class="btn btn-secondary">Not at all relevant</button>
+					<button type="button" class="btn btn-secondary">Slightly relevant</button>
+					<button type="button" class="btn btn-secondary">Somewhat relevant</button>
+					<button type="button" class="btn btn-secondary">Very relevant</button>
+					<button type="button" class="btn btn-secondary">Extremely relevant</button>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="mv4">Whether or not someone's action showed love for his or her country, family, or other social group.</label>
+
+				<div class="btn-group btn-group-sm" role="group" id="mv4">
+					<button type="button" class="btn btn-secondary">Not at all relevant</button>
+					<button type="button" class="btn btn-secondary">Slightly relevant</button>
+					<button type="button" class="btn btn-secondary">Somewhat relevant</button>
+					<button type="button" class="btn btn-secondary">Very relevant</button>
+					<button type="button" class="btn btn-secondary">Extremely relevant</button>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="mv5">Whether or not someone showed a lack of respect for authority.</label>
+
+				<div class="btn-group btn-group-sm" role="group" id="mv5">
+					<button type="button" class="btn btn-secondary">Not at all relevant</button>
+					<button type="button" class="btn btn-secondary">Slightly relevant</button>
+					<button type="button" class="btn btn-secondary">Somewhat relevant</button>
+					<button type="button" class="btn btn-secondary">Very relevant</button>
+					<button type="button" class="btn btn-secondary">Extremely relevant</button>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="mv6">Whether or not someone was denied his or her rights.</label>
+
+				<div class="btn-group btn-group-sm" role="group" id="mv6">
+					<button type="button" class="btn btn-secondary">Not at all relevant</button>
+					<button type="button" class="btn btn-secondary">Slightly relevant</button>
+					<button type="button" class="btn btn-secondary">Somewhat relevant</button>
+					<button type="button" class="btn btn-secondary">Very relevant</button>
+					<button type="button" class="btn btn-secondary">Extremely relevant</button>
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</section>
+</main>
+
+
+{% endblock %}
