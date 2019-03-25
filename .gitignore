@@ -1,2 +1,5 @@
+.project
+.pydevproject
+djvm
 db.sqlite3
 *.pyc
