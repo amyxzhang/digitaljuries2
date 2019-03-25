@@ -1,5 +1,10 @@
 from django.shortcuts import render
 from annoying.decorators import render_to
+from django.http import JsonResponse
+
+from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate
+
 
 
 @render_to('juries/index.html')
@@ -9,6 +14,22 @@ def index(request):
 @render_to('juries/consent.html')
 def consent(request):
     return {}
+
+def consent_post(request):
+    turk_id = request.POST.get('id');
+    
+    user = User.objects.filter(username=turk_id)
+    if user.exists():
+        user = user[0]
+        user.backend = 'django.contrib.auth.backends.ModelBackend'
+        login(request, user)
+    else:
+        user = User.objects.get_or_create(username=turk_id, password=turk_id)
+        user = user[0]
+        user.backend = 'django.contrib.auth.backends.ModelBackend'
+        login(request, user)
+    
+    return JsonResponse({})
 
 @render_to('juries/survey_pre.html')
 def survey_pre(request):

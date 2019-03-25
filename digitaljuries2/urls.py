@@ -20,6 +20,9 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     
     url(r'^$','juries.views.index'),
+    
+    url(r'^consent_post','juries.views.consent_post'),
+    
     url(r'^consent','juries.views.consent'),
     url(r'^survey_pre','juries.views.survey_pre'),
     url(r'^instructions','juries.views.instructions'),
@@ -31,4 +34,8 @@ urlpatterns = [
     url(r'^survey_immersive','juries.views.survey_immersive'),
     url(r'^survey_complete','juries.views.survey_complete'),
     url(r'^thankyou','juries.views.thankyou'),
+    
+    url(r'^tracking/', include('tracking.urls')),
+    
+    
 ]

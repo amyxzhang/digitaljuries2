@@ -2,12 +2,23 @@
 {% load staticfiles %}
 
 
+{% block css %}
+<style>
+	#mturk {
+		width: 200px;
+		margin-right: 30px;
+	}
+</style>
+{% endblock %}
+
 {% block content %}
 
 	<nav class="navbar navbar-expand-sm fixed-bottom panel justify-content-end">
-		<p class="dark">By consenting to participate, I acknowledge that I have read and agree to the above consent form and agree to take part in this research.</p>
+		<p class="dark">By typing my MTurk ID, I acknowledge that I have read and agree to the above consent form and agree to take part in this research.</p>
 
-		<a href="/survey_pre" class="btn btn-lg btn-primary">I Consent</a>
+		<input type="text" id="mturk" placeholder="Type MTurk ID here.">
+
+		<button class="btn btn-lg btn-secondary" disabled id="submit">I Consent</button>
 	</nav>
 
 <main class="flex-shrink-0" role="main">
@@ -64,5 +75,34 @@
 	</section>
 
 </main>
+
+{% endblock %}
+
+{% block js %}
+
+<script>
+	$('#mturk').on('input', function() {
+		$('#submit').prop('disabled', false);
+		$('#submit').removeClass('btn-secondary');
+		$('#submit').addClass('btn-primary');
+	});
+	
+	
+	$('#submit').on('click', function() {
+		var id = $('#mturk').val();
+		var csrf = $('#csrf').text();
+		var data = {csrfmiddlewaretoken: csrf,
+					id: id};
+		$.ajax({
+			type: 'POST',
+			url: '/consent_post', 
+			data: data,
+			success: function(data) {
+				window.location = '/survey_pre?id=' + id;
+			}
+		});
+	});
+	
+</script>
 
 {% endblock %}

@@ -37,10 +37,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'juries'
+    'juries',
+    'tracking'
 )
 
 MIDDLEWARE_CLASSES = (
+    'tracking.middleware.VisitorTrackingMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -101,3 +103,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+TRACK_AJAX_REQUESTS = True
+
+TRACK_ANONYMOUS_USERS = True
+
+TRACK_PAGEVIEWS = True
+
+TRACK_REFERER = True
+
+TRACK_QUERY_STRING = True
