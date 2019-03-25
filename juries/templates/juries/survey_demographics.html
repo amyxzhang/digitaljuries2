@@ -1,0 +1,84 @@
+{% extends 'juries/base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+	<nav class="navbar navbar-expand-sm fixed-bottom panel justify-content-end">
+		<a href="/survey_morals" class="btn btn-lg btn-secondary">Continue when completed</a>
+	</nav>
+
+<main class="flex-shrink-0" role="main">
+	<section class="container-fluid">
+		<h3>Tell us about yourself</h3>
+
+		<form>
+			<div class="form-group">
+		    <label for="ageRange">Age Range</label>
+		    <select class="form-control" id="ageRange">
+		      <option>18-24</option>
+		      <option>25-34</option>
+		      <option>35-44</option>
+		      <option>45-54</option>
+		      <option>55-64</option>
+					<option>65-74</option>
+					<option>75+</option>
+		    </select>
+		  </div>
+
+			<div class="form-group">
+		    <label for="gender">Gender</label>
+		    <select class="form-control" id="gender">
+		      <option>Female</option>
+		      <option>Male</option>
+		      <option>Non-binary</option>
+		    </select>
+		  </div>
+
+			<div class="form-group">
+				<label for="education">Highest completed level of Education</label>
+				<select class="form-control" id="education">
+					<option>Some high school</option>
+					<option>High school graduate</option>
+					<option>Some university</option>
+					<option>University graduate</option>
+					<option>Some graduate/professional degree</option>
+					<option>Graduate/professional degree</option>
+				</select>
+			</div>
+
+		  <div class="form-group">
+			 <label for="zip">Zipcode</label>
+			 <input type="text" class="form-control" id="zip" placeholder="00000">
+		  </div>
+
+			<div class="form-group">
+				<label for="political">What do you consider your political affiliation?</label>
+				<select class="form-control" id="political">
+					<option>Republican</option>
+					<option>Democrat</option>
+					<option>Libertarian</option>
+					<option>Independent</option>
+					<option>Other</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="engagement">How engaged do you consider yourself with politics?</label>
+
+			  <div class="btn-group" role="group" id="engagement">
+			    <button type="button" class="btn btn-secondary">Very disinterested</button>
+			    <button type="button" class="btn btn-secondary">Disinterested</button>
+			    <button type="button" class="btn btn-secondary">Neutral</button>
+			    <button type="button" class="btn btn-secondary">Interested</button>
+			    <button type="button" class="btn btn-secondary">Very interested</button>
+				</div>
+			</div>
+
+		  <button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</section>
+</main>
+
+
+{% endblock %}

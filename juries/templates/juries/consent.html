@@ -17,7 +17,6 @@
 		<p class="dark">By typing my MTurk ID, I acknowledge that I have read and agree to the above consent form and agree to take part in this research.</p>
 
 		<input type="text" id="mturk" placeholder="Type MTurk ID here.">
-
 		<button class="btn btn-lg btn-secondary" disabled id="submit">I Consent</button>
 	</nav>
 
@@ -98,7 +97,7 @@
 			url: '/consent_post', 
 			data: data,
 			success: function(data) {
-				window.location = '/survey_pre?id=' + id;
+				window.location = '/survey_demographics?id=' + id;
 			}
 		});
 	});

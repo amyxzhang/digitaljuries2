@@ -18,13 +18,14 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    
+
     url(r'^$','juries.views.index'),
     
     url(r'^consent_post','juries.views.consent_post'),
     
     url(r'^consent','juries.views.consent'),
-    url(r'^survey_pre','juries.views.survey_pre'),
+    url(r'^survey_demographics','juries.views.survey_demographics'),
+    url(r'^survey_morals','juries.views.survey_morals'),
     url(r'^instructions','juries.views.instructions'),
     url(r'^control','juries.views.control'),
     url(r'^survey_control','juries.views.survey_control'),

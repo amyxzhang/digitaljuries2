@@ -3,7 +3,7 @@
 
 
 {% block content %}
-	
+
 
 <nav class="navbar navbar-expand-sm fixed-bottom panel justify-content-end">
 	<a href="/immersive" class="btn btn-lg btn-secondary">Continue when completed</a>
@@ -12,10 +12,84 @@
 <main class="flex-shrink-0" role="main">
 	<section class="container-fluid">
 		<h3>Please complete the survey before continuing</h3>
-		<div class="embed-responsive embed-responsive-16by9">
-				<iframe class="embed-responsive-item" src="https://docs.google.com/forms/d/e/1FAIpQLSekHKntKQ52XiI6EZ0YT5DDwAGpMVxtDqI9kcuBiptzlPYFkA/viewform?embedded=true">Loading...</iframe>
-		</div>
+
+		<form>
+			<div class="form-group">
+				<label for="scaleable1">This process is an effective way to protect users from unwanted or toxic content.</label>
+
+				<div class="btn-group btn-group-sm" role="group" id="scaleable1">
+					<button type="button" class="btn btn-secondary">Strongly disagree</button>
+					<button type="button" class="btn btn-secondary">Disagree</button>
+					<button type="button" class="btn btn-secondary">Neutral</button>
+					<button type="button" class="btn btn-secondary">Agree</button>
+					<button type="button" class="btn btn-secondary">Strongly agree</button>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="scaleable2">This process cares about my preferences.</label>
+
+				<div class="btn-group btn-group-sm" role="group" id="scaleable2">
+					<button type="button" class="btn btn-secondary">Strongly disagree</button>
+					<button type="button" class="btn btn-secondary">Disagree</button>
+					<button type="button" class="btn btn-secondary">Neutral</button>
+					<button type="button" class="btn btn-secondary">Agree</button>
+					<button type="button" class="btn btn-secondary">Strongly agree</button>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="scaleable3">This process is fair.</label>
+
+				<div class="btn-group btn-group-sm" role="group" id="scaleable3">
+					<button type="button" class="btn btn-secondary">Strongly disagree</button>
+					<button type="button" class="btn btn-secondary">Disagree</button>
+					<button type="button" class="btn btn-secondary">Neutral</button>
+					<button type="button" class="btn btn-secondary">Agree</button>
+					<button type="button" class="btn btn-secondary">Strongly agree</button>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="scaleable4">This process values individual voices equally.</label>
+
+				<div class="btn-group btn-group-sm" role="group" id="scaleable4">
+					<button type="button" class="btn btn-secondary">Strongly disagree</button>
+					<button type="button" class="btn btn-secondary">Disagree</button>
+					<button type="button" class="btn btn-secondary">Neutral</button>
+					<button type="button" class="btn btn-secondary">Agree</button>
+					<button type="button" class="btn btn-secondary">Strongly agree</button>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="scaleable5">This process improves my trust in content moderation decisions.</label>
+
+				<div class="btn-group btn-group-sm" role="group" id="scaleable5">
+					<button type="button" class="btn btn-secondary">Strongly disagree</button>
+					<button type="button" class="btn btn-secondary">Disagree</button>
+					<button type="button" class="btn btn-secondary">Neutral</button>
+					<button type="button" class="btn btn-secondary">Agree</button>
+					<button type="button" class="btn btn-secondary">Strongly agree</button>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="scaleable6">This process feels like a legitimate exercise of power.</label>
+
+				<div class="btn-group btn-group-sm" role="group" id="scaleable6">
+					<button type="button" class="btn btn-secondary">Strongly disagree</button>
+					<button type="button" class="btn btn-secondary">Disagree</button>
+					<button type="button" class="btn btn-secondary">Neutral</button>
+					<button type="button" class="btn btn-secondary">Agree</button>
+					<button type="button" class="btn btn-secondary">Strongly agree</button>
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
 	</section>
+
 </main>
 
 {% endblock %}
