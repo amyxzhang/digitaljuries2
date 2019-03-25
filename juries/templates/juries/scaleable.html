@@ -44,10 +44,10 @@
 			<div class="col-sm-4 col-xs-12 jury" id="jury">
 				<h3>Jury Decision</h3>
 
-				<h4>Waiting... <span class="yellow">5</span> out of 6 ready</h4>
+				<h4 id="pending">Waiting... <span class="yellow" id="vote_count">0</span> out of 6 people have voted</h4>
 
 				<!-- JURY: Score -->
-				<div id="juryDecision" class="subsection">
+				<div id="juryDecision" class="subsection" style="display:none;">
 					<h4 class="yellow">Toxicity Score:
 					<span id="juryScore" class="score light text-right"></span>
 					</h4>
@@ -59,9 +59,17 @@
 
 				<!-- JURY: Delib Module -->
 				<div class="subsection">
-					<h4 class="yellow">Recommended Action:</h4>
-					<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Delete Content</button>
+					<h4 class="yellow">Recommended Actions (passed majority):</h4>
+					<span id="recommended">
+						
+					</span>
+					<h4 class="yellow">Not Recommended (failed majority):</h4>
+					<span id="nonrecommend">
+						
+					</span>
 				</div>
+				
+				 
 			</div>
 			<!-- // END JURY -->
 
@@ -73,10 +81,10 @@
 <footer id="panel-control" class="accordion mt-auto panel">
 	<div class="card">
 		<div class="card-header" data-toggle="collapse" data-target="#panelDecision">
-				<p>In this round, you will be deciding a case along a jury of your peers.</p>
+				<p id="instructions">In this round, you will be deciding a case along a jury of your peers.</p>
 
 					<!-- <button type="submit" class="btn btn-secondary" value="Submit" disabled>Submit Decision</button> -->
-					<a href="/survey_scaleable" class="btn btn-primary">Submit Decision</a>
+					<button class="btn btn-secondary" disabled id="submit">Submit Decision</a>
 		</div>
 
 		<div class="card-group show" id="panelDecision">
@@ -104,17 +112,17 @@
 
 							<div class="btn-group-toggle" data-toggle="buttons">
 								<label class="btn btn-outline-secondary">
-									<input type="checkbox" autocomplete="off">
+									<input type="checkbox" autocomplete="off" id="unlist">
 									Unlist from search
 								</label>
 
 								<label class="btn btn-outline-secondary">
-									<input type="checkbox" autocomplete="off">
+									<input type="checkbox" autocomplete="off" id="delete">
 									Delete
 								</label>
 
 								<label class="btn btn-outline-secondary">
-									<input type="checkbox" autocomplete="off">
+									<input type="checkbox" autocomplete="off" id="report">
 									Report to authorities
 								</label>
 							</div>
@@ -126,17 +134,17 @@
 
 							<div class="btn-group-toggle" data-toggle="buttons">
 								<label class="btn btn-outline-secondary">
-									<input type="checkbox" autocomplete="off">
+									<input type="checkbox" autocomplete="off" id="warn">
 									Warn
 								</label>
 
 								<label class="btn btn-outline-secondary">
-									<input type="checkbox" autocomplete="off">
+									<input type="checkbox" autocomplete="off" id="ban">
 									Ban for 1 week
 								</label>
 
 								<label class="btn btn-outline-secondary">
-									<input type="checkbox" autocomplete="off">
+									<input type="checkbox" autocomplete="off" id="permaban">
 									Permanently Ban
 								</label>
 							</div>
@@ -145,7 +153,7 @@
 						<!-- JUSTIFICATION -->
 						<div id="panelJustification">
 							<h4 class="dark">Why do you think so?</h4>
-							<textarea rows="3"></textarea>
+							<textarea id="explanation" rows="3"></textarea>
 						</div>
 				</div>
 			</div>
@@ -156,13 +164,178 @@
 
 {% endblock %}
 
-{% block js %}
-<!-- Slider -->
-<script src={% static "juries/js/bootstrap-slider.min.js" %}></script>
-{% endblock %}
-
 
 
 {% block jury %}
+<!-- Slider -->
+<script src={% static "juries/js/bootstrap-slider.min.js" %}></script>
+
 <script src={% static "juries/js/jury.js" %}></script>
 {% endblock %}
+
+
+{% block js %}
+
+<script>
+
+	var count;
+	var id = getParameterByName('id');
+	var group = getParameterByName('group');
+	var condition = getParameterByName('condition');
+	
+	(function poll() {
+	    $.ajax({
+	        url: "/poll_scaleable?group=" + group,
+	        type: "GET",
+	        success: function(data) {
+	        	count = data.count;
+	        	$('#vote_count').text(count);
+	        	
+	        	if (count == 6) {
+	        		
+	        		$('#pending').text("All 6 jury members have voted");
+	        		
+	        		$('#juryDecision').show();
+	        		
+	        		$("#juryScore").text(data.vote.toFixed(2));
+	        		sliderJury.slider('setValue', data.vote);
+	        		sliderJury.slider("disable");
+	        		
+	        		if (data.unlist > 3) {
+	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Unlist from Search</button> ' + data.unlist + ' votes <BR>');
+	        		} else {
+	        			if (data.unlist == 1) {
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Unlist from Search</button> ' + data.unlist + ' vote <BR>');
+	        			} else {
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Unlist from Search</button> ' + data.unlist + ' votes <BR>');
+	        			}
+	        		}
+	        		
+	        		if (data.del > 3) {
+	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Delete Content</button> ' + data.del + ' votes <BR>');
+	        		} else {
+	        			if (data.del == 1) {
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Delete Content</button> ' + data.del + ' vote <BR>');
+	        			} else {
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Delete Content</button> ' + data.del + ' votes <BR>');
+	        			}
+	        		}
+	        		
+	        		if (data.report > 3) {
+	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Report Content</button> ' + data.report + ' votes <BR>');
+	        		} else {
+	        			if (data.report == 1) {
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Report Content</button> ' + data.report + ' vote <BR>');
+	        			} else {
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Report Content</button> ' + data.report + ' votes <BR>');
+	        			}
+	        		}
+	        		
+	        		if (data.warn > 3) {
+	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Warn User</button> ' + data.warn + ' votes <BR>');
+	        		} else {
+	        			if (data.warn == 1) {
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Warn User</button> ' + data.warn + ' vote <BR>');
+	        			} else {
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Warn User</button> ' + data.warn + ' votes <BR>');
+	        			}
+	        		}
+	        		
+	        		if (data.ban > 3) {
+	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Ban User for 1 Week</button> ' + data.ban + ' votes <BR>');
+	        		} else {
+	        			if (data.ban == 1) {
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Ban User for 1 Week</button> ' + data.ban + ' vote <BR>');
+	        			} else {
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Ban User for 1 Week</button> ' + data.ban + ' votes <BR>');
+	        			}
+	        		}
+	        		
+	        		if (data.permaban > 3) {
+	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Permanently Ban User</button> ' + data.permaban + ' votes <BR>');
+	        		} else {
+	        			if (data.permaban == 1) {
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Permanently Ban User</button> ' + data.permaban + ' vote <BR>');
+	        			} else {
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Permanently Ban User</button> ' + data.permaban + ' votes <BR>');
+	        			}
+	        		}
+	        		
+	        		
+	        		$('#submit').removeAttr('disabled');
+	        		$("#submit").removeClass("btn-secondary");
+				    $("#submit").addClass("btn-primary");
+				    
+	        	}
+	        	
+	        },
+	        dataType: "json",
+	        complete: setTimeout(function() {
+	        		if (count < 6) {
+	        			poll();
+	        		}
+	        	}, 5000),
+	        timeout: 2000
+	    });
+	})();
+		
+	
+	$('#submit').on('click', function() {
+		
+		var vote = $('#sliderIndiv').val();
+		var unlist = $('#unlist').is(":checked");
+		var del = $('#delete').is(":checked");
+		var report = $('#report').is(":checked");
+		var warn = $('#warn').is(":checked");
+		var ban = $('#ban').is(":checked");
+		var permaban = $('#permaban').is(":checked");
+		var explanation = $('#explanation').val();
+		
+		var csrf = $('#csrf').text();
+		var data = {csrfmiddlewaretoken: csrf,
+					vote: vote,
+					unlist: unlist,
+					del: del,
+					report: report,
+					warn: warn,
+					ban: ban,
+					permaban: permaban,
+					group: group,
+					condition: condition,
+					explanation: explanation,
+					id: id};
+		$.ajax({
+			type: 'POST',
+			url: '/scaleable_post', 
+			data: data,
+			success: function(data) {
+				$('.card-group').addClass('collapse');
+				$('.card-group').removeClass('show');
+				
+				$('.card-header').removeAttr('data-toggle');
+				$('.card-header').removeAttr('data-target');
+			    
+			    $('#instructions').text('Thanks for providing your vote. Once all 6 votes have come in from the jury, click to Continue.');
+			    
+			    $('#submit').text('Continue');
+			    $('#submit').unbind('click');
+			    
+			    $('#submit').attr('disabled', 'disabled');
+			    $("#submit").removeClass("btn-primary");
+			    $("#submit").addClass("btn-secondary");
+				  
+			    $('#submit').on('click', function() {
+			    	window.location = '/survey_scaleable?group=' + group + '&condition=' + condition + '&id=' + id;
+			    });
+			    
+			    
+			}
+		});
+		return false;
+	});
+</script>
+
+
+{% endblock %}
+
+

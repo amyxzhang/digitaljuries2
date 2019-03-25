@@ -45,16 +45,16 @@ sliderIndiv.on("change", function(slideEvt) {
 
   // update score text
   $("#indivScore").text(scoreIndiv);
-  $("#juryScore").text(scoreJury.toFixed(2));
+  // $("#juryScore").text(scoreJury.toFixed(2));
 
-  // update jury DECISION
-  sliderJury.slider('setValue', scoreJury);
-  $('#juryDecision').show();
+  // // update jury DECISION
+  // sliderJury.slider('setValue', scoreJury);
+  // $('#juryDecision').show();
 
   // activate submit button
-  $("*[type='submit']").removeClass("btn-secondary");
-  $("*[type='submit']").removeAttr("disabled");
-  $("*[type='submit']").addClass("btn-primary");
+  $("#submit").removeClass("btn-secondary");
+  $("#submit").removeAttr("disabled");
+  $("#submit").addClass("btn-primary");
 
   if (scoreIndiv >= 8) {
     // TOXIC

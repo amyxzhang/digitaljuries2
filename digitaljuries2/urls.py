@@ -25,6 +25,10 @@ urlpatterns = [
     url(r'^demographics_post','juries.views.demographics_post'),
     url(r'^morals_post','juries.views.morals_post'),
     url(r'^controlsurvey_post','juries.views.controlsurvey_post'),
+    url(r'^scaleable_post','juries.views.scaleable_post'),
+    url(r'^scaleablesurvey_post','juries.views.scaleablesurvey_post'),
+    
+    url(r'^poll_scaleable','juries.views.poll_scaleable'),
     
     url(r'^consent','juries.views.consent'),
     url(r'^survey_demographics','juries.views.survey_demographics'),

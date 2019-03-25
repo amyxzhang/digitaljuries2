@@ -37,9 +37,14 @@ class UserInfo(models.Model):
     control4 = models.IntegerField(default=0)
     control5 = models.IntegerField(default=0)
     
-    scaleable_vote = models.FloatField(default=0.0)
-    scaleable_action_content = models.TextField(null=True)
-    scaleable_action_user = models.TextField(null=True)
+    scaleable_vote = models.FloatField(default=None, null=True)
+    scaleable_content_unlist = models.BooleanField(default=False)
+    scaleable_content_delete = models.BooleanField(default=False)
+    scaleable_content_report = models.BooleanField(default=False)
+    scaleable_user_warn = models.BooleanField(default=False)
+    scaleable_user_ban = models.BooleanField(default=False)
+    scaleable_user_permaban = models.BooleanField(default=False)
+    scaleable_explanation = models.TextField(null=True)
     
     scaleable0 = models.IntegerField(default=0)
     scaleable1 = models.IntegerField(default=0)

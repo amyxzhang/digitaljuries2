@@ -116,6 +116,96 @@ def controlsurvey_post(request):
     else:
         return JsonResponse({'url': '/immersive?group=' + str(g2.id) + '&condition=' + str(g2.condition)})
 
+def scaleable_post(request):
+    turk_id = request.POST.get('id');
+    
+    user = User.objects.get(username=turk_id)
+    ui = UserInfo.objects.get(mturk_user=user)
+    
+    ui.scaleable_vote = float(request.POST.get('vote'))
+    ui.scaleable_content_unlist = request.POST.get('unlist')
+    ui.scaleable_content_delete = request.POST.get('del')
+    ui.scaleable_content_report = request.POST.get('report')
+    ui.scaleable_user_warn = request.POST.get('warn')
+    ui.scaleable_user_ban = request.POST.get('ban')
+    ui.scaleable_user_permaban = request.POST.get('permaban')
+    ui.scaleable_explanation = request.POST.get('explanation')
+    
+    ui.save()
+    
+    return JsonResponse({})
+    
+
+
+def scaleablesurvey_post(request):
+    turk_id = request.POST.get('id');
+    
+    user = User.objects.get(username=turk_id)
+    ui = UserInfo.objects.get(mturk_user=user)
+    
+    ui.scaleable0 = int(request.POST.get('scaleable1') if request.POST.get('scaleable1') != '' else '0')
+    ui.scaleable1 = int(request.POST.get('scaleable2') if request.POST.get('scaleable2') != '' else '0')
+    ui.scaleable2 = int(request.POST.get('scaleable3') if request.POST.get('scaleable3') != '' else '0')
+    ui.scaleable3 = int(request.POST.get('scaleable4') if request.POST.get('scaleable4') != '' else '0')
+    ui.scaleable4 = int(request.POST.get('scaleable5') if request.POST.get('scaleable5') != '' else '0')
+    ui.scaleable5 = int(request.POST.get('scaleable6') if request.POST.get('scaleable6') != '' else '0')
+    
+    ui.save()
+    
+    g2 = ui.groupinfo
+    
+    if g2.condition == 3 or g2.condition == 4:
+        return JsonResponse({'url': '/scaleable?group=' + str(g2.id) + '&condition=' + str(g2.condition)})
+    else:
+        return JsonResponse({'url': '/immersive?group=' + str(g2.id) + '&condition=' + str(g2.condition)})
+    
+    
+    
+def poll_scaleable(request):
+    group_id = request.GET.get('group');
+    
+    gi = GroupInfo.objects.get(id=group_id)
+    ui = UserInfo.objects.filter(groupinfo=gi, scaleable_vote__isnull=False)
+    if ui.count() >= 6:
+        
+        vote = 0.0
+        unlist = 0
+        delete = 0
+        report = 0
+        warn = 0
+        ban = 0
+        permaban = 0
+        
+        for u in ui:
+            vote += u.scaleable_vote
+            if u.scaleable_content_unlist:
+                unlist += 1
+            if u.scaleable_content_delete:
+                delete += 1
+            if u.scaleable_content_report:
+                report += 1
+            if u.scaleable_user_warn:
+                warn += 1
+            if u.scaleable_user_ban:
+                ban += 1
+            if u.scaleable_user_permaban:
+                permaban += 1
+        
+        vote = float(float(vote)/6.0)
+        return JsonResponse({'count': ui.count(),
+                             'vote': vote,
+                             'unlist': unlist,
+                             'del': delete,
+                             'report': report,
+                             'warn': warn,
+                             'ban': ban,
+                             'permaban': permaban})
+
+    else:
+        return JsonResponse({'count': ui.count()})
+    
+
+    
 
 
 @render_to('juries/survey_demographics.html')
