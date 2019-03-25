@@ -70,7 +70,7 @@
 		<div class="card-body">
 			<p>In this round, you will be shown flagged content along with the platform’s decision. You do NOT have to make any selections in this round.</p>
 
-			<a href="/survey_control" class="btn btn-primary">Click to continue when ready</a>
+			<button class="btn btn-primary" id="continue">Click to continue when ready</button>
 		</div>
 	</div>
 </footer>
@@ -79,6 +79,17 @@
 {% endblock %}
 
 
+{% block js %}
+<script>
+	$('#continue').on('click', function() {
+		var id = getParameterByName('id');
+		window.location = '/survey_control?id=' + id;
+	});
+</script>
+{% endblock %}
+
+
 {% block jury %}
 <script src={% static "juries/js/jury.js" %}></script>
 {% endblock %}
+

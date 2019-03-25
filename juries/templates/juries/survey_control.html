@@ -5,7 +5,7 @@
 {% block content %}
 
 <nav class="navbar navbar-expand-sm fixed-bottom panel justify-content-end">
-	<a href="/scaleable" class="btn btn-lg btn-secondary">Continue when completed</a>
+	<button class="btn btn-lg btn-secondary" disabled id="continue">Continue when completed</a>
 </nav>
 
 <main class="flex-shrink-0" role="main">
@@ -88,10 +88,56 @@
 			</div>
 		</div>
 
-		<button type="submit" class="btn btn-primary">Submit</button>
+		<button type="submit" class="btn btn-primary" id="submit">Submit</button>
 	</form>
 </section>
 
 </main>
 
 {% endblock %}
+
+{% block js %}
+
+<script>
+	
+	$('#submit').on('click', function() {
+		
+		var control1 = $('#control1').val();
+		var control2 = $('#control2').val();
+		var control3 = $('#control3').val();
+		var control4 = $('#control4').val();
+		var control5 = $('#control5').val();
+		var control6 = $('#control6').val();
+		var id = getParameterByName('id');
+		
+		var csrf = $('#csrf').text();
+		var data = {csrfmiddlewaretoken: csrf,
+					control1: control1,
+					control2: control2,
+					control3: control3,
+					control4: control4,
+					control5: control5,
+					control6: control6,
+					id: id};
+		$.ajax({
+			type: 'POST',
+			url: '/controlsurvey_post', 
+			data: data,
+			success: function(data) {
+				$('#continue').prop('disabled', false);
+				$('#continue').removeClass('btn-secondary');
+				$('#continue').addClass('btn-primary');
+				
+				var next_url = data.url;
+				$('#continue').on('click', function() {
+					window.location = next_url + '?id=' + id;
+				});
+			}
+		});
+		return false;
+	});
+	
+</script>
+
+{% endblock %}
+

@@ -4,7 +4,7 @@
 
 {% block content %}
 	<nav class="navbar navbar-expand-sm fixed-bottom panel justify-content-end">
-		<a href="/control" class="btn btn-lg btn-primary">Ready to begin Round 1</a>
+		<button class="btn btn-lg btn-primary" id="continue">Ready to begin Round 1</button>
 	</nav>
 
 <main class="flex-shrink-0" role="main">
@@ -29,4 +29,13 @@
 	</section>
 </main>
 
+{% endblock %}
+
+{% block js %}
+<script>
+	$('#continue').on('click', function() {
+		var id = getParameterByName('id');
+		window.location = '/control?id=' + id;
+	});
+</script>
 {% endblock %}

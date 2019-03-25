@@ -5,7 +5,7 @@
 {% block content %}
 
 	<nav class="navbar navbar-expand-sm fixed-bottom panel justify-content-end">
-		<a href="/survey_morals" class="btn btn-lg btn-secondary">Continue when completed</a>
+		<button class="btn btn-lg btn-secondary" disabled id="continue">Continue when completed</button>
 	</nav>
 
 <main class="flex-shrink-0" role="main">
@@ -47,10 +47,10 @@
 				</select>
 			</div>
 
-		  <div class="form-group">
+		  <!-- <div class="form-group">
 			 <label for="zip">Zipcode</label>
 			 <input type="text" class="form-control" id="zip" placeholder="00000">
-		  </div>
+		  </div> -->
 
 			<div class="form-group">
 				<label for="political">What do you consider your political affiliation?</label>
@@ -75,10 +75,51 @@
 				</div>
 			</div>
 
-		  <button type="submit" class="btn btn-primary">Submit</button>
+		  <button type="submit" class="btn btn-primary" id="submit">Submit</button>
 		</form>
 	</section>
 </main>
 
+
+{% endblock %}
+
+{% block js %}
+
+<script>
+	
+	$('#submit').on('click', function() {
+		
+		var age = $('#ageRange').val();
+		var gender = $('#gender').val();
+		var education = $('#education').val();
+		var political = $('#political').val();
+		var engagement = $('#engagement').val();
+		var id = getParameterByName('id');
+		
+		var csrf = $('#csrf').text();
+		var data = {csrfmiddlewaretoken: csrf,
+					age: age,
+					gender: gender,
+					education: education,
+					political: political,
+					engagement: engagement,
+					id: id};
+		$.ajax({
+			type: 'POST',
+			url: '/demographics_post', 
+			data: data,
+			success: function(data) {
+				$('#continue').prop('disabled', false);
+				$('#continue').removeClass('btn-secondary');
+				$('#continue').addClass('btn-primary');
+				$('#continue').on('click', function() {
+					window.location = '/survey_morals?id=' + id;
+				});
+			}
+		});
+		return false;
+	});
+	
+</script>
 
 {% endblock %}
