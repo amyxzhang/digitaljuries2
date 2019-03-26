@@ -234,6 +234,18 @@ h5 {
   font-size: 14px;
   line-height: 1.25em; }
 
+label {
+    font-size: 16px;
+    line-height: 1em;
+    text-transform: uppercase; }
+
+    .questions label {
+        font-family: "Roboto", Tahoma, Arial, sans-serif;
+        font-size: 20px;
+        line-height: 1.2em;
+        text-transform: none;
+    }
+
 input, textarea {
   font-size: 16px;
   line-height: 1em;
@@ -248,11 +260,12 @@ footer p {
     LINKS
 \*------------------------------------*/
 a {
-  color: #007bff;
+  color: #ECCA5E;
   font-weight: 400;
   text-decoration: none; }
   a:hover, a:focus, a:active {
     text-decoration: underline;
+    color: #ECCA5E;
     transition: background-color 0.5s ease; }
 
 navbar a {
@@ -300,6 +313,12 @@ hr {
 /*------------------------------------*\
     INPUTS
 \*------------------------------------*/
+.survey {
+  max-width: 800px;
+}
+.form-group {
+  margin-bottom: 2rem;
+}
 /**** BUTTONS ****/
 .btn {
   font-family: "Space Mono", "Roboto", monospace;

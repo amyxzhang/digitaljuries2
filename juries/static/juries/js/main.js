@@ -24,6 +24,12 @@ $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 });
 
+// Show selected btn
+$('[data-toggle="button"]').click(function() {
+  $(this).button('toggle');
+});
+
+
 // Popover
 $(function () {
   $('[data-toggle="popover"]').popover({
@@ -58,4 +64,3 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
-	

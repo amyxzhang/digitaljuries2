@@ -38,7 +38,7 @@
 
 				<p>You will be instructed on what to do during this research study. Your participation is completely voluntary, and whether or not you take part is up to you. You may exit the study at any time.</p>
 
-				<p>This experiment will be in 3 parts. You will be shown 3 cases based on content that has been uploaded on social media and asked to decide what the toxicity level of the content is. You will also be asked what punishments should be taken against the original poster, if any. You may be asked to collaborate with other jury participants online to arrive at a single, unanimous decision.</p>
+				<p>This experiment will be in 3 parts. You will be shown 3 cases based on content that has been uploaded on social media and asked to decide what the toxicity level of the content is. You will also be asked what punishments should be taken against the original poster, if any. You may be asked to collaborate with other jury participants online to arrive at a single decision.</p>
 
 				<hr />
 
@@ -85,8 +85,8 @@
 		$('#submit').removeClass('btn-secondary');
 		$('#submit').addClass('btn-primary');
 	});
-	
-	
+
+
 	$('#submit').on('click', function() {
 		var id = $('#mturk').val();
 		var csrf = $('#csrf').text();
@@ -94,14 +94,14 @@
 					id: id};
 		$.ajax({
 			type: 'POST',
-			url: '/consent_post', 
+			url: '/consent_post',
 			data: data,
 			success: function(data) {
 				window.location = '/survey_demographics?id=' + id;
 			}
 		});
 	});
-	
+
 </script>
 
 {% endblock %}

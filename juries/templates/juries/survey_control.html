@@ -12,7 +12,7 @@
 		<!-- <div class="embed-responsive embed-responsive-16by9">
 				<iframe class="embed-responsive-item" src="https://docs.google.com/forms/d/e/1FAIpQLSekHKntKQ52XiI6EZ0YT5DDwAGpMVxtDqI9kcuBiptzlPYFkA/viewform?embedded=true">Loading...</iframe>
 		</div> -->
-<section class="container-fluid">
+<section class="container">
 	<h3>Please complete the survey before continuing</h3>
 
 	<form>
@@ -99,9 +99,9 @@
 {% block js %}
 
 <script>
-	
+
 	$('#submit').on('click', function() {
-		
+
 		var control1 = $('#control1').val();
 		var control2 = $('#control2').val();
 		var control3 = $('#control3').val();
@@ -109,7 +109,7 @@
 		var control5 = $('#control5').val();
 		var control6 = $('#control6').val();
 		var id = getParameterByName('id');
-		
+
 		var csrf = $('#csrf').text();
 		var data = {csrfmiddlewaretoken: csrf,
 					control1: control1,
@@ -121,13 +121,13 @@
 					id: id};
 		$.ajax({
 			type: 'POST',
-			url: '/controlsurvey_post', 
+			url: '/controlsurvey_post',
 			data: data,
 			success: function(data) {
 				$('#continue').prop('disabled', false);
 				$('#continue').removeClass('btn-secondary');
 				$('#continue').addClass('btn-primary');
-				
+
 				var next_url = data.url;
 				$('#continue').on('click', function() {
 					window.location = next_url + '&id=' + id;
@@ -136,8 +136,7 @@
 		});
 		return false;
 	});
-	
+
 </script>
 
 {% endblock %}
-
