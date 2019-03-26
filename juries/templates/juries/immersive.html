@@ -26,7 +26,7 @@
 						<h4 class="yellow">Context</h4>
 
 						<p>Momo is a viral urban legend that has been associated with "suicide games", similar to the Blue Whale Challenge urban legend where children are reportedly being drawn into a game of escalating dares ending in self-harm. For both the Momo Challenge and Blue Whale Challenge, a number of teenage deaths have been accused of being tied to the challenge, though it has been debunked as a hoax and formal linkages between the events are not officially proven.</p>
-						
+
 						<p>The user posted a link to an edited video depicting children's cartoon Peppa the Pig, showing a character being beheaded and shot at before cutting into a scene of Momo. We think this may violate the community standards because of:</p>
 
 						<p>We think this may violate community standards because of:</p>
@@ -49,11 +49,11 @@
 				<div class="col-md-3 col-sm-12 jury" id="jury">
 				<h3>Jury Decision</h3>
 
-				<h4>Waiting... <span class="yellow">5</span> out of 6 ready</h4>
+				<h4><span class="yellow" id="vote_count">0</span> out of 6 jury members have voted</h4>
 
 				<!-- JURY: Score -->
 				<div id="juryDecision" class="subsection">
-					<h4 class="yellow">Toxicity Score:
+					<h4 class="yellow">Average Toxicity Score:
 					<span id="juryScore" class="score light text-right"></span>
 					</h4>
 
@@ -64,8 +64,15 @@
 
 				<!-- JURY: Delib Module -->
 				<div class="subsection">
-					<h4 class="yellow">Recommended Action:</h4>
-					<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Delete Content</button>
+					<h4 class="yellow">Content Actions Voted On:</h4>
+					<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="unlist_button">Unlist from Search</button> <span id="unlist">0 votes</span><BR>
+					<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="delete_button">Delete Content</button>  <span id="delete">0 votes</span><BR>
+					<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="report_button">Report Content</button> <span id="report">0 votes</span><BR>
+					<h4 class="yellow">User Actions Voted On:</h4>
+					<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="warn_button">Warn User</button>  <span id="warn">0 votes</span><BR>
+					<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="ban_button">Ban for 1 Week</button> <span id="ban">0 votes</span><BR>
+					<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="permaban_button">Permanently Ban</button>  <span id="permaban">0 votes</span><BR>
+
 				</div>
 			</div>
 			<!-- // END JURY -->
@@ -106,18 +113,18 @@
 									<h4 class="dark">What action should the platform take on the content?</h4>
 
 									<div class="btn-group-toggle" data-toggle="buttons">
-										<label class="btn btn-outline-secondary">
-											<input type="checkbox" autocomplete="off">
+										<label class="btn btn-outline-secondary" id="unlist_check_btn">
+											<input type="checkbox" autocomplete="off" id="unlist_check">
 											Unlist from search
 										</label>
 
-										<label class="btn btn-outline-secondary">
-											<input type="checkbox" autocomplete="off">
+										<label class="btn btn-outline-secondary" id="delete_check_btn">
+											<input type="checkbox" autocomplete="off" id="delete_check">
 											Delete
 										</label>
 
-										<label class="btn btn-outline-secondary">
-											<input type="checkbox" autocomplete="off">
+										<label class="btn btn-outline-secondary" id="report_check_btn">
+											<input type="checkbox" autocomplete="off" id="report_check">
 											Report to authorities
 										</label>
 									</div>
@@ -128,18 +135,18 @@
 									<h4 class="dark">What action should the platform take on the user?</h4>
 
 									<div class="btn-group-toggle" data-toggle="buttons">
-										<label class="btn btn-outline-secondary">
-											<input type="checkbox" autocomplete="off">
+										<label class="btn btn-outline-secondary" id="warn_check_btn">
+											<input type="checkbox" autocomplete="off" id="warn_check">
 											Warn
 										</label>
 
-										<label class="btn btn-outline-secondary">
-											<input type="checkbox" autocomplete="off">
+										<label class="btn btn-outline-secondary" id="ban_check_btn">
+											<input type="checkbox" autocomplete="off" id="ban_check">
 											Ban for 1 week
 										</label>
 
-										<label class="btn btn-outline-secondary">
-											<input type="checkbox" autocomplete="off">
+										<label class="btn btn-outline-secondary" id="permaban_check_btn">
+											<input type="checkbox" autocomplete="off" id="permaban_check">
 											Permanently Ban
 										</label>
 									</div>
@@ -161,7 +168,7 @@
 					<!-- Enter name before chatting -->
 					<div id="login">
 						<h4 class="grey">Juror chat</h4>
-							<input id="usernameInput" type="text" autocomplete="off" placeholder="Enter your name to continue" />
+							<input id="usernameInput" type="text" autocomplete="off" placeholder="Enter a username to continue" />
 					</div>
 
 					<ul class="messages dark">
@@ -184,17 +191,450 @@
 
 {% endblock %}
 
-{% block js %}
-<!-- Slider -->
-<script src={% static "juries/js/bootstrap-slider.min.js" %}></script>
-
-<!-- Socket -->
-<script src={% static "juries/js/socket.io-2.1.0.js" %}></script>
-<script src={% static "juries/js/client.js" %}></script>
-{% endblock %}
-
-
-
 {% block jury %}
+<script src={% static "juries/js/bootstrap-slider.min.js" %}></script>
 <script src={% static "juries/js/jury.js" %}></script>
 {% endblock %}
+
+
+{% block js %}
+<script>
+	var id = getParameterByName('id');
+	var group = getParameterByName('group');
+	var condition = getParameterByName('condition');
+
+	var csrf = $('#csrf').text();
+
+	sliderJury.slider("disable");
+
+	$('#unlist_check_btn').on('click', function() {
+		var data = {
+		  	csrfmiddlewaretoken: csrf,
+		  	id: id,
+		  	check: $('#unlist_check').is(":checked"),
+		  	action: 'unlist',
+		  };
+		post_action(data);
+	});
+
+	$('#delete_check_btn').on('click', function() {
+		var data = {
+		  	csrfmiddlewaretoken: csrf,
+		  	id: id,
+		  	check: $('#delete_check').is(":checked"),
+		  	action: 'delete',
+		  };
+		post_action(data);
+	});
+
+	$('#report_check_btn').on('click', function() {
+		var data = {
+		  	csrfmiddlewaretoken: csrf,
+		  	id: id,
+		  	check: $('#report_check').is(":checked"),
+		  	action: 'report',
+		  };
+		post_action(data);
+	});
+
+	$('#warn_check_btn').on('click', function() {
+		var data = {
+		  	csrfmiddlewaretoken: csrf,
+		  	id: id,
+		  	check: $('#warn_check').is(":checked"),
+		  	action: 'warn',
+		  };
+		post_action(data);
+	});
+
+	$('#ban_check_btn').on('click', function() {
+		var data = {
+		  	csrfmiddlewaretoken: csrf,
+		  	id: id,
+		  	check: $('#ban_check').is(":checked"),
+		  	action: 'ban',
+		  };
+		post_action(data);
+	});
+
+	$('#permaban_check_btn').on('click', function() {
+		var data = {
+		  	csrfmiddlewaretoken: csrf,
+		  	id: id,
+		  	check: $('#permaban_check').is(":checked"),
+		  	action: 'permaban',
+		  };
+		post_action(data);
+	});
+
+
+	function post_action(data) {
+		 $.ajax({
+				type: 'POST',
+				url: '/post_immersive_action',
+				data: data,
+				success: function(data) {
+				}
+			});
+	}
+
+
+	(function poll() {
+	    $.ajax({
+	        url: "/poll_immersive?group=" + group,
+	        type: "GET",
+	        success: function(data) {
+	        	count = data.count;
+	        	$('#vote_count').text(count);
+
+        		$("#juryScore").text(data.vote.toFixed(2));
+        		sliderJury.slider('setValue', data.vote);
+
+        		if (data.unlist > 3) {
+        			$('#unlist_button').removeClass('btn-secondary');
+        			$('#unlist_button').addClass('btn-danger');
+        		} else {
+        			$('#unlist_button').addClass('btn-secondary');
+        			$('#unlist_button').removeClass('btn-danger');
+
+        			if (data.unlist == 1) {
+        				$('#unlist').text('1 vote');
+        			}
+        		}
+        		if (data.unlist != 1) {
+        			$('#unlist').text(data.unlist + ' votes');
+        		}
+
+        		if (data.del > 3) {
+        			$('#delete_button').removeClass('btn-secondary');
+        			$('#delete_button').addClass('btn-danger');
+        		} else {
+        			$('#delete_button').addClass('btn-secondary');
+        			$('#delete_button').removeClass('btn-danger');
+
+        			if (data.del == 1) {
+        				$('#delete').text('1 vote');
+        			}
+        		}
+        		if (data.del != 1) {
+        			$('#delete').text(data.del + ' votes');
+        		}
+
+        		if (data.report > 3) {
+        			$('#report_button').removeClass('btn-secondary');
+        			$('#report_button').addClass('btn-danger');
+        		} else {
+        			$('#report_button').addClass('btn-secondary');
+        			$('#report_button').removeClass('btn-danger');
+
+        			if (data.report == 1) {
+        				$('#report').text('1 vote');
+        			}
+        		}
+        		if (data.report != 1) {
+        			$('#report').text(data.report + ' votes');
+        		}
+
+        		if (data.warn > 3) {
+        			$('#warn_button').removeClass('btn-secondary');
+        			$('#warn_button').addClass('btn-danger');
+        		} else {
+        			$('#warn_button').addClass('btn-secondary');
+        			$('#warn_button').removeClass('btn-danger');
+
+        			if (data.warn == 1) {
+        				$('#warn').text('1 vote');
+        			}
+        		}
+        		if (data.warn != 1) {
+        			$('#warn').text(data.warn + ' votes');
+        		}
+
+        		if (data.ban > 3) {
+        			$('#ban_button').removeClass('btn-secondary');
+        			$('#ban_button').addClass('btn-danger');
+        		} else {
+        			$('#ban_button').addClass('btn-secondary');
+        			$('#ban_button').removeClass('btn-danger');
+
+        			if (data.ban == 1) {
+        				$('#ban').text('1 vote');
+        			}
+        		}
+        		if (data.ban != 1) {
+        			$('#ban').text(data.ban + ' votes');
+        		}
+
+        		if (data.permaban > 3) {
+        			$('#permaban_button').removeClass('btn-secondary');
+        			$('#permaban_button').addClass('btn-danger');
+        		} else {
+        			$('#permaban_button').addClass('btn-secondary');
+        			$('#permaban_button').removeClass('btn-danger');
+
+        			if (data.permaban == 1) {
+        				$('#permaban').text('1 vote');
+        			}
+        		}
+        		if (data.permaban != 1) {
+        			$('#permaban').text(data.permaban + ' votes');
+        		}
+
+
+	        },
+	        dataType: "json",
+	        complete: setTimeout(function() {
+	        			poll();
+	        	}, 5000),
+	        timeout: 2000
+	    });
+	})();
+
+
+	sliderIndiv.slider().on('slideStop', function(event) {
+	    var vote = $('#sliderIndiv').val();
+
+	    var data = {
+		  	csrfmiddlewaretoken: csrf,
+		  	id: id,
+		  	vote: vote,
+		  };
+
+		  $.ajax({
+				type: 'POST',
+				url: '/post_immersive_vote',
+				data: data,
+				success: function(data) {
+				}
+			});
+
+		});
+
+
+
+  var FADE_TIME = 150; // ms
+
+  var COLORS = [
+    '#e21400', '#91580f', '#f8a700', '#f78b00',
+    '#58dc00', '#287b00', '#a8f07a', '#4ae8c4',
+    '#3b88eb', '#3824aa', '#a700ff', '#d300e7'
+  ];
+
+  // Initialize variables
+  var $window = $(window);
+  var $usernameInput = $('#usernameInput'); // Input for username
+  var $messages = $('.messages'); // Messages area
+  var $inputMessage = $('#inputMessage'); // Input message input box
+
+  var $loginPage = $('#login'); // The login page
+  var $chatPage = $('#chat'); // The chatroom page
+
+  // Prompt for setting a username
+  var username; // global username
+
+  var typing = false;
+  var lastTypingTime;
+  var $currentInput = $usernameInput.focus();
+
+
+  $window.keydown(function (event) {
+    // Auto-focus the current input when a key is typed
+    if (!(event.ctrlKey || event.metaKey || event.altKey)) {
+      $currentInput.focus();
+    }
+    // When the client hits ENTER on their keyboard
+    if (event.which === 13) {
+      if (username) {
+        sendMessage();
+        typing = false;
+      } else {
+        setUsername();
+      }
+    }
+  });
+
+  function polling_messages() {
+  		var last_m = $('.messages').children().last().attr('id');
+
+	    $.ajax({
+	        url: "/poll_chat?group=" + group + '&last_m=' + last_m,
+	        type: "GET",
+	        success: function(data) {
+	        	for (var i=0;i<data.messages.length;i++) {
+					addChatMessage({
+				        username: data.messages[i].username,
+				        message: data.messages[i].message,
+				        id: data.messages[i].id,
+				      });
+				}
+	        },
+	        dataType: "json",
+	        complete: setTimeout(function() {
+	        			polling_messages();
+	        	}, 5000),
+	        timeout: 2000
+	    });
+  }
+
+  // Sets the client's username
+  function setUsername () {
+    username = $usernameInput.val();
+    // username = cleanInput($usernameInput.val().trim());
+
+    // If the username is valid
+    if (username) {
+      $loginPage.fadeOut();
+      $chatPage.show();
+      $loginPage.off('click');
+
+
+      $.ajax({
+			type: 'GET',
+			url: '/get_chat_messages?group=' + group,
+			success: function(data) {
+				for (var i=0;i<data.messages.length;i++) {
+					addChatMessage({
+				        username: data.messages[i].username,
+				        message: data.messages[i].message,
+				        id: data.messages[i].id,
+				      });
+				}
+
+				polling_messages();
+			}
+		});
+
+
+      $currentInput = $inputMessage.focus();
+
+	  var data = {
+	  	csrfmiddlewaretoken: csrf,
+	  	username: username,
+	  	id: id,
+	  };
+
+	  $.ajax({
+			type: 'POST',
+			url: '/chat_username',
+			data: data,
+			success: function(data) {
+			}
+		});
+    }
+  }
+
+    // Sends a chat message
+  function sendMessage () {
+    var message = $inputMessage.val();
+    // Prevent markup from being injected into the message
+    // message = cleanInput(message);
+    // if there is a non-empty message and a socket connection
+    if (message) {
+
+      var csrf = $('#csrf').text();
+	  var data = {
+	  	csrfmiddlewaretoken: csrf,
+	  	username: username,
+	  	message: message,
+	  	id: id,
+	  };
+
+	  $.ajax({
+			type: 'POST',
+			url: '/post_chat_message',
+			data: data,
+			success: function(data) {
+				$inputMessage.val('');
+
+				addChatMessage({
+			        username: username,
+			        message: message,
+			        id: data.id
+			      });
+			}
+		});
+
+    }
+  }
+
+  // Adds the visual chat message to the message list
+  function addChatMessage (data, options) {
+    var $usernameDiv = $('<span class="username"/>')
+      .text(data.username)
+      .css('color', getUsernameColor(data.username));
+    var $messageBodyDiv = $('<span class="messageBody">')
+      .text(data.message);
+
+    var typingClass = data.typing ? 'typing' : '';
+    var $messageDiv = $('<li id="message_' + data.id + '" class="message"/>')
+      .data('username', data.username)
+      .addClass(typingClass)
+      .append($usernameDiv, " ", $messageBodyDiv);
+
+    addMessageElement($messageDiv, options);
+  }
+
+
+
+  // Gets the color of a username through our hash function
+  function getUsernameColor (username) {
+    // Compute hash code
+    var hash = 7;
+    for (var i = 0; i < username.length; i++) {
+       hash = username.charCodeAt(i) + (hash << 5) - hash;
+    }
+    // Calculate color
+    var index = Math.abs(hash % COLORS.length);
+    return COLORS[index];
+  }
+
+    // Adds a message element to the messages and scrolls to the bottom
+  // el - The element to add as a message
+  // options.fade - If the element should fade-in (default = true)
+  // options.prepend - If the element should prepend
+  //   all other messages (default = false)
+  function addMessageElement (el, options) {
+    // console.log("addMessageElement");
+    var $el = $(el);
+
+    // Setup default options
+    if (!options) {
+      options = {};
+    }
+    if (typeof options.fade === 'undefined') {
+      options.fade = true;
+    }
+    if (typeof options.prepend === 'undefined') {
+      options.prepend = false;
+    }
+
+    // Apply options
+    if (options.fade) {
+      $el.hide().fadeIn(FADE_TIME);
+    }
+    if (options.prepend) {
+      $messages.prepend($el);
+    } else {
+      $messages.append($el);
+    }
+
+    var chatTop = $("#messagebox").scrollTop();
+    var chatHeight = $("#messagebox").height();
+
+    $("#messagebox").scrollTop($messages[0].scrollHeight);
+  }
+
+
+
+
+
+</script>
+
+{% endblock %}
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 0d351f73a3fdd9b4aafb8390be934bd7fb7970fc

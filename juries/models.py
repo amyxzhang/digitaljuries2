@@ -16,6 +16,7 @@ class UserInfo(models.Model):
     
     groupinfo = models.ForeignKey(GroupInfo, null=True)
     
+    chat_username = models.TextField(null=True)
     
     age_range = models.TextField(null=True)
     gender = models.TextField(null=True)
@@ -53,9 +54,14 @@ class UserInfo(models.Model):
     scaleable4 = models.IntegerField(default=0)
     scaleable5 = models.IntegerField(default=0)
     
-    immersive_vote = models.FloatField(default=0.0)
-    immersive_action_content = models.TextField(null=True)
-    immersive_action_user = models.TextField(null=True)
+    immersive_vote = models.FloatField(default=None, null=True)
+    immersive_content_unlist = models.BooleanField(default=False)
+    immersive_content_delete = models.BooleanField(default=False)
+    immersive_content_report = models.BooleanField(default=False)
+    immersive_user_warn = models.BooleanField(default=False)
+    immersive_user_ban = models.BooleanField(default=False)
+    immersive_user_permaban = models.BooleanField(default=False)
+    
     
     immersive0 = models.IntegerField(default=0)
     immersive1 = models.IntegerField(default=0)
@@ -85,7 +91,7 @@ class ChatMessage(models.Model):
     id = models.AutoField(primary_key=True)
     
     user = models.ForeignKey(UserInfo, null=True)
-    chat_username = models.TextField(null=True)
+    
     datetime = models.DateTimeField(auto_now=True)
     group = models.ForeignKey(GroupInfo, null=True)
     text = models.TextField(null=True)
