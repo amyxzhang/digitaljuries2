@@ -14,35 +14,39 @@
 			<div class="row">
 
 				<!-- CASE -->
-				<div class="col-sm-8 col-xs-12" id="case">
-
+				<div class="col-md-4 col-sm-12" id="case">
 					<!-- CASE: Slideshow -->
-					<div id="caseSlideshow" class="slideshow">
-						<img src={% static "juries/cases/pepe1.jpg" %} border="0" alt="" />
-						<img src={% static "juries/cases/pepe2.jpg" %} border="0" alt="" />
-						<img src={% static "juries/cases/pepe3.jpg" %} border="0" alt="" />
-					</div>
+					<img src={% static "juries/cases/momo.jpg" %} border="0" alt="" />
+				</div>
 
+				<div class="col-md-5 col-sm-12">
 					<!-- CASE: Context -->
-					<div id="caseContext" class="inner">
+					<div id="caseContext">
+
 						<h4 class="yellow">Context</h4>
 
-						<p>Pepe the Frog is a popular internet meme originally in Matt Furie’s comic, Boy’s Club. We think this may violate community standards because of:</p>
+						<p>Momo is a viral urban legend that has been associated with "suicide games", similar to the Blue Whale Challenge urban legend where children are reportedly being drawn into a game of escalating dares ending in self-harm. For both the Momo Challenge and Blue Whale Challenge, a number of teenage deaths have been accused of being tied to the challenge, though it has been debunked as a hoax and formal linkages between the events are not officially proven.</p>
 
-						<div id="caseViolations" role="group" aria-label="Violations">
-							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" data-html="true" title="Violation" data-content="Definition">Hate symbol</button>
+						<p>The user posted a link to an edited video depicting children's cartoon Peppa the Pig, showing a character being beheaded and shot at before cutting into a scene of Momo. We think this may violate the community standards because of:</p>
 
-							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" data-html="true" title="Violation" data-content="Definition">Conspiracy theory</button>
+						<p>We think this may violate community standards because of:</p>
 
-							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" title="Violation" data-html="true" data-content="Definition">Offensive Depiction</button>
+						<div class="btngroup" role="group" aria-label="Violations">
+							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" data-html="true" title="we remove content that encourages suicide or self-injury, including certain graphic imagery and real-time depictions that experts tell us might lead others to engage in similar behavior. Self-injury is defined as the intentional and direct injuring of the body, including self-mutilation and eating disorders." data-content="Definition">Suicide and self-injury</button>
+
+							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" title="Our harassment policy applies to both public and private individuals because we want to prevent unwanted or malicious contact on the platform. Context and intent matter, and we allow people to share and re-share posts if it is clear that something was shared in order to condemn or draw attention to harassment." data-html="true" data-content="Definition">Harrassment</button>
+
+							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" title="We remove content that glorifies violence or celebrates the suffering or humiliation of others because it may create an environment that discourages participation." data-html="true" data-content="Definition">Violence and Graphic Content</button>
+
+							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" data-html="true" title="We believe that people share and connect more freely when they do not feel targeted based on their vulnerabilities. As such, we have higher expectations for content that we call cruel and insensitive, which we define as content that targets victims of serious physical or emotional harm." data-content="Definition">Cruel and Insensitive</button>
 						</div>
 					</div>
 
-			</div>
-			<!-- // END CASE -->
+				</div>
+				<!-- // END CASE -->
 
-			<!-- JURY -->
-			<div class="col-sm-4 col-xs-12 jury" id="jury">
+				<!-- JURY -->
+				<div class="col-md-3 col-sm-12 jury" id="jury">
 				<h3>Jury Decision</h3>
 
 				<h4><span class="yellow" id="vote_count">0</span> out of 6 jury members have voted</h4>
@@ -68,7 +72,7 @@
 					<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="warn_button">Warn User</button>  <span id="warn">0 votes</span><BR>
 					<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="ban_button">Ban for 1 Week</button> <span id="ban">0 votes</span><BR>
 					<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="permaban_button">Permanently Ban</button>  <span id="permaban">0 votes</span><BR>
-				
+
 				</div>
 			</div>
 			<!-- // END JURY -->
@@ -202,11 +206,11 @@
 	var id = getParameterByName('id');
 	var group = getParameterByName('group');
 	var condition = getParameterByName('condition');
-	
+
 	var csrf = $('#csrf').text();
-	
+
 	sliderJury.slider("disable");
-	        		
+
 	$('#unlist_check_btn').on('click', function() {
 		var data = {
 		  	csrfmiddlewaretoken: csrf,
@@ -216,7 +220,7 @@
 		  };
 		post_action(data);
 	});
-	
+
 	$('#delete_check_btn').on('click', function() {
 		var data = {
 		  	csrfmiddlewaretoken: csrf,
@@ -226,7 +230,7 @@
 		  };
 		post_action(data);
 	});
-	
+
 	$('#report_check_btn').on('click', function() {
 		var data = {
 		  	csrfmiddlewaretoken: csrf,
@@ -236,7 +240,7 @@
 		  };
 		post_action(data);
 	});
-	
+
 	$('#warn_check_btn').on('click', function() {
 		var data = {
 		  	csrfmiddlewaretoken: csrf,
@@ -246,7 +250,7 @@
 		  };
 		post_action(data);
 	});
-	
+
 	$('#ban_check_btn').on('click', function() {
 		var data = {
 		  	csrfmiddlewaretoken: csrf,
@@ -256,7 +260,7 @@
 		  };
 		post_action(data);
 	});
-	
+
 	$('#permaban_check_btn').on('click', function() {
 		var data = {
 		  	csrfmiddlewaretoken: csrf,
@@ -266,18 +270,17 @@
 		  };
 		post_action(data);
 	});
-	
-	
+
+
 	function post_action(data) {
 		 $.ajax({
 				type: 'POST',
-				url: '/post_immersive_action', 
+				url: '/post_immersive_action',
 				data: data,
 				success: function(data) {
 				}
 			});
 	}
-	
 	
 // COUNTDOWN TIMER
 function startTimer(duration, display) {
@@ -311,7 +314,6 @@ jQuery(function ($) {
 
 	
 	
-	
 	(function poll() {
 	    $.ajax({
 	        url: "/poll_immersive?group=" + group,
@@ -319,17 +321,17 @@ jQuery(function ($) {
 	        success: function(data) {
 	        	count = data.count;
 	        	$('#vote_count').text(count);
-	        	
+
         		$("#juryScore").text(data.vote.toFixed(2));
         		sliderJury.slider('setValue', data.vote);
-        		
+
         		if (data.unlist > 3) {
         			$('#unlist_button').removeClass('btn-secondary');
         			$('#unlist_button').addClass('btn-danger');
         		} else {
         			$('#unlist_button').addClass('btn-secondary');
         			$('#unlist_button').removeClass('btn-danger');
-        			
+
         			if (data.unlist == 1) {
         				$('#unlist').text('1 vote');
         			}
@@ -337,14 +339,14 @@ jQuery(function ($) {
         		if (data.unlist != 1) {
         			$('#unlist').text(data.unlist + ' votes');
         		}
-        		
+
         		if (data.del > 3) {
         			$('#delete_button').removeClass('btn-secondary');
         			$('#delete_button').addClass('btn-danger');
         		} else {
         			$('#delete_button').addClass('btn-secondary');
         			$('#delete_button').removeClass('btn-danger');
-        			
+
         			if (data.del == 1) {
         				$('#delete').text('1 vote');
         			}
@@ -352,14 +354,14 @@ jQuery(function ($) {
         		if (data.del != 1) {
         			$('#delete').text(data.del + ' votes');
         		}
-        		
+
         		if (data.report > 3) {
         			$('#report_button').removeClass('btn-secondary');
         			$('#report_button').addClass('btn-danger');
         		} else {
         			$('#report_button').addClass('btn-secondary');
         			$('#report_button').removeClass('btn-danger');
-        			
+
         			if (data.report == 1) {
         				$('#report').text('1 vote');
         			}
@@ -367,14 +369,14 @@ jQuery(function ($) {
         		if (data.report != 1) {
         			$('#report').text(data.report + ' votes');
         		}
-        		
+
         		if (data.warn > 3) {
         			$('#warn_button').removeClass('btn-secondary');
         			$('#warn_button').addClass('btn-danger');
         		} else {
         			$('#warn_button').addClass('btn-secondary');
         			$('#warn_button').removeClass('btn-danger');
-        			
+
         			if (data.warn == 1) {
         				$('#warn').text('1 vote');
         			}
@@ -382,14 +384,14 @@ jQuery(function ($) {
         		if (data.warn != 1) {
         			$('#warn').text(data.warn + ' votes');
         		}
-        		
+
         		if (data.ban > 3) {
         			$('#ban_button').removeClass('btn-secondary');
         			$('#ban_button').addClass('btn-danger');
         		} else {
         			$('#ban_button').addClass('btn-secondary');
         			$('#ban_button').removeClass('btn-danger');
-        			
+
         			if (data.ban == 1) {
         				$('#ban').text('1 vote');
         			}
@@ -397,14 +399,14 @@ jQuery(function ($) {
         		if (data.ban != 1) {
         			$('#ban').text(data.ban + ' votes');
         		}
-        		
+
         		if (data.permaban > 3) {
         			$('#permaban_button').removeClass('btn-secondary');
         			$('#permaban_button').addClass('btn-danger');
         		} else {
         			$('#permaban_button').addClass('btn-secondary');
         			$('#permaban_button').removeClass('btn-danger');
-        			
+
         			if (data.permaban == 1) {
         				$('#permaban').text('1 vote');
         			}
@@ -412,8 +414,8 @@ jQuery(function ($) {
         		if (data.permaban != 1) {
         			$('#permaban').text(data.permaban + ' votes');
         		}
-	        	
-	        	
+
+
 	        },
 	        dataType: "json",
 	        complete: setTimeout(function() {
@@ -422,28 +424,28 @@ jQuery(function ($) {
 	        timeout: 2000
 	    });
 	})();
-	
-	
+
+
 	sliderIndiv.slider().on('slideStop', function(event) {
 	    var vote = $('#sliderIndiv').val();
-	    
+
 	    var data = {
 		  	csrfmiddlewaretoken: csrf,
 		  	id: id,
 		  	vote: vote,
 		  };
-	
+
 		  $.ajax({
 				type: 'POST',
-				url: '/post_immersive_vote', 
+				url: '/post_immersive_vote',
 				data: data,
 				success: function(data) {
 				}
 			});
-		    
+
 		});
-	
-	
+
+
 
   var FADE_TIME = 150; // ms
 
@@ -488,7 +490,7 @@ jQuery(function ($) {
 
   function polling_messages() {
   		var last_m = $('.messages').children().last().attr('id');
-	    	
+
 	    $.ajax({
 	        url: "/poll_chat?group=" + group + '&last_m=' + last_m,
 	        type: "GET",
@@ -519,11 +521,11 @@ jQuery(function ($) {
       $loginPage.fadeOut();
       $chatPage.show();
       $loginPage.off('click');
-      
-      
+
+
       $.ajax({
 			type: 'GET',
-			url: '/get_chat_messages?group=' + group, 
+			url: '/get_chat_messages?group=' + group,
 			success: function(data) {
 				for (var i=0;i<data.messages.length;i++) {
 					addChatMessage({
@@ -532,12 +534,12 @@ jQuery(function ($) {
 				        id: data.messages[i].id,
 				      });
 				}
-				
+
 				polling_messages();
 			}
 		});
-      
-      
+
+
       $currentInput = $inputMessage.focus();
 
 	  var data = {
@@ -548,14 +550,14 @@ jQuery(function ($) {
 
 	  $.ajax({
 			type: 'POST',
-			url: '/chat_username', 
+			url: '/chat_username',
 			data: data,
 			success: function(data) {
 			}
 		});
     }
   }
-  
+
     // Sends a chat message
   function sendMessage () {
     var message = $inputMessage.val();
@@ -563,7 +565,7 @@ jQuery(function ($) {
     // message = cleanInput(message);
     // if there is a non-empty message and a socket connection
     if (message) {
-      
+
       var csrf = $('#csrf').text();
 	  var data = {
 	  	csrfmiddlewaretoken: csrf,
@@ -574,7 +576,7 @@ jQuery(function ($) {
 
 	  $.ajax({
 			type: 'POST',
-			url: '/post_chat_message', 
+			url: '/post_chat_message',
 			data: data,
 			success: function(data) {
 				$inputMessage.val('');
@@ -607,8 +609,8 @@ jQuery(function ($) {
     addMessageElement($messageDiv, options);
   }
 
-  
-  
+
+
   // Gets the color of a username through our hash function
   function getUsernameColor (username) {
     // Compute hash code
@@ -620,7 +622,7 @@ jQuery(function ($) {
     var index = Math.abs(hash % COLORS.length);
     return COLORS[index];
   }
-  
+
     // Adds a message element to the messages and scrolls to the bottom
   // el - The element to add as a message
   // options.fade - If the element should fade-in (default = true)
@@ -657,14 +659,11 @@ jQuery(function ($) {
     $("#messagebox").scrollTop($messages[0].scrollHeight);
   }
 
-  
-  
+
+
 
 
 </script>
 
 {% endblock %}
-
-
-
 

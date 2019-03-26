@@ -9,27 +9,31 @@
 			<div class="row">
 
 				<!-- CASE -->
-				<div class="col-sm-8 col-xs-12" id="case">
-
+				<div class="col-md-4 col-sm-12" id="case">
 					<!-- CASE: Slideshow -->
-					<div id="caseSlideshow" class="slideshow">
-						<img src={% static "juries/cases/pepe1.jpg" %} border="0" alt="" />
-						<img src={% static "juries/cases/pepe2.jpg" %} border="0" alt="" />
-						<img src={% static "juries/cases/pepe3.jpg" %} border="0" alt="" />
-					</div>
+					<img src={% static "juries/cases/pepe.jpg" %} border="0" alt="" />
+				</div>
 
+				<div class="col-md-5 col-sm-12">
 					<!-- CASE: Context -->
-					<div id="caseContext" class="inner">
+					<div id="caseContext">
+
 						<h4 class="yellow">Context</h4>
 
-						<p>Pepe the Frog is a popular internet meme originally in Matt Furie’s comic, Boy’s Club. We think this may violate community standards because of:</p>
+						<p>Pepe the Frog is an anthromorphic frog character featured in many internet memes (often known as "sad frog meme"). It was originally created by Matt Furie for his comic Boy’s Club. It gained popularity around 2014 and was used increasingly in association with Alt-Right groups during the 2016 election. Although images of Pepe can be used without hateful intent, the <a href="https://www.adl.org/education/references/hate-symbols/pepe-the-frog" target="_blank">ADL has included Pepe in their hate symbol database</a>.</p>
+
+						<p>The user is an American-based user who posted a picture of a version of Pepe depicting a potentially anti-Semitic caricature of Pepe, with a reference to the World Trade Center bombings in the background. The user has previously posted a number of related memes of borderline toxicity, though none of them have been previously removed yet.</p>
+
+						<p>We think this may violate community standards because of:</p>
 
 						<div class="btngroup" role="group" aria-label="Violations">
-							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" data-html="true" title="Violation" data-content="Definition">Hate symbol</button>
+							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" data-html="true" title="We define hate speech as a direct attack on people based on what we call protected characteristics — race, ethnicity, national origin, religious affiliation, sexual orientation, caste, sex, gender, gender identity, and serious disease or disability." data-content="Definition">Hate speech</button>
 
-							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" data-html="true" title="Violation" data-content="Definition">Conspiracy theory</button>
+							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" title="There is also a fine line between false news and satire or opinion. For these reasons, we don't remove false news from Facebook but instead, significantly reduce its distribution by showing it lower in the News Feed." data-html="true" data-content="Definition">False News</button>
 
-							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" title="Violation" data-html="true" data-content="Definition">Offensive Depiction</button>
+							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" title="We remove content that glorifies violence or celebrates the suffering or humiliation of others because it may create an environment that discourages participation." data-html="true" data-content="Definition">Violence and Graphic Content</button>
+
+							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" data-html="true" title="We do not allow organizations or content supporting organizations that proclaim a violent mission or are engaged in violence, including terrorist activity, organized hate, mass or serial murder, human trafficking,organized violence or criminal activity." data-content="Definition">Dangerous Individuals and Organizations</button>
 						</div>
 					</div>
 
@@ -37,26 +41,29 @@
 				<!-- // END CASE -->
 
 				<!-- JURY -->
-				<div class="col-sm-4 col-xs-12 jury" id="jury">
+				<div class="col-md-3 col-sm-12 jury" id="jury">
 
 					<h3>Platform Decision</h3>
 
 					<!-- JURY: Score -->
 					<div id="juryDecision" class="subsection">
-						<h4 class="yellow">Toxicity Score:
+						<h4 class="yellow">Toxicity Score: <span id="juryScore" class="score light text-right">9.5</span>
 
-							<a href="#" data-toggle="popover" data-trigger="focus hover" title="Toxicity score guidelines" data-content="0.0 - 0.4: Unlikely to be toxic<br>0.4 - 0.8: Borderline toxicity<br>0.8 - 1.0: Likely to be toxic"><i class="fas fa-question-circle"></i></a></h4>
+							<span class="badge badge-pill badge-danger" data-toggle="popover" data-trigger="focus hover" title="Delete Content" data-content="0.0 - 0.4: Unlikely to be toxic<br>0.4 - 0.8: Borderline toxicity<br>0.8 - 1.0: Likely to be toxic">Highly toxic</span>
+						</h4>
 
+						<h4 class="yellow">Content Action: <span class="score light">DELETE</span></h4>
 
-							<span id="juryScore" class="score light text-right">0</span>
-
-							<span class="badge badge-pill badge-danger" data-toggle="popover" data-trigger="focus hover" title="Delete Content" data-content="Deleted content is purged from the server. Users will be notified and warned.">Delete Content</span>
+						<h4 class="yellow">User Action:
+							<span class="score light">WARN</span></h4>
 					</div>
 
 					<!-- JURY: Delib Module -->
 					<div id="juryDelib" class="subsection">
 						<h4 class="yellow">Justification:</h4>
-						<p>Though this meme can be used in a non-hateful context, this image exacerbates a conspiracy theory and includes an offensive depiction of a protected class.</p>
+						<p>Though this meme can be used in a non-hateful context, this image exacerbates a conspiracy theory (promoting false news) and includes an offensive depiction of a protected class.</p>
+
+						<p>We allow humor and social commentary related to these topics, but expect the poster to be clear about their intent when posting. With this post, the comment is ambiguous about what the intent of sharing was.</p>
 					</div>
 				</div>
 				<!-- // END JURY -->
@@ -92,4 +99,3 @@
 {% block jury %}
 <script src={% static "juries/js/jury.js" %}></script>
 {% endblock %}
-
