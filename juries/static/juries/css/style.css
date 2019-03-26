@@ -73,7 +73,7 @@ body {
 main {
   margin: 2em auto 6em;
   width: 90vw;
-  max-width: 1280px;
+  max-width: 1600px;
   overflow-y: auto; }
 
 section, header {
@@ -111,7 +111,8 @@ footer {
 
 .jury {
   padding-top: 1em;
-  background-color: #161D3F; }
+  background-color: #161D3F;
+  margin-bottom: 320px; }
 
 .panel {
   background-color: #F7FEFF;
@@ -145,7 +146,8 @@ footer {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  margin-bottom: 32px; }
 
 .survey-container {
   position: relative;
@@ -431,6 +433,9 @@ textarea {
   filter: grayscale(0%); }
 
 /* SLIDESHOW */
+#case > img {
+  width: 100%;
+}
 .slideshow {
   margin: 0em auto 2em; }
 

@@ -13,35 +13,39 @@
 			<div class="row">
 
 				<!-- CASE -->
-				<div class="col-sm-8 col-xs-12" id="case">
-
+				<div class="col-md-4 col-sm-12" id="case">
 					<!-- CASE: Slideshow -->
-					<div id="caseSlideshow" class="slideshow">
-						<img src={% static "juries/cases/pepe1.jpg" %} border="0" alt="" />
-						<img src={% static "juries/cases/pepe2.jpg" %} border="0" alt="" />
-						<img src={% static "juries/cases/pepe3.jpg" %} border="0" alt="" />
-					</div>
+					<img src={% static "juries/cases/manifesto.jpg" %} border="0" alt="" />
+				</div>
 
+				<div class="col-md-5 col-sm-12">
 					<!-- CASE: Context -->
-					<div id="caseContext" class="inner">
+					<div id="caseContext">
+
 						<h4 class="yellow">Context</h4>
 
-						<p>Pepe the Frog is a popular internet meme originally in Matt Furie’s comic, Boy’s Club. We think this may violate community standards because of:</p>
+						<p>On March 15, 2019, a man who was described as a white supremacist and member of the alt-right committed two consecutive terrorist attacks in Christchurch, New Zealand, targeting Muslims during Friday prayer. The attacks killed 50 people and injured 50 others. As part of his attack, he released a manifesto and live-streamed the event on Facebook, where it remained online and was viewed over 4,000 times <a href=" https://newsroom.fb.com/news/2019/03/technical-update-on-new-zealand/">before being removed</a>.</p>
 
-						<div id="caseViolations" role="group" aria-label="Violations">
-							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" data-html="true" title="Violation" data-content="Definition">Hate symbol</button>
+						<p>While New Zealand has <a href="http://www.legislation.govt.nz/act/public/1990/0109/latest/DLM225513.html">laws</a> protecting freedom of speech, in the days following the attack, the government has pressed <a href="https://www.classificationoffice.govt.nz/news/latest-news/christchurch-attacks-press-releases/#christchurch-shooting-video-officially-objectionable">criminal charges</a> for individuals disseminating the video or manifesto in violation of local laws forbidding <a href="https://www.dia.govt.nz/Censorship-Objectionable-and-Restricted-Material ">objectionable materials</a> including content promoting or encouraging acts of terrorism.</p>
 
-							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" data-html="true" title="Violation" data-content="Definition">Conspiracy theory</button>
+						<p>The user is an America-based user who posted a link to the shooter's manifesto (hosted on a different website) with a mixed reaction comment. We think this may violate the community standards because of:</p>
 
-							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" title="Violation" data-html="true" data-content="Definition">Offensive Depiction</button>
+						<div class="btngroup" role="group" aria-label="Violations">
+							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" data-html="true" title="We define hate speech as a direct attack on people based on what we call protected characteristics — race, ethnicity, national origin, religious affiliation, sexual orientation, caste, sex, gender, gender identity, and serious disease or disability." data-content="Definition">Hate speech</button>
+
+							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" title="We prohibit people from promoting or publicizing violent crime, theft, and/or fraud because we do not want to condone this activity and because there is a risk of copycat behavior. We also do not allow people to depict criminal activity or admit to crimes they or their associates have committed. We do, however, allow people to debate or advocate for the legality of criminal activities, as well as address them in a rhetorical or satirical way." data-html="true" data-content="Definition">Promoting Or Publicizing Crime</button>
+
+							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" title="We remove content that glorifies violence or celebrates the suffering or humiliation of others because it may create an environment that discourages participation." data-html="true" data-content="Definition">Violence and Graphic Content</button>
+
+							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" data-html="true" title="We do not allow organizations or content supporting organizations that proclaim a violent mission or are engaged in violence, including terrorist activity, organized hate, mass or serial murder, human trafficking,organized violence or criminal activity." data-content="Definition">Dangerous Individuals and Organizations</button>
 						</div>
 					</div>
 
-			</div>
-			<!-- // END CASE -->
+				</div>
+				<!-- // END CASE -->
 
-			<!-- JURY -->
-			<div class="col-sm-4 col-xs-12 jury" id="jury">
+				<!-- JURY -->
+				<div class="col-md-3 col-sm-12 jury" id="jury">
 				<h3>Jury Decision</h3>
 
 				<h4 id="pending">Waiting... <span class="yellow" id="vote_count">0</span> out of 6 people have voted</h4>
@@ -61,15 +65,15 @@
 				<div class="subsection">
 					<h4 class="yellow">Recommended Actions (passed majority):</h4>
 					<span id="recommended">
-						
+
 					</span>
 					<h4 class="yellow">Not Recommended (failed majority):</h4>
 					<span id="nonrecommend">
-						
+
 					</span>
 				</div>
-				
-				 
+
+
 			</div>
 			<!-- // END JURY -->
 
@@ -182,7 +186,7 @@
 	var id = getParameterByName('id');
 	var group = getParameterByName('group');
 	var condition = getParameterByName('condition');
-	
+
 	(function poll() {
 	    $.ajax({
 	        url: "/poll_scaleable?group=" + group,
@@ -190,17 +194,17 @@
 	        success: function(data) {
 	        	count = data.count;
 	        	$('#vote_count').text(count);
-	        	
+
 	        	if (count == 6) {
-	        		
+
 	        		$('#pending').text("All 6 jury members have voted");
-	        		
+
 	        		$('#juryDecision').show();
-	        		
+
 	        		$("#juryScore").text(data.vote.toFixed(2));
 	        		sliderJury.slider('setValue', data.vote);
 	        		sliderJury.slider("disable");
-	        		
+
 	        		if (data.unlist > 3) {
 	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Unlist from Search</button> ' + data.unlist + ' votes <BR>');
 	        		} else {
@@ -210,7 +214,7 @@
 	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Unlist from Search</button> ' + data.unlist + ' votes <BR>');
 	        			}
 	        		}
-	        		
+
 	        		if (data.del > 3) {
 	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Delete Content</button> ' + data.del + ' votes <BR>');
 	        		} else {
@@ -220,7 +224,7 @@
 	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Delete Content</button> ' + data.del + ' votes <BR>');
 	        			}
 	        		}
-	        		
+
 	        		if (data.report > 3) {
 	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Report Content</button> ' + data.report + ' votes <BR>');
 	        		} else {
@@ -230,7 +234,7 @@
 	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Report Content</button> ' + data.report + ' votes <BR>');
 	        			}
 	        		}
-	        		
+
 	        		if (data.warn > 3) {
 	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Warn User</button> ' + data.warn + ' votes <BR>');
 	        		} else {
@@ -240,7 +244,7 @@
 	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Warn User</button> ' + data.warn + ' votes <BR>');
 	        			}
 	        		}
-	        		
+
 	        		if (data.ban > 3) {
 	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Ban User for 1 Week</button> ' + data.ban + ' votes <BR>');
 	        		} else {
@@ -250,7 +254,7 @@
 	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Ban User for 1 Week</button> ' + data.ban + ' votes <BR>');
 	        			}
 	        		}
-	        		
+
 	        		if (data.permaban > 3) {
 	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Permanently Ban User</button> ' + data.permaban + ' votes <BR>');
 	        		} else {
@@ -260,14 +264,14 @@
 	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Permanently Ban User</button> ' + data.permaban + ' votes <BR>');
 	        			}
 	        		}
-	        		
-	        		
+
+
 	        		$('#submit').removeAttr('disabled');
 	        		$("#submit").removeClass("btn-secondary");
 				    $("#submit").addClass("btn-primary");
-				    
+
 	        	}
-	        	
+
 	        },
 	        dataType: "json",
 	        complete: setTimeout(function() {
@@ -278,10 +282,10 @@
 	        timeout: 2000
 	    });
 	})();
-		
-	
+
+
 	$('#submit').on('click', function() {
-		
+
 		var vote = $('#sliderIndiv').val();
 		var unlist = $('#unlist').is(":checked");
 		var del = $('#delete').is(":checked");
@@ -290,7 +294,7 @@
 		var ban = $('#ban').is(":checked");
 		var permaban = $('#permaban').is(":checked");
 		var explanation = $('#explanation').val();
-		
+
 		var csrf = $('#csrf').text();
 		var data = {csrfmiddlewaretoken: csrf,
 					vote: vote,
@@ -306,29 +310,29 @@
 					id: id};
 		$.ajax({
 			type: 'POST',
-			url: '/scaleable_post', 
+			url: '/scaleable_post',
 			data: data,
 			success: function(data) {
 				$('.card-group').addClass('collapse');
 				$('.card-group').removeClass('show');
-				
+
 				$('.card-header').removeAttr('data-toggle');
 				$('.card-header').removeAttr('data-target');
-			    
+
 			    $('#instructions').text('Thanks for providing your vote. Once all 6 votes have come in from the jury, click to Continue.');
-			    
+
 			    $('#submit').text('Continue');
 			    $('#submit').unbind('click');
-			    
+
 			    $('#submit').attr('disabled', 'disabled');
 			    $("#submit").removeClass("btn-primary");
 			    $("#submit").addClass("btn-secondary");
-				  
+
 			    $('#submit').on('click', function() {
 			    	window.location = '/survey_scaleable?group=' + group + '&condition=' + condition + '&id=' + id;
 			    });
-			    
-			    
+
+
 			}
 		});
 		return false;
@@ -337,5 +341,3 @@
 
 
 {% endblock %}
-
-
