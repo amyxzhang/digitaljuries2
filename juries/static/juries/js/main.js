@@ -24,6 +24,12 @@ $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 });
 
+// Show selected btn
+$('[data-toggle="button"]').click(function() {
+  $(this).button('toggle');
+});
+
+
 // Popover
 $(function () {
   $('[data-toggle="popover"]').popover({
@@ -32,21 +38,22 @@ $(function () {
   })
 });
 
-$(document).ready(function(){
+// $(document).ready(function(){
+//
+//   // Slick slider Carousel
+//   $('.slideshow').slick({
+//     autoplay: true,
+//     autoplaySpeed: 5000,
+//     arrows: true,
+//     infinite: false,
+//     pauseOnFocus: true,
+//     swipeToSlide: true,
+//     draggable: true,
+//     slidesToShow: 1,
+//     slidesToScroll: 1
+//   });
+// });
 
-  // Slick slider Carousel
-  $('.slideshow').slick({
-    autoplay: true,
-    autoplaySpeed: 5000,
-    arrows: true,
-    infinite: false,
-    pauseOnFocus: true,
-    swipeToSlide: true,
-    draggable: true,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  });
-});
 
 
 function getParameterByName(name, url) {
@@ -58,4 +65,3 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
-	

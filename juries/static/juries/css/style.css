@@ -162,6 +162,10 @@ footer {
   height: 100%;
   border: 0; }
 
+.modal p {
+  color: #161D3F;
+}
+
 /*** Tables ***/
 .tr {
   border-top: 1px solid #e9ecef;
@@ -220,7 +224,7 @@ h3 {
   font-size: 24px;
   line-height: 1em;
   text-transform: uppercase;
-  margin: 1em auto 2em; }
+  margin: 2em auto 1em; }
 
 h4 {
   font-family: "Space Mono", "Roboto", monospace;
@@ -233,6 +237,18 @@ h5 {
   font-family: "Roboto", Tahoma, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.25em; }
+
+label {
+    font-size: 16px;
+    line-height: 1em;
+    text-transform: uppercase; }
+
+    .questions label {
+        font-family: "Roboto", Tahoma, Arial, sans-serif;
+        font-size: 20px;
+        line-height: 1.2em;
+        text-transform: none;
+    }
 
 input, textarea {
   font-size: 16px;
@@ -248,11 +264,12 @@ footer p {
     LINKS
 \*------------------------------------*/
 a {
-  color: #007bff;
+  color: #ECCA5E;
   font-weight: 400;
   text-decoration: none; }
   a:hover, a:focus, a:active {
     text-decoration: underline;
+    color: #ECCA5E;
     transition: background-color 0.5s ease; }
 
 navbar a {
@@ -300,6 +317,12 @@ hr {
 /*------------------------------------*\
     INPUTS
 \*------------------------------------*/
+.survey {
+  max-width: 800px;
+}
+.form-group {
+  margin-bottom: 2rem;
+}
 /**** BUTTONS ****/
 .btn {
   font-family: "Space Mono", "Roboto", monospace;
@@ -433,8 +456,9 @@ textarea {
   filter: grayscale(0%); }
 
 /* SLIDESHOW */
-#case > img {
+img {
   width: 100%;
+  max-width: 640px;
 }
 .slideshow {
   margin: 0em auto 2em; }

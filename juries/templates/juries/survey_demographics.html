@@ -9,13 +9,14 @@
 	</nav>
 
 <main class="flex-shrink-0" role="main">
-	<section class="container-fluid">
+	<section class="container">
 		<h3>Tell us about yourself</h3>
 
-		<form>
+		<form class="survey">
 			<div class="form-group">
 		    <label for="ageRange">Age Range</label>
 		    <select class="form-control" id="ageRange">
+		      <option>Select age</option>
 		      <option>18-24</option>
 		      <option>25-34</option>
 		      <option>35-44</option>
@@ -29,6 +30,7 @@
 			<div class="form-group">
 		    <label for="gender">Gender</label>
 		    <select class="form-control" id="gender">
+		      <option>Select gender</option>
 		      <option>Female</option>
 		      <option>Male</option>
 		      <option>Non-binary</option>
@@ -38,6 +40,7 @@
 			<div class="form-group">
 				<label for="education">Highest completed level of Education</label>
 				<select class="form-control" id="education">
+		      <option>Select education</option>
 					<option>Some high school</option>
 					<option>High school graduate</option>
 					<option>Some university</option>
@@ -55,6 +58,7 @@
 			<div class="form-group">
 				<label for="political">What do you consider your political affiliation?</label>
 				<select class="form-control" id="political">
+		      <option>Select affiliation</option>
 					<option>Republican</option>
 					<option>Democrat</option>
 					<option>Libertarian</option>
@@ -67,11 +71,11 @@
 				<label for="engagement">How engaged do you consider yourself with politics?</label>
 
 			  <div class="btn-group" role="group" id="engagement">
-			    <button type="button" class="btn btn-secondary">Very disinterested</button>
-			    <button type="button" class="btn btn-secondary">Disinterested</button>
-			    <button type="button" class="btn btn-secondary">Neutral</button>
-			    <button type="button" class="btn btn-secondary">Interested</button>
-			    <button type="button" class="btn btn-secondary">Very interested</button>
+			    <button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Very disinterested</button>
+			    <button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Disinterested</button>
+			    <button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Neutral</button>
+			    <button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Interested</button>
+			    <button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Very interested</button>
 				</div>
 			</div>
 
@@ -86,16 +90,16 @@
 {% block js %}
 
 <script>
-	
+
 	$('#submit').on('click', function() {
-		
+
 		var age = $('#ageRange').val();
 		var gender = $('#gender').val();
 		var education = $('#education').val();
 		var political = $('#political').val();
 		var engagement = $('#engagement').val();
 		var id = getParameterByName('id');
-		
+
 		var csrf = $('#csrf').text();
 		var data = {csrfmiddlewaretoken: csrf,
 					age: age,
@@ -106,7 +110,7 @@
 					id: id};
 		$.ajax({
 			type: 'POST',
-			url: '/demographics_post', 
+			url: '/demographics_post',
 			data: data,
 			success: function(data) {
 				$('#continue').prop('disabled', false);
@@ -119,7 +123,7 @@
 		});
 		return false;
 	});
-	
+
 </script>
 
 {% endblock %}

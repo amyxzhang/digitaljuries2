@@ -8,24 +8,48 @@
 	</nav>
 
 <main class="flex-shrink-0" role="main">
-	<section class="container-fluid">
+	<section class="container">
 		<h1 class="headline">Instructions</h1>
 
-		<p>Thank you for completing the survey. Before continuing with this survey, please watch the following background video to get some context on the challenges of content moderation in balancing free speech and the safety of users.</p>
+		<div class="row">
+			<div class="col-md-4">
+				<p>Thanks for completing the survey.</p>
 
-		<hr />
+				<p>In this experiment, you will be the <b>toxicity score</b> and <b>punitive actions</b> (if applicable) for the content moderation cases we present. For each case, we will be providing <b>background context</b> and <b>violation context</b> so you can understand why the platform in question flagged this content for review.</p>
 
-		<h2>What is content moderation?</h2>
-
-		<div class="embed-responsive embed-responsive-16by9">
-			<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/IpqKRaKiG-w?start=102&end=237&autoplay=1" allow="autoplay" allowfullscreen></iframe>
+				<p>In each round, you will be provided more information on how to give your evaluation. Some rounds will be individual, and some will be in panels of <b>6 jurors</b>.</p>
+			</div>
+			<div class="col-md-8">
+				<img src={% static "juries/img/instructions.jpg" %} border="0" alt="Instructional thumbnail" />
+			</div>
 		</div>
 
 		<hr />
 
 		<h2>What is toxic content?</h2>
 
+		<p>"Toxic content" can have many definitions, including hateful, aggressive, or disrespectful comments that may make it likely to encourage violence, exacerbate derogatory views towards a group of people, or make a reader feel emotional or psychological harm. Toxicity measures the degree that speech may have the potential to harm people, much like a toxic poisonous substance could cause harm. This may include slurs, epithets, profanity, insults, derogatory otherization, or explicit/implicit threats.</p>
 
+		<h3>Rating guide</h3>
+
+		<p>Please use the following benchmark when selecting the toxicity:</p>
+		<p><span class="yellow">0-4: OK</span> Unlikely to be cause harm<br>
+			<span class="yellow">4-8: Borderline</span> Ambiguous or hard to say, with the potential to cause harm<br>
+			<span class="yellow">8-10: Toxic</span> Likely to be perceived as aggressive, hateful, or with potential to cause harm</p>
+
+		<h3>Moral views</h3>
+
+		<p>When going through the questions, please pay attention to your <b>personal moral views</b>, especially in balancing a safe, comfortable browsing experience with preserving the freedom of expression. We are interested in hearing your opinion on whether this result is one you would personally like when browsing the social media platform such as Facebook.</p>
+
+		<hr />
+
+		<h2>Background context</h2>
+
+		<p>Before continuing with this survey, please watch the following this 2-minute subsection (1:44-3:58) of a background video to get some context on the challenges of content moderation in balancing free speech and the safety of users.</p>
+
+		<div class="embed-responsive embed-responsive-16by9">
+			<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/IpqKRaKiG-w?start=102&end=238" allow="autoplay" allowfullscreen></iframe>
+		</div>
 	</section>
 </main>
 
