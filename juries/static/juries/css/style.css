@@ -162,6 +162,10 @@ footer {
   height: 100%;
   border: 0; }
 
+.modal p {
+  color: #161D3F;
+}
+
 /*** Tables ***/
 .tr {
   border-top: 1px solid #e9ecef;
@@ -220,7 +224,7 @@ h3 {
   font-size: 24px;
   line-height: 1em;
   text-transform: uppercase;
-  margin: 1em auto 2em; }
+  margin: 2em auto 1em; }
 
 h4 {
   font-family: "Space Mono", "Roboto", monospace;
@@ -452,8 +456,9 @@ textarea {
   filter: grayscale(0%); }
 
 /* SLIDESHOW */
-#case > img {
+img {
   width: 100%;
+  max-width: 640px;
 }
 .slideshow {
   margin: 0em auto 2em; }

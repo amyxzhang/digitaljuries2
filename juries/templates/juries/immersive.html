@@ -85,14 +85,14 @@
 <footer id="panel-control" class="accordion mt-auto panel">
 	<div class="card">
 		<div class="card-header" data-toggle="collapse" data-target="#panelDecision">
-				<p>In this round, you will be deciding a case along a jury of your peers through discussion. 
+				<p>In this round, you will be deciding a case along a jury of your peers through discussion.
 					As you make individual selections, you can chat with others, see each other's selections, and
-					change your selections. 
+					change your selections.
 					Your goal is to reach consensus with the other jury members within 10 minutes. You will be able to move on
-					once the timer is up. 
+					once the timer is up.
 					</p>
 				<button type="submit" class="btn btn-secondary" disabled value="Submit" id="submit">Submit Decision in <span id="time">05:00</span></button>
-			
+
 		</div>
 
 		<div class="card-group show" id="panelDecision">
@@ -193,6 +193,37 @@
 
 
 
+<!-- ENFORCEMENT MODAL -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="enforcement" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="dark m-0" id="modalHeader">Thank you for voting</h3>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body dark">
+				<!-- Recommendation -->
+				<p>Your decision will be <b>passed along as a recommendation</b> to the platform policy teams.</p>
+
+				<!-- Enforced -->
+				<p>Your decision will be <b>enforced</b> by the platform policy teams.</p>
+
+
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+        <button type="button" class="btn btn-primary" id="enforcement" data-toggle="modal" data-target="#modal">Continue</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- // END ENFORCEMENT MODAL -->
+
+
+
 {% endblock %}
 
 {% block jury %}
@@ -281,7 +312,7 @@
 				}
 			});
 	}
-	
+
 // COUNTDOWN TIMER
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
@@ -312,8 +343,8 @@ jQuery(function ($) {
     startTimer(fiveMinutes, display);
 });
 
-	
-	
+
+
 	(function poll() {
 	    $.ajax({
 	        url: "/poll_immersive?group=" + group,
@@ -666,4 +697,3 @@ jQuery(function ($) {
 </script>
 
 {% endblock %}
-

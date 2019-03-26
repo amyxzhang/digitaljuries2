@@ -38,21 +38,22 @@ $(function () {
   })
 });
 
-$(document).ready(function(){
+// $(document).ready(function(){
+//
+//   // Slick slider Carousel
+//   $('.slideshow').slick({
+//     autoplay: true,
+//     autoplaySpeed: 5000,
+//     arrows: true,
+//     infinite: false,
+//     pauseOnFocus: true,
+//     swipeToSlide: true,
+//     draggable: true,
+//     slidesToShow: 1,
+//     slidesToScroll: 1
+//   });
+// });
 
-  // Slick slider Carousel
-  $('.slideshow').slick({
-    autoplay: true,
-    autoplaySpeed: 5000,
-    arrows: true,
-    infinite: false,
-    pauseOnFocus: true,
-    swipeToSlide: true,
-    draggable: true,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  });
-});
 
 
 function getParameterByName(name, url) {

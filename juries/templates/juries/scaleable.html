@@ -167,6 +167,37 @@
 	</div>
 </footer>
 
+
+<!-- ENFORCEMENT MODAL -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="enforcement" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="dark m-0" id="modalHeader">Thank you for voting</h3>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body dark">
+				<!-- Recommendation -->
+				<p>Your decision will be <b>passed along as a recommendation</b> to the platform policy teams.</p>
+
+				<!-- Enforced -->
+				<p>Your decision will be <b>enforced</b> by the platform policy teams.</p>
+
+
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+        <button type="button" class="btn btn-primary" id="enforcement" data-toggle="modal" data-target="#modal">Continue</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- // END ENFORCEMENT MODAL -->
+
+
 {% endblock %}
 
 
