@@ -91,7 +91,7 @@
 					Your goal is to reach consensus with the other jury members within 10 minutes. You will be able to move on
 					once the timer is up. 
 					</p>
-				<button type="submit" class="btn btn-secondary" disabled value="Submit" id="submit">Submit Decision in <span id="time">05:00</span></button>
+				<button type="submit" class="btn btn-secondary" disabled value="Submit" id="submit">Submit Decision in <span id="time">10:00</span></button>
 			
 		</div>
 
@@ -307,7 +307,7 @@ function startTimer(duration, display) {
 }
 
 jQuery(function ($) {
-    var fiveMinutes = 60 * 5,
+    var fiveMinutes = 60 * 10,
         display = $('#time');
     startTimer(fiveMinutes, display);
 });
