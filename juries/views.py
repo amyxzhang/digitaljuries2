@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 
-from juries.models import UserInfo, GroupInfo
+from juries.models import UserInfo, GroupInfo, ChatMessage
 
 
 @render_to('juries/index.html')
@@ -123,12 +123,12 @@ def scaleable_post(request):
     ui = UserInfo.objects.get(mturk_user=user)
     
     ui.scaleable_vote = float(request.POST.get('vote'))
-    ui.scaleable_content_unlist = request.POST.get('unlist')
-    ui.scaleable_content_delete = request.POST.get('del')
-    ui.scaleable_content_report = request.POST.get('report')
-    ui.scaleable_user_warn = request.POST.get('warn')
-    ui.scaleable_user_ban = request.POST.get('ban')
-    ui.scaleable_user_permaban = request.POST.get('permaban')
+    ui.scaleable_content_unlist = (request.POST.get('unlist') == "true")
+    ui.scaleable_content_delete = (request.POST.get('del')  == "true")
+    ui.scaleable_content_report = (request.POST.get('report')  == "true")
+    ui.scaleable_user_warn = (request.POST.get('warn')  == "true")
+    ui.scaleable_user_ban = (request.POST.get('ban') == "true")
+    ui.scaleable_user_permaban = (request.POST.get('permaban') == "true")
     ui.scaleable_explanation = request.POST.get('explanation')
     
     ui.save()
@@ -160,6 +160,144 @@ def scaleablesurvey_post(request):
         return JsonResponse({'url': '/immersive?group=' + str(g2.id) + '&condition=' + str(g2.condition)})
     
     
+def chat_username(request):
+    turk_id = request.POST.get('id');
+    
+    user = User.objects.get(username=turk_id)
+    ui = UserInfo.objects.get(mturk_user=user)
+    ui.chat_username = request.POST.get('username');
+    
+    ui.save()
+    
+    return JsonResponse({})
+    
+def post_chat_message(request):
+    turk_id = request.POST.get('id')
+    
+    user = User.objects.get(username=turk_id)
+    ui = UserInfo.objects.get(mturk_user=user)
+    
+    c = ChatMessage.objects.create(user=ui, 
+                                   group=ui.groupinfo, 
+                                   text=request.POST.get('message'))
+    
+    return JsonResponse({'id': c.id})
+    
+def get_chat_messages(request):
+    group_id = request.GET.get('group');
+    
+    g = GroupInfo.objects.get(id=int(group_id))
+    c = ChatMessage.objects.filter(group=g)
+    
+    res = {'messages': []}
+    
+    for i in c:
+        d = {'username': i.user.chat_username,
+             'message': i.text,
+             'id': i.id}
+
+        res['messages'].append(d)
+    
+    return JsonResponse(res)
+
+def poll_chat(request):
+    group_id = request.GET.get('group');
+    last_m = request.GET.get('last_m');
+    last_id = int(last_m.split('_')[1])
+    
+    g = GroupInfo.objects.get(id=int(group_id))
+    c = ChatMessage.objects.filter(group=g, id__gt=last_id)
+    
+    res = {'messages': []}
+    
+    for i in c:
+        d = {'username': i.user.chat_username,
+             'message': i.text,
+             'id': i.id}
+
+        res['messages'].append(d)
+    
+    return JsonResponse(res)
+
+
+def post_immersive_vote(request):
+    turk_id = request.POST.get('id')
+    user = User.objects.get(username=turk_id)
+    ui = UserInfo.objects.get(mturk_user=user)
+    
+    vote = request.POST.get('vote')
+    
+    ui.immersive_vote = float(vote)
+    
+    ui.save()
+    
+    return JsonResponse({})
+    
+
+def post_immersive_action(request):
+    turk_id = request.POST.get('id')
+    user = User.objects.get(username=turk_id)
+    ui = UserInfo.objects.get(mturk_user=user)
+    
+    check = request.POST.get('check')
+    action = request.POST.get('action')
+    if action == "unlist":
+        ui.immersive_content_unlist = (check=="true")
+    elif action == "delete":
+        ui.immersive_content_delete = (check=="true")
+    elif action == "report":
+        ui.immersive_content_report = (check=="true")
+    elif action == "warn":
+        ui.immersive_user_warn = (check=="true")
+    elif action == "ban":
+        ui.immersive_user_ban = (check=="true")
+    elif action == "permaban":
+        ui.immersive_user_permaban = (check=="true")
+    
+    ui.save()
+    return JsonResponse({})
+    
+def poll_immersive(request):
+    group_id = request.GET.get('group');
+    
+    gi = GroupInfo.objects.get(id=group_id)
+    ui = UserInfo.objects.filter(groupinfo=gi, immersive_vote__isnull=False)
+
+    vote = 0.0
+    unlist = 0
+    delete = 0
+    report = 0
+    warn = 0
+    ban = 0
+    permaban = 0
+    
+    for u in ui:
+        vote += u.immersive_vote
+        if u.immersive_content_unlist:
+            unlist += 1
+        if u.immersive_content_delete:
+            delete += 1
+        if u.immersive_content_report:
+            report += 1
+        if u.immersive_user_warn:
+            warn += 1
+        if u.immersive_user_ban:
+            ban += 1
+        if u.immersive_user_permaban:
+            permaban += 1
+    
+    vote = float(float(vote)/float(ui.count()))
+    return JsonResponse({'count': ui.count(),
+                         'vote': vote,
+                         'unlist': unlist,
+                         'del': delete,
+                         'report': report,
+                         'warn': warn,
+                         'ban': ban,
+                         'permaban': permaban})
+
+    
+
     
 def poll_scaleable(request):
     group_id = request.GET.get('group');

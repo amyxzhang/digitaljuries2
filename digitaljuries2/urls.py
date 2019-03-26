@@ -28,6 +28,16 @@ urlpatterns = [
     url(r'^scaleable_post','juries.views.scaleable_post'),
     url(r'^scaleablesurvey_post','juries.views.scaleablesurvey_post'),
     
+    url(r'^chat_username','juries.views.chat_username'),
+    url(r'^post_chat_message','juries.views.post_chat_message'),
+    url(r'^get_chat_messages','juries.views.get_chat_messages'),
+    
+    url(r'^poll_chat','juries.views.poll_chat'),
+    
+    url(r'^post_immersive_vote','juries.views.post_immersive_vote'),
+    url(r'^post_immersive_action','juries.views.post_immersive_action'),
+    
+    url(r'^poll_immersive','juries.views.poll_immersive'),
     url(r'^poll_scaleable','juries.views.poll_scaleable'),
     
     url(r'^consent','juries.views.consent'),
