@@ -81,10 +81,14 @@
 <footer id="panel-control" class="accordion mt-auto panel">
 	<div class="card">
 		<div class="card-header" data-toggle="collapse" data-target="#panelDecision">
-				<p>In this round, you will be deciding a case along a jury of your peers.</p>
-				<a href="/survey_immersive">
-				<button type="submit" class="btn btn-secondary" value="Submit">Submit Decision in <span id="time">05:00</span></button>
-			</a>
+				<p>In this round, you will be deciding a case along a jury of your peers through discussion. 
+					As you make individual selections, you can chat with others, see each other's selections, and
+					change your selections. 
+					Your goal is to reach consensus with the other jury members within 10 minutes. You will be able to move on
+					once the timer is up. 
+					</p>
+				<button type="submit" class="btn btn-secondary" disabled value="Submit" id="submit">Submit Decision in <span id="time">05:00</span></button>
+			
 		</div>
 
 		<div class="card-group show" id="panelDecision">
@@ -273,6 +277,39 @@
 				}
 			});
 	}
+	
+	
+// COUNTDOWN TIMER
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.text(minutes + ":" + seconds);
+
+        if (--timer < 0) {
+            timer = 0;
+            $('#submit').removeClass('btn-secondary');
+            $('#submit').addClass('btn-primary');
+            $('#submit').removeAttr('disabled');
+            $('#submit').on('click', function() {
+            	window.location = '/survey_immersive?group=' + group + '&condition=' + condition + '&id=' + id;
+            });
+        }
+    }, 1000);
+}
+
+jQuery(function ($) {
+    var fiveMinutes = 60 * 5,
+        display = $('#time');
+    startTimer(fiveMinutes, display);
+});
+
+	
 	
 	
 	(function poll() {
