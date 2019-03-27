@@ -9,17 +9,17 @@
 </nav>
 
 <main class="flex-shrink-0" role="main">
-	<section class="container-fluid">
+	<section class="container">
 		<h3>You're almost done!</h3>
 
-		<form>
+		<form class="survey question">
 			<div class="form-group">
 				<label for="complete1">Which version did you prefer?</label>
 
-				<div class="btn-group btn-group-sm" role="group" id="complete1">
-					<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">No input</button>
-					<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Voting</button>
-					<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Jury with chat</button>
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete1">
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> No Jury</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Voting</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Jury with Chat</label>
 				</div>
 			</div>
 
@@ -31,12 +31,12 @@
 			<div class="form-group">
 				<label for="complete3">How invested did you feel in this experiment?</label>
 
-				<div class="btn-group btn-group-sm" role="group" id="complete3">
-						<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Very uninvested</button>
-						<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Uninvested</button>
-						<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Neutral</button>
-						<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Invested</button>
-						<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Very invested</button>
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete3">
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Very ininvested</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Uninvested</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Invested</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Very Invested</label>
 				</div>
 			</div>
 
@@ -48,24 +48,24 @@
 			<div class="form-group">
 				<label for="complete5">What was the quality of the conversation in the chatroom round?</label>
 
-				<div class="btn-group btn-group-sm" role="group" id="complete5">
-					<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Very low quality</button>
-					<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Low quality</button>
-					<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Moderate quality</button>
-					<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">High quality</button>
-					<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Very high quality</button>
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete5">
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Very low quality</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Low quality</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderate</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> High quality</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Very high quality</label>
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="complete6">How much did you know about content moderation before this experiment?</label>
 
-				<div class="btn-group btn-group-sm" role="group" id="complete6">
-					<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Completely unfamiliar</button>
-					<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Somewhat unfamiliar</button>
-					<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Not sure</button>
-					<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Somewhat familiar</button>
-					<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Very familiar</button>
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete6">
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Completely unfamiliar</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Somewhat unfamiliar</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately familiar</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Somewhat familiar</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Very familiar</label>
 				</div>
 			</div>
 
