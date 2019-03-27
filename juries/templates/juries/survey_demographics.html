@@ -5,7 +5,7 @@
 {% block content %}
 
 	<nav class="navbar navbar-expand-sm fixed-bottom panel justify-content-end">
-		<button class="btn btn-lg btn-secondary" disabled id="continue">Continue when completed</button>
+		<button class="btn btn-lg btn-primary" id="continue">Continue when completed</button>
 	</nav>
 
 <main class="flex-shrink-0" role="main">
@@ -15,39 +15,35 @@
 		<form class="survey">
 			<div class="form-group">
 		    <label for="ageRange">Age Range</label>
-		    <select class="form-control" id="ageRange">
-		      <option>Select age</option>
-		      <option>18-24</option>
-		      <option>25-34</option>
-		      <option>35-44</option>
-		      <option>45-54</option>
-		      <option>55-64</option>
-					<option>65-74</option>
-					<option>75+</option>
-		    </select>
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="ageRange">
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> 18-24</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> 24-34</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> 35-44</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> 45-54</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> 55-64</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> 65+</label>
+				</div>
 		  </div>
 
 			<div class="form-group">
 		    <label for="gender">Gender</label>
-		    <select class="form-control" id="gender">
-		      <option>Select gender</option>
-		      <option>Female</option>
-		      <option>Male</option>
-		      <option>Non-binary</option>
-		    </select>
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="gender">
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Female</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Male</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Non-binary</label>
+				</div>
 		  </div>
 
 			<div class="form-group">
 				<label for="education">Highest completed level of Education</label>
-				<select class="form-control" id="education">
-		      <option>Select education</option>
-					<option>Some high school</option>
-					<option>High school graduate</option>
-					<option>Some university</option>
-					<option>University graduate</option>
-					<option>Some graduate/professional degree</option>
-					<option>Graduate/professional degree</option>
-				</select>
+				<div class="btn-group btn-group-sm btn-group-toggle flex-wrap" data-toggle="buttons" role="group" id="education">
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Some high school</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> High school</label>
+					<label class="btn btn-outline-warning"> <input type="radio" name="options" id="option1" autocomplete="off"> Some college</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> College</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Some graduate/professional degree</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Graduate/professional degree</label>
+				</div>
 			</div>
 
 		  <!-- <div class="form-group">
@@ -57,29 +53,28 @@
 
 			<div class="form-group">
 				<label for="political">What do you consider your political affiliation?</label>
-				<select class="form-control" id="political">
-		      <option>Select affiliation</option>
-					<option>Republican</option>
-					<option>Democrat</option>
-					<option>Libertarian</option>
-					<option>Independent</option>
-					<option>Other</option>
-				</select>
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="political">
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Republican</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Democrat</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Libertarian</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Independent</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Other</label>
+				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="engagement">How engaged do you consider yourself with politics?</label>
 
-			  <div class="btn-group" role="group" id="engagement">
-			    <button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Very disinterested</button>
-			    <button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Disinterested</button>
-			    <button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Neutral</button>
-			    <button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Interested</button>
-			    <button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Very interested</button>
+				<div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons" role="group" id="engagement">
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Very disinterested</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Disinterested</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Interested</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Very Interested</label>
 				</div>
 			</div>
 
-		  <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+		  <!-- <button type="submit" class="btn btn-primary" id="submit">Submit</button> -->
 		</form>
 	</section>
 </main>
@@ -90,8 +85,7 @@
 {% block js %}
 
 <script>
-
-	$('#submit').on('click', function() {
+	$('#continue').on('click', function() {
 
 		var age = $('#ageRange').val();
 		var gender = $('#gender').val();
@@ -113,12 +107,12 @@
 			url: '/demographics_post',
 			data: data,
 			success: function(data) {
-				$('#continue').prop('disabled', false);
-				$('#continue').removeClass('btn-secondary');
-				$('#continue').addClass('btn-primary');
-				$('#continue').on('click', function() {
+				// $('#continue').prop('disabled', false);
+				// $('#continue').removeClass('btn-secondary');
+				// $('#continue').addClass('btn-primary');
+				// $('#continue').on('click', function() {
 					window.location = '/survey_morals?id=' + id;
-				});
+				// });
 			}
 		});
 		return false;
