@@ -27,6 +27,9 @@ urlpatterns = [
     url(r'^controlsurvey_post','juries.views.controlsurvey_post'),
     url(r'^scaleable_post','juries.views.scaleable_post'),
     url(r'^scaleablesurvey_post','juries.views.scaleablesurvey_post'),
+    url(r'^immersivesurvey_post','juries.views.immersivesurvey_post'),
+    url(r'^completesurvey_post','juries.views.completesurvey_post'),
+    
     
     url(r'^chat_username','juries.views.chat_username'),
     url(r'^post_chat_message','juries.views.post_chat_message'),

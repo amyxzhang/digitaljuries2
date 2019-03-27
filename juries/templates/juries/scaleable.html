@@ -98,7 +98,8 @@
 					<!-- SCORE -->
 					<div id="panelScore" role="group" aria-label="Decision">
 						<h4 class="grey">Drag cursor to select toxicity score:
-							<span id="indivScore" class="score dark text-right"></span>
+							<span id="indivScore" class="score dark text-right">
+							</span>
 							<span id="indivScoreLabel" class="badge badge-pill badge-primary" data-toggle="popover" data-trigger="hover" title="Low toxicity" data-content=""></span>
 						</h4>
 
@@ -214,6 +215,12 @@
 	var id = getParameterByName('id');
 	var group = getParameterByName('group');
 	var condition = getParameterByName('condition');
+
+	if ("{{ voted }}" == "True") {
+		after_vote();
+		 $('#instructions').text('You have already voted and cannot change your vote. Once all 6 votes have come in from the jury, click to Continue.');
+
+	}
 
 	(function poll() {
 	    $.ajax({
@@ -341,28 +348,32 @@
 			url: '/scaleable_post',
 			data: data,
 			success: function(data) {
-				$('.card-group').addClass('collapse');
-				$('.card-group').removeClass('show');
-
-				$('.card-header').removeAttr('data-toggle');
-				$('.card-header').removeAttr('data-target');
-
-			    $('#instructions').text('Thanks for providing your vote. Once all 6 votes have come in from the jury, click to Continue.');
-
-			    $('#submit').text('Continue');
-			    $('#submit').unbind('click');
-
-			    $('#submit').attr('disabled', 'disabled');
-			    $("#submit").removeClass("btn-primary");
-			    $("#submit").addClass("btn-secondary");
-
-			    $('#submit').on('click', function() {
-			    	window.location = '/survey_scaleable?group=' + group + '&condition=' + condition + '&id=' + id;
-			    });
+				after_vote();
 			}
 		});
 		return false;
 	});
+	
+	function after_vote() {
+		$('.card-group').addClass('collapse');
+		$('.card-group').removeClass('show');
+
+		$('.card-header').removeAttr('data-toggle');
+		$('.card-header').removeAttr('data-target');
+
+	    $('#instructions').text('Thanks for providing your vote. Once all 6 votes have come in from the jury, click to Continue.');
+
+	    $('#submit').text('Continue');
+	    $('#submit').unbind('click');
+
+	    $('#submit').attr('disabled', 'disabled');
+	    $("#submit").removeClass("btn-primary");
+	    $("#submit").addClass("btn-secondary");
+
+	    $('#submit').on('click', function() {
+	    	window.location = '/survey_scaleable?group=' + group + '&condition=' + condition + '&id=' + id;
+	    });
+	}
 </script>
 
 

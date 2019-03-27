@@ -27,7 +27,7 @@ $(function () {
 // Show selected btn
 $('[data-toggle="button"]').click(function() {
   $(this).button('toggle');
-  $(this).removeclass('btn-outline-warning');
+  $(this).removeClass('btn-outline-warning');
   $(this).addClass('btn-primary');
 });
 

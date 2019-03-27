@@ -77,13 +77,13 @@
 		<div class="card-body">
 			<p>In this round, you will be shown flagged content along with the platform’s decision. You do NOT have to make any selections in this round.</p>
 
-			<button class="btn btn-primary" id="enforcement" data-toggle="modal" data-target="#modal">Click to continue when ready</button>
+			<button class="btn btn-primary" id="continue">Click to continue when ready</button>
 		</div>
 	</div>
 </footer>
 
 <!-- ENFORCEMENT MODAL -->
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="enforcement" aria-hidden="true">
+<!-- <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="enforcement" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -99,20 +99,20 @@
 				<h4>User Action: <span id="juryScore" class="score dark"></span></h4>
 
 				<!-- Recommendation -->
-				<p>Your decision will be <b>passed along as a recommendation</b> to the platform policy teams.</p>
+				<!-- <p>Your decision will be <b>passed along as a recommendation</b> to the platform policy teams.</p> -->
 
 				<!-- Enforced -->
-				<p>Your decision will be <b>enforced</b> by the platform policy teams.</p>
+				<!-- <p>Your decision will be <b>enforced</b> by the platform policy teams.</p> -->
 
 
-      </div>
+      <!-- </div>
       <div class="modal-footer">
         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-        <button type="button" class="btn btn-primary" id="continue">Continue</button>
+        <!-- <button type="button" class="btn btn-primary" id="continue">Continue</button>
       </div>
     </div>
   </div>
-</div>
+</div> -->
 <!-- // END ENFORCEMENT MODAL -->
 
 
@@ -130,5 +130,5 @@
 
 
 {% block jury %}
-<script src={% static "juries/js/jury.js" %}></script>
+<!-- <script src={% static "juries/js/jury.js" %}></script> -->
 {% endblock %}
