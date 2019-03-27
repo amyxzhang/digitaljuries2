@@ -48,7 +48,7 @@
 				<div class="col-md-3 col-sm-12 jury" id="jury">
 				<h3>Jury Decision</h3>
 
-				<h4 id="pending">Waiting... <span class="yellow" id="vote_count">0</span> out of 6 people have voted</h4>
+				<h4 id="pending">Waiting... <span class="yellow" id="vote_count">0</span> out of <span id="count_jury"></span> people have voted</h4>
 
 				<!-- JURY: Score -->
 				<div id="juryDecision" class="subsection" style="display:none;">
@@ -215,24 +215,31 @@
 	var id = getParameterByName('id');
 	var group = getParameterByName('group');
 	var condition = getParameterByName('condition');
-
-	if ("{{ voted }}" == "True") {
-		after_vote();
-		 $('#instructions').text('You have already voted and cannot change your vote. Once all 6 votes have come in from the jury, click to Continue.');
-
+	
+	var jury = getParameterByName('jury');
+	if (jury != '' && jury != null) {
+		jury = parseInt(jury);
+	} else {
+		jury = 6;
+	}
+	half_jury = Math.ceil(jury/2.0);
+	if (half_jury * 2 == jury) {
+		half_jury += 1;
 	}
 
+	$('#count_jury').text(jury);
+	
 	(function poll() {
 	    $.ajax({
-	        url: "/poll_scaleable?group=" + group,
+	        url: "/poll_scaleable?group=" + group + "&jury=" + jury,
 	        type: "GET",
 	        success: function(data) {
 	        	count = data.count;
 	        	$('#vote_count').text(count);
 
-	        	if (count == 6) {
+	        	if (count == jury) {
 
-	        		$('#pending').text("All 6 jury members have voted");
+	        		$('#pending').text("All " + jury + " jury members have voted");
 
 	        		$('#juryDecision').show();
 
@@ -240,7 +247,7 @@
 	        		sliderJury.slider('setValue', data.vote);
 	        		sliderJury.slider("disable");
 
-	        		if (data.unlist > 3) {
+	        		if (data.unlist >= half_jury) {
 	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Unlist from Search</button> ' + data.unlist + ' votes <BR>');
 	        		} else {
 	        			if (data.unlist == 1) {
@@ -250,7 +257,7 @@
 	        			}
 	        		}
 
-	        		if (data.del > 3) {
+	        		if (data.del >= half_jury) {
 	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Delete Content</button> ' + data.del + ' votes <BR>');
 	        		} else {
 	        			if (data.del == 1) {
@@ -260,7 +267,7 @@
 	        			}
 	        		}
 
-	        		if (data.report > 3) {
+	        		if (data.report >= half_jury) {
 	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Report Content</button> ' + data.report + ' votes <BR>');
 	        		} else {
 	        			if (data.report == 1) {
@@ -270,7 +277,7 @@
 	        			}
 	        		}
 
-	        		if (data.warn > 3) {
+	        		if (data.warn >= half_jury) {
 	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Warn User</button> ' + data.warn + ' votes <BR>');
 	        		} else {
 	        			if (data.warn == 1) {
@@ -280,7 +287,7 @@
 	        			}
 	        		}
 
-	        		if (data.ban > 3) {
+	        		if (data.ban >= half_jury) {
 	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Ban User for 1 Week</button> ' + data.ban + ' votes <BR>');
 	        		} else {
 	        			if (data.ban == 1) {
@@ -290,7 +297,7 @@
 	        			}
 	        		}
 
-	        		if (data.permaban > 3) {
+	        		if (data.permaban >= half_jury) {
 	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Permanently Ban User</button> ' + data.permaban + ' votes <BR>');
 	        		} else {
 	        			if (data.permaban == 1) {
@@ -310,7 +317,7 @@
 	        },
 	        dataType: "json",
 	        complete: setTimeout(function() {
-	        		if (count < 6) {
+	        		if (count < jury) {
 	        			poll();
 	        		}
 	        	}, 5000),
@@ -354,6 +361,14 @@
 		return false;
 	});
 	
+	
+	if ("{{ voted }}" == "True") {
+		after_vote();
+		 $('#instructions').text('You have already voted and cannot change your vote. Once all ' + jury + ' votes have come in from the jury, click to Continue.');
+
+	}
+
+	
 	function after_vote() {
 		$('.card-group').addClass('collapse');
 		$('.card-group').removeClass('show');
@@ -361,14 +376,15 @@
 		$('.card-header').removeAttr('data-toggle');
 		$('.card-header').removeAttr('data-target');
 
-	    $('#instructions').text('Thanks for providing your vote. Once all 6 votes have come in from the jury, click to Continue.');
+	    $('#instructions').text('Thanks for providing your vote. Once all ' + jury + ' votes have come in from the jury, click to Continue.');
 
 	    $('#submit').text('Continue');
 	    $('#submit').unbind('click');
 
 	    $('#submit').attr('disabled', 'disabled');
-	    $("#submit").removeClass("btn-primary");
 	    $("#submit").addClass("btn-secondary");
+	    $("#submit").removeClass("btn-primary");
+	   
 
 	    $('#submit').on('click', function() {
 	    	window.location = '/survey_scaleable?group=' + group + '&condition=' + condition + '&id=' + id;

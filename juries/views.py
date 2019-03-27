@@ -155,7 +155,7 @@ def scaleablesurvey_post(request):
     g2 = ui.groupinfo
     
     if g2.condition == 2:
-        return JsonResponse({'url': '/scaleable?group=' + str(g2.id) + '&condition=' + str(g2.condition)})
+        return JsonResponse({'url': '/survey_complete?group=' + str(g2.id) + '&condition=' + str(g2.condition)})
     else:
         return JsonResponse({'url': '/immersive?group=' + str(g2.id) + '&condition=' + str(g2.condition)})
  
@@ -174,7 +174,14 @@ def immersivesurvey_post(request):
     ui.immersive5 = int(request.POST.get('mv6') if request.POST.get('mv6') != '' else '0')
     
     ui.save()
-    return JsonResponse({})
+    
+    g2 = ui.groupinfo
+    
+    if g2.condition == 2:
+        return JsonResponse({'url': '/scaleable?group=' + str(g2.id) + '&condition=' + str(g2.condition)})
+    else:
+        return JsonResponse({'url': '/survey_complete?group=' + str(g2.id) + '&condition=' + str(g2.condition)})
+ 
     
 
 def completesurvey_post(request):
@@ -345,10 +352,11 @@ def poll_immersive(request):
     
 def poll_scaleable(request):
     group_id = request.GET.get('group');
+    jury = int(request.GET.get('jury'));
     
     gi = GroupInfo.objects.get(id=group_id)
     ui = UserInfo.objects.filter(groupinfo=gi, scaleable_vote__isnull=False)
-    if ui.count() >= 6:
+    if ui.count() >= jury:
         
         vote = 0.0
         unlist = 0
@@ -373,7 +381,7 @@ def poll_scaleable(request):
             if u.scaleable_user_permaban:
                 permaban += 1
         
-        vote = float(float(vote)/6.0)
+        vote = float(float(vote)/float(jury))
         return JsonResponse({'count': ui.count(),
                              'vote': vote,
                              'unlist': unlist,
@@ -392,8 +400,6 @@ def poll_scaleable(request):
 
 @render_to('juries/survey_demographics.html')
 def survey_demographics(request):
-    
-    
     return {}
 
 @render_to('juries/survey_morals.html')

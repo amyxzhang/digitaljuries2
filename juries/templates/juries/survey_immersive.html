@@ -125,8 +125,9 @@
 				$('#continue').prop('disabled', false);
 				$('#continue').removeClass('btn-secondary');
 				$('#continue').addClass('btn-primary');
+				var next_url = data.url;
 				$('#continue').on('click', function() {
-					window.location = '/survey_complete?id=' + id;
+					window.location = next_url + '&id=' + id;
 				});
 			}
 		});
