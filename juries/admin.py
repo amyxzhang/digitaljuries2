@@ -1,3 +1,6 @@
 from django.contrib import admin
+from juries.models import GroupInfo, UserInfo, ChatMessage
 
-# Register your models here.
+admin.site.register(GroupInfo)
+admin.site.register(UserInfo)
+admin.site.register(ChatMessage)

@@ -132,7 +132,7 @@
 			data: data,
 			success: function(data) {
 				$('#continue').prop('disabled', false);
-				$('#continue').removeClass('btn-outline-warning');
+				$('#continue').removeClass('btn-secondary');
 				$('#continue').addClass('btn-primary');
 				$('#continue').on('click', function() {
 					window.location = '/instructions?id=' + id;

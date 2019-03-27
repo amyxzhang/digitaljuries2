@@ -6,7 +6,7 @@
 
 
 <nav class="navbar navbar-expand-sm fixed-bottom panel justify-content-end">
-	<a href="/survey_complete" class="btn btn-lg btn-secondary">Continue when completed</a>
+	<button class="btn btn-lg btn-secondary" id="continue" disabled>Continue when completed</button>
 </nav>
 
 <main class="flex-shrink-0" role="main">
@@ -86,10 +86,54 @@
 				</div>
 			</div>
 
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<button type="submit" class="btn btn-primary" id="submit">Submit</button>
 		</form>
 	</section>
 
 </main>
+
+{% endblock %}
+
+{% block js %}
+
+<script>
+
+	$('#submit').on('click', function() {
+
+		var mv1 = $('#immersive1').val();
+		var mv2 = $('#immersive2').val();
+		var mv3 = $('#immersive3').val();
+		var mv4 = $('#immersive4').val();
+		var mv5 = $('#immersive5').val();
+		var mv6 = $('#immersive6').val();
+		var id = getParameterByName('id');
+
+		var csrf = $('#csrf').text();
+		var data = {csrfmiddlewaretoken: csrf,
+					mv1: mv1,
+					mv2: mv2,
+					mv3: mv3,
+					mv4: mv4,
+					mv5: mv5,
+					mv6: mv6,
+					id: id};
+		$.ajax({
+			type: 'POST',
+			url: '/immersivesurvey_post',
+			data: data,
+			success: function(data) {
+				$('#continue').prop('disabled', false);
+				$('#continue').removeClass('btn-secondary');
+				$('#continue').addClass('btn-primary');
+				var next_url = data.url;
+				$('#continue').on('click', function() {
+					window.location = next_url + '&id=' + id;
+				});
+			}
+		});
+		return false;
+	});
+
+</script>
 
 {% endblock %}

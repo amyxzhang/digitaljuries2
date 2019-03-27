@@ -97,7 +97,7 @@ def controlsurvey_post(request):
         
         if num_users >= 6:
             g2 = GroupInfo.objects.create()
-            if g.condition == 4:
+            if g.condition == 2:
                 g2.condition = 1
             else:
                 g2.condition = g.condition + 1
@@ -111,7 +111,7 @@ def controlsurvey_post(request):
     else:
         g2 = ui.groupinfo
     
-    if g2.condition == 1 or g2.condition == 2:
+    if g2.condition == 1:
         return JsonResponse({'url': '/scaleable?group=' + str(g2.id) + '&condition=' + str(g2.condition)})
     else:
         return JsonResponse({'url': '/immersive?group=' + str(g2.id) + '&condition=' + str(g2.condition)})
@@ -154,10 +154,61 @@ def scaleablesurvey_post(request):
     
     g2 = ui.groupinfo
     
-    if g2.condition == 3 or g2.condition == 4:
-        return JsonResponse({'url': '/scaleable?group=' + str(g2.id) + '&condition=' + str(g2.condition)})
+    if g2.condition == 2:
+        return JsonResponse({'url': '/survey_complete?group=' + str(g2.id) + '&condition=' + str(g2.condition)})
     else:
         return JsonResponse({'url': '/immersive?group=' + str(g2.id) + '&condition=' + str(g2.condition)})
+ 
+ 
+def immersivesurvey_post(request):
+    turk_id = request.POST.get('id');
+    
+    user = User.objects.get(username=turk_id)
+    ui = UserInfo.objects.get(mturk_user=user)
+    
+    ui.immersive0 = int(request.POST.get('mv1') if request.POST.get('mv1') != '' else '0')
+    ui.immersive1 = int(request.POST.get('mv2') if request.POST.get('mv2') != '' else '0')
+    ui.immersive2 = int(request.POST.get('mv3') if request.POST.get('mv3') != '' else '0')
+    ui.immersive3 = int(request.POST.get('mv4') if request.POST.get('mv4') != '' else '0')
+    ui.immersive4 = int(request.POST.get('mv5') if request.POST.get('mv5') != '' else '0')
+    ui.immersive5 = int(request.POST.get('mv6') if request.POST.get('mv6') != '' else '0')
+    
+    ui.save()
+    
+    g2 = ui.groupinfo
+    
+    if g2.condition == 2:
+        return JsonResponse({'url': '/scaleable?group=' + str(g2.id) + '&condition=' + str(g2.condition)})
+    else:
+        return JsonResponse({'url': '/survey_complete?group=' + str(g2.id) + '&condition=' + str(g2.condition)})
+ 
+    
+
+def completesurvey_post(request):
+    turk_id = request.POST.get('id');
+    
+    user = User.objects.get(username=turk_id)
+    ui = UserInfo.objects.get(mturk_user=user)
+    
+    ui.complete0 = request.POST.get('mv1')
+    ui.complete1 = request.POST.get('mv2')
+    ui.complete2 = request.POST.get('mv3')
+    ui.complete3 = request.POST.get('mv4')
+    ui.complete4 = request.POST.get('mv5')
+    ui.complete5 = request.POST.get('mv6')
+    ui.complete6 = request.POST.get('mv7')
+    ui.complete7 = request.POST.get('mv8')
+    ui.complete8 = request.POST.get('mv9')
+    ui.complete9 = request.POST.get('mv10')
+    ui.complete10 = request.POST.get('mv11')
+    ui.complete11 = request.POST.get('mv12')
+    
+    
+    ui.save()
+    return JsonResponse({})
+
+
+
     
     
 def chat_username(request):
@@ -301,10 +352,11 @@ def poll_immersive(request):
     
 def poll_scaleable(request):
     group_id = request.GET.get('group');
+    jury = int(request.GET.get('jury'));
     
     gi = GroupInfo.objects.get(id=group_id)
     ui = UserInfo.objects.filter(groupinfo=gi, scaleable_vote__isnull=False)
-    if ui.count() >= 6:
+    if ui.count() >= jury:
         
         vote = 0.0
         unlist = 0
@@ -329,7 +381,7 @@ def poll_scaleable(request):
             if u.scaleable_user_permaban:
                 permaban += 1
         
-        vote = float(float(vote)/6.0)
+        vote = float(float(vote)/float(jury))
         return JsonResponse({'count': ui.count(),
                              'vote': vote,
                              'unlist': unlist,
@@ -368,7 +420,14 @@ def survey_control(request):
 
 @render_to('juries/scaleable.html')
 def scaleable(request):
-    return {}
+    turk_id = request.GET.get('id')
+    user = User.objects.get(username=turk_id)
+    ui = UserInfo.objects.get(mturk_user=user)
+    
+    if ui.scaleable_vote:
+        return {'voted': True}
+    else:
+        return {'voted': False}
 
 @render_to('juries/survey_scaleable.html')
 def survey_scaleable(request):
