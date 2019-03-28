@@ -49,10 +49,10 @@
 				<div class="col-md-3 col-sm-12 jury" id="jury">
 				<h3>Jury Decision</h3>
 
-				<h4><span class="yellow" id="vote_count">0</span> out of 6 jury members have voted</h4>
+				<h4 id="pending">Waiting for discussion to conclude to vote</h4>
 
 				<!-- JURY: Score -->
-				<div id="juryDecision" class="subsection">
+				<div id="juryDecision" class="subsection" style="display: none;">
 					<h4 class="yellow">Average Toxicity Score:
 					<span id="juryScore" class="score light text-right"></span>
 					</h4>
@@ -84,19 +84,52 @@
 <!-- INDIVIDUAL DECISION PANEL -->
 <footer id="panel-control" class="accordion mt-auto panel">
 	<div class="card">
-		<div class="card-header" data-toggle="collapse" data-target="#panelDecision">
-				<p>In this round, you will be deciding a case along a jury of your peers through discussion.
-					As you make individual selections, you can chat with others, see each other's selections, and
-					change your selections.
-					Your goal is to reach consensus with the other jury members within 10 minutes. You will be able to move on
-					once the timer is up.
+		<div class="card-header" style="z-index: 20;" data-toggle="collapse" data-target="#panelDecision">
+				<p id="instructions">In this round, you will be deciding a case along a jury of your peers through discussion.
+					You have at least 5 minutes to conduct discussion in the chat box below. Afterwards, you will make a vote.
+					After that, you will get an opportunity to continue discussion and resolve disagreements as well as 
+					change your vote before moving on.
 					</p>
 
-				<button type="submit" class="btn btn-secondary" disabled value="Submit" id="submit">Submit Decision in <span id="time">10:00</span></button>
+				<button type="submit" class="btn btn-secondary" disabled value="Submit" id="submit">Submit Decision</button>
 
 		</div>
+		
+		<div class="card-group show" id="panelDecision" style="position: relative;">
+			
+			
+			<div class="card">
 
-		<div class="card-group show" id="panelDecision">
+				<!-- Chat window -->
+				<div id="messagebox">
+					<!-- Enter name before chatting -->
+					<div id="login">
+						<h4 class="grey">Juror chat</h4>
+							<input id="usernameInput" type="text" autocomplete="off" placeholder="Enter any username to chat" />
+					</div>
+
+					<ul class="messages dark">
+					</ul>
+				</div>
+
+				<div id="chat">
+						<!-- <form action=""> -->
+							<input id="inputMessage" id="m" autocomplete="off" placeholder="Post a public message" />
+							<!-- <button>Send</button>
+						</form> -->
+				</div>
+			</div>
+			
+			
+			
+			<div id="overlay" style="background: rgba(0, 0, 0, 0.5); z-index: 10; position: absolute; width: 50%; height:100%; top: 0; left: 50%;">
+				<button class="btn-sm" style="position:relative; top: 5%;  left:20%;">
+					Continue discussion for 
+					  <span id="time">5:00</span> minutes. <BR>
+					  	You can vote here once the timer is done.
+					  </button>
+			</div>
+		
 			<!-- INSTRUCTIONS -->
 			<div class="card">
 					<!-- SCORE -->
@@ -118,18 +151,18 @@
 									<h4 class="dark">What action should the platform take on the content?</h4>
 
 									<div class="btn-group-toggle" data-toggle="buttons">
-										<label class="btn btn-outline-secondary" id="unlist_check_btn">
-											<input type="checkbox" autocomplete="off" id="unlist_check">
+										<label class="btn btn-outline-secondary {% if ui.immersive_content_unlist %} active {% endif %}" id="unlist_check_btn">
+											<input type="checkbox" autocomplete="off" id="unlist_check" {% if ui.immersive_content_unlist %} checked="checked" {% endif %}>
 											Unlist from search
 										</label>
 
-										<label class="btn btn-outline-secondary" id="delete_check_btn">
-											<input type="checkbox" autocomplete="off" id="delete_check">
+										<label class="btn btn-outline-secondary {% if ui.immersive_content_delete %} active {% endif %}" id="delete_check_btn">
+											<input type="checkbox" autocomplete="off" id="delete_check" {% if ui.immersive_content_delete %} checked="checked" {% endif %}>
 											Delete
 										</label>
 
-										<label class="btn btn-outline-secondary" id="report_check_btn">
-											<input type="checkbox" autocomplete="off" id="report_check">
+										<label class="btn btn-outline-secondary {% if ui.immersive_content_report %} active {% endif %}" id="report_check_btn">
+											<input type="checkbox" autocomplete="off" id="report_check" {% if ui.immersive_content_report %} checked="checked" {% endif %}>
 											Report to authorities
 										</label>
 									</div>
@@ -140,18 +173,18 @@
 									<h4 class="dark">What action should the platform take on the user?</h4>
 
 									<div class="btn-group-toggle" data-toggle="buttons">
-										<label class="btn btn-outline-secondary" id="warn_check_btn">
-											<input type="checkbox" autocomplete="off" id="warn_check">
+										<label class="btn btn-outline-secondary {% if ui.immersive_user_warn %} active {% endif %}" id="warn_check_btn">
+											<input type="checkbox" autocomplete="off" id="warn_check" {% if ui.immersive_user_warn %} checked="checked" {% endif %}>
 											Warn
 										</label>
 
-										<label class="btn btn-outline-secondary" id="ban_check_btn">
-											<input type="checkbox" autocomplete="off" id="ban_check">
+										<label class="btn btn-outline-secondary {% if ui.immersive_user_ban %} active {% endif %}" id="ban_check_btn">
+											<input type="checkbox" autocomplete="off" id="ban_check" {% if ui.immersive_user_ban %} checked="checked" {% endif %}>
 											Ban for 1 week
 										</label>
 
-										<label class="btn btn-outline-secondary" id="permaban_check_btn">
-											<input type="checkbox" autocomplete="off" id="permaban_check">
+										<label class="btn btn-outline-secondary {% if ui.immersive_user_permaban %} active {% endif %}" id="permaban_check_btn">
+											<input type="checkbox" autocomplete="off" id="permaban_check" {% if ui.immersive_user_permaban %} checked="checked" {% endif %}>
 											Permanently Ban
 										</label>
 									</div>
@@ -164,28 +197,6 @@
 								</div> -->
 						</div>
 
-			</div>
-
-			<div class="card">
-
-				<!-- Chat window -->
-				<div id="messagebox">
-					<!-- Enter name before chatting -->
-					<div id="login">
-						<h4 class="grey">Juror chat</h4>
-							<input id="usernameInput" type="text" autocomplete="off" placeholder="Enter any username to chat" />
-					</div>
-
-					<ul class="messages dark">
-					</ul>
-				</div>
-
-				<div id="chat">
-						<!-- <form action=""> -->
-							<input id="inputMessage" id="m" autocomplete="off" placeholder="Post a public message" />
-							<!-- <button>Send</button>
-						</form> -->
-				</div>
 			</div>
 
 		</div>
@@ -234,11 +245,34 @@
 	var id = getParameterByName('id');
 	var group = getParameterByName('group');
 	var condition = getParameterByName('condition');
+	
+	var countdown = getParameterByName('countdown');
+	if (countdown != '' && countdown != null) {
+		countdown = parseFloat(countdown);
+	} else {
+		countdown = 5.0;
+	}
 
 	var csrf = $('#csrf').text();
+	
+	var jury = getParameterByName('jury');
+	if (jury != '' && jury != null) {
+		jury = parseInt(jury);
+	} else {
+		jury = 6;
+	}
+	half_jury = Math.ceil(jury/2.0);
+	if (half_jury * 2 == jury) {
+		half_jury += 1;
+	}
+
+	
+	$("#panelAction").show();
 
 	sliderJury.slider("disable");
-
+	
+	
+function turn_on_realtime_votes() {
 	$('#unlist_check_btn').on('click', function() {
 		var data = {
 		  	csrfmiddlewaretoken: csrf,
@@ -248,7 +282,6 @@
 		  };
 		post_action(data);
 	});
-
 	$('#delete_check_btn').on('click', function() {
 		var data = {
 		  	csrfmiddlewaretoken: csrf,
@@ -258,7 +291,6 @@
 		  };
 		post_action(data);
 	});
-
 	$('#report_check_btn').on('click', function() {
 		var data = {
 		  	csrfmiddlewaretoken: csrf,
@@ -268,7 +300,6 @@
 		  };
 		post_action(data);
 	});
-
 	$('#warn_check_btn').on('click', function() {
 		var data = {
 		  	csrfmiddlewaretoken: csrf,
@@ -278,7 +309,6 @@
 		  };
 		post_action(data);
 	});
-
 	$('#ban_check_btn').on('click', function() {
 		var data = {
 		  	csrfmiddlewaretoken: csrf,
@@ -288,7 +318,6 @@
 		  };
 		post_action(data);
 	});
-
 	$('#permaban_check_btn').on('click', function() {
 		var data = {
 		  	csrfmiddlewaretoken: csrf,
@@ -298,8 +327,26 @@
 		  };
 		post_action(data);
 	});
-
-
+	
+	
+	sliderIndiv.slider().on('slideStop', function(event) {
+	    var vote = $('#sliderIndiv').val();
+	    var data = {
+		  	csrfmiddlewaretoken: csrf,
+		  	id: id,
+		  	vote: vote,
+		  };
+		  $.ajax({
+				type: 'POST',
+				url: '/post_immersive_vote',
+				data: data,
+				success: function(data) {
+				}
+			});
+		});
+	
+	}
+	
 	function post_action(data) {
 		 $.ajax({
 				type: 'POST',
@@ -309,57 +356,149 @@
 				}
 			});
 	}
+	
+	
 
-// COUNTDOWN TIMER
-function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+if ("{{ voted }}" == "True") {
+	
+	$('#overlay').hide();
+    $('.card-header').click();
+	$('#instructions').text('You have already voted. Once all ' + jury + ' votes have come in from the jury, you can see results, resolve any disagreements, and change your vote before moving on.');               
+	poll();
+	turn_on_realtime_votes();
+	
+	var vote = parseFloat("{{ ui.immersive_vote }}");
+	
+	$("#indivScore").text(vote.toFixed(2));
+    sliderIndiv.slider('setValue', vote);
+	
+	    $('#submit').text('Continue');
 
-        display.text(minutes + ":" + seconds);
+	    $('#submit').attr('disabled', 'disabled');
+	    $("#submit").addClass("btn-secondary");
+	    $("#submit").removeClass("btn-primary");
+	    
+} else {
+	
+	
+		$('#submit').on('click', function() {
+	
+			var vote = $('#sliderIndiv').val();
+			var unlist = $('#unlist_check').is(":checked");
+			var del = $('#delete_check').is(":checked");
+			var report = $('#report_check').is(":checked");
+			var warn = $('#warn_check').is(":checked");
+			var ban = $('#ban_check').is(":checked");
+			var permaban = $('#permaban_check').is(":checked");
+	
+			var csrf = $('#csrf').text();
+			var data = {csrfmiddlewaretoken: csrf,
+						vote: vote,
+						unlist: unlist,
+						del: del,
+						report: report,
+						warn: warn,
+						ban: ban,
+						permaban: permaban,
+						group: group,
+						condition: condition,
+						id: id};
+			$.ajax({
+				type: 'POST',
+				url: '/immersive_post',
+				data: data,
+				success: function(data) {
+					after_vote();
+					turn_on_realtime_votes();
+				}
+			});
+			return false;
+		});
+	
+	var poll_obj = null;
 
-        if (--timer < 0) {
-            timer = 0;
-            $('#submit').removeClass('btn-secondary');
-            $('#submit').addClass('btn-primary');
-            $('#submit').removeAttr('disabled');
-            $('#submit').on('click', function() {
-            	window.location = '/survey_immersive?group=' + group + '&condition=' + condition + '&id=' + id;
-            });
-        }
-    }, 1000);
+	// COUNTDOWN TIMER
+	function startTimer(duration, display) {
+	    var timer = duration, minutes, seconds;
+	    poll_obj= setInterval(function () {
+	        minutes = parseInt(timer / 60, 10);
+	        seconds = parseInt(timer % 60, 10);
+	
+	        minutes = minutes < 10 ? "0" + minutes : minutes;
+	        seconds = seconds < 10 ? "0" + seconds : seconds;
+	
+	        display.text(minutes + ":" + seconds);
+	
+	        if (--timer < 0) {
+	            timer = 0;
+	            
+	            $('#overlay').hide();
+	            $("#panelAction").hide();
+	            
+	            $('#submit').removeClass('btn-secondary');
+	            $('#submit').addClass('btn-primary');
+	            $('#submit').removeAttr('disabled');
+	            
+	            poll();
+	            
+	            clearInterval(poll_obj);
+	            
+	        }
+	    }, 1000);
+	}
+	
+	jQuery(function ($) {
+	    var fiveMinutes = 60 * countdown,
+	        display = $('#time');
+	    startTimer(fiveMinutes, display);
+	});
+
+
 }
 
-jQuery(function ($) {
-    var fiveMinutes = 60 * 10,
-        display = $('#time');
-    startTimer(fiveMinutes, display);
-});
+
+
+function after_vote() {
+
+		$('.card-header').click();
+	    $('#instructions').text('Thanks for providing your vote. Once all ' + jury + ' votes have come in from the jury, you can see results, resolve any disagreements, and change your vote before moving on.');
+
+
+	    $('#submit').text('Continue');
+	    $('#submit').unbind('click');
+
+	    $('#submit').attr('disabled', 'disabled');
+	    $("#submit").addClass("btn-secondary");
+	    $("#submit").removeClass("btn-primary");
+	   
+	}
 
 
 
-	(function poll() {
+	function poll() {
 	    $.ajax({
 	        url: "/poll_immersive?group=" + group,
 	        type: "GET",
 	        success: function(data) {
 	        	count = data.count;
-	        	$('#vote_count').text(count);
+	        	$('#pending').html('Waiting... <span class="yellow" id="vote_count">' + count + '</span> out of <span id="count_jury">' + jury + '</span> people have voted</h4>');
+	        	
+	        	if (count >= jury) {
 
-        		$("#juryScore").text(data.vote.toFixed(2));
-        		sliderJury.slider('setValue', data.vote);
+	        		$('#pending').text("All " + jury + " jury members have voted");
 
-        		if (data.unlist > 3) {
+	        		$('#juryDecision').show();
+	        		
+	        		$("#juryScore").text(data.vote.toFixed(2));
+        			sliderJury.slider('setValue', data.vote);
+        			
+        		if (data.unlist >= half_jury) {
         			$('#unlist_button').removeClass('btn-secondary');
         			$('#unlist_button').addClass('btn-danger');
         		} else {
         			$('#unlist_button').addClass('btn-secondary');
         			$('#unlist_button').removeClass('btn-danger');
-
         			if (data.unlist == 1) {
         				$('#unlist').text('1 vote');
         			}
@@ -367,14 +506,12 @@ jQuery(function ($) {
         		if (data.unlist != 1) {
         			$('#unlist').text(data.unlist + ' votes');
         		}
-
-        		if (data.del > 3) {
+        		if (data.del >= half_jury) {
         			$('#delete_button').removeClass('btn-secondary');
         			$('#delete_button').addClass('btn-danger');
         		} else {
         			$('#delete_button').addClass('btn-secondary');
         			$('#delete_button').removeClass('btn-danger');
-
         			if (data.del == 1) {
         				$('#delete').text('1 vote');
         			}
@@ -382,14 +519,12 @@ jQuery(function ($) {
         		if (data.del != 1) {
         			$('#delete').text(data.del + ' votes');
         		}
-
-        		if (data.report > 3) {
+        		if (data.report >= half_jury) {
         			$('#report_button').removeClass('btn-secondary');
         			$('#report_button').addClass('btn-danger');
         		} else {
         			$('#report_button').addClass('btn-secondary');
         			$('#report_button').removeClass('btn-danger');
-
         			if (data.report == 1) {
         				$('#report').text('1 vote');
         			}
@@ -397,14 +532,12 @@ jQuery(function ($) {
         		if (data.report != 1) {
         			$('#report').text(data.report + ' votes');
         		}
-
-        		if (data.warn > 3) {
+        		if (data.warn >= half_jury) {
         			$('#warn_button').removeClass('btn-secondary');
         			$('#warn_button').addClass('btn-danger');
         		} else {
         			$('#warn_button').addClass('btn-secondary');
         			$('#warn_button').removeClass('btn-danger');
-
         			if (data.warn == 1) {
         				$('#warn').text('1 vote');
         			}
@@ -412,14 +545,12 @@ jQuery(function ($) {
         		if (data.warn != 1) {
         			$('#warn').text(data.warn + ' votes');
         		}
-
-        		if (data.ban > 3) {
+        		if (data.ban >= half_jury) {
         			$('#ban_button').removeClass('btn-secondary');
         			$('#ban_button').addClass('btn-danger');
         		} else {
         			$('#ban_button').addClass('btn-secondary');
         			$('#ban_button').removeClass('btn-danger');
-
         			if (data.ban == 1) {
         				$('#ban').text('1 vote');
         			}
@@ -427,14 +558,12 @@ jQuery(function ($) {
         		if (data.ban != 1) {
         			$('#ban').text(data.ban + ' votes');
         		}
-
-        		if (data.permaban > 3) {
+        		if (data.permaban >= half_jury) {
         			$('#permaban_button').removeClass('btn-secondary');
         			$('#permaban_button').addClass('btn-danger');
         		} else {
         			$('#permaban_button').addClass('btn-secondary');
         			$('#permaban_button').removeClass('btn-danger');
-
         			if (data.permaban == 1) {
         				$('#permaban').text('1 vote');
         			}
@@ -442,6 +571,22 @@ jQuery(function ($) {
         		if (data.permaban != 1) {
         			$('#permaban').text(data.permaban + ' votes');
         		}
+        		
+        		
+        			$('#submit').text("Continue");
+	        		$('#submit').removeAttr('disabled');
+	        		$("#submit").removeClass("btn-secondary");
+				    $("#submit").addClass("btn-primary");
+				    
+				    
+				   $('#instructions').text('All votes are in! Below you can continue discussion, and you can also change your vote. Your changes are reflected in real-time above. Click Continue when you are ready to move on.');
+
+			
+				    $('#submit').on('click', function() {
+				    	window.location = '/survey_immersive?group=' + group + '&condition=' + condition + '&id=' + id;
+				    });
+
+			 }
 
 
 	        },
@@ -451,28 +596,7 @@ jQuery(function ($) {
 	        	}, 5000),
 	        timeout: 2000
 	    });
-	})();
-
-
-	sliderIndiv.slider().on('slideStop', function(event) {
-	    var vote = $('#sliderIndiv').val();
-
-	    var data = {
-		  	csrfmiddlewaretoken: csrf,
-		  	id: id,
-		  	vote: vote,
-		  };
-
-		  $.ajax({
-				type: 'POST',
-				url: '/post_immersive_vote',
-				data: data,
-				success: function(data) {
-				}
-			});
-
-		});
-
+	}
 
 
   var FADE_TIME = 150; // ms
@@ -498,6 +622,11 @@ jQuery(function ($) {
   var typing = false;
   var lastTypingTime;
   var $currentInput = $usernameInput.focus();
+  
+  if ("{{ ui.chat_username }}" != "None") {
+  	$usernameInput.val("{{ ui.chat_username }}");
+  	setUsername();
+  }
 
 
   $window.keydown(function (event) {

@@ -134,7 +134,25 @@ def scaleable_post(request):
     ui.save()
     
     return JsonResponse({})
+   
+def immersive_post(request):
+    turk_id = request.POST.get('id');
     
+    user = User.objects.get(username=turk_id)
+    ui = UserInfo.objects.get(mturk_user=user)
+    
+    ui.immersive_vote = float(request.POST.get('vote'))
+    ui.immersive_content_unlist = (request.POST.get('unlist') == "true")
+    ui.immersive_content_delete = (request.POST.get('del')  == "true")
+    ui.immersive_content_report = (request.POST.get('report')  == "true")
+    ui.immersive_user_warn = (request.POST.get('warn')  == "true")
+    ui.immersive_user_ban = (request.POST.get('ban') == "true")
+    ui.immersive_user_permaban = (request.POST.get('permaban') == "true")
+
+    ui.save()
+    
+    return JsonResponse({})
+     
 
 
 def scaleablesurvey_post(request):
@@ -435,6 +453,17 @@ def survey_scaleable(request):
 
 @render_to('juries/immersive.html')
 def immersive(request):
+    turk_id = request.GET.get('id')
+    user = User.objects.get(username=turk_id)
+    ui = UserInfo.objects.get(mturk_user=user)
+    
+    if ui.immersive_vote:
+        return {'voted': True,
+                'ui': ui}
+    else:
+        return {'voted': False,
+                'ui': ui}
+    
     return {}
 
 @render_to('juries/survey_immersive.html')
