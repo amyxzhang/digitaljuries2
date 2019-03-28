@@ -142,12 +142,18 @@ footer {
   padding: 0 0 16px 16px;
   align-self: flex-start; }
 
-.btngroup {
+.callout {
   display: flex;
+  flex-direction: column;
+  border: 1px solid #ECCA5E;
+  padding: 2em 1em;
+}
+.btn-group {
+  /* display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  flex-wrap: wrap;
-  margin-bottom: 32px; }
+  flex-wrap: wrap; */
+  margin-bottom: 8px; }
 
 .survey-container {
   position: relative;
@@ -197,9 +203,10 @@ p, li {
   font-size: 16px;
   line-height: 1.6em;
   font-weight: 400;
-  color: #F7FEFF;
-  margin: 1em auto; }
-
+  color: #F7FEFF; }
+p {
+margin: 1em auto;
+}
 h1 {
   font-family: "Space Mono", "Roboto", monospace;
   margin: 0 auto 1em;
@@ -246,14 +253,20 @@ label {
     margin: auto 0 0.5em;
     display: block; }
 
-    .questions label {
+    .question label {
         font-family: "Roboto", Tahoma, Arial, sans-serif;
-        font-size: 20px;
-        line-height: 1.2em;
+        line-height: 1.5em;
         text-transform: none;
+    }
+    label input {
+      font-size: 16px;
     }
 small {
   font-family: "Roboto", Tahoma, Arial, sans-serif;
+}
+.big {
+  font-size: 20px;
+  line-height: 1.2em;
 }
 input, textarea {
   font-size: 16px;
@@ -272,7 +285,11 @@ footer p {
 a {
   color: #ECCA5E;
   font-weight: 400;
-  text-decoration: none; }
+  text-decoration: underline;
+}
+  a.btn {
+    text-decoration: none;
+  }
   a:hover, a:focus, a:active {
     text-decoration: underline;
     color: #ECCA5E;
@@ -325,6 +342,7 @@ hr {
 \*------------------------------------*/
 .survey {
   max-width: 800px;
+  margin-top: 4em;
 }
 .form-group {
   margin-bottom: 2rem;
@@ -468,6 +486,9 @@ textarea {
 img {
   width: 100%;
   max-width: 640px;
+}
+.featured {
+  box-shadow: 0px 0px 12px #cecece;
 }
 .slideshow {
   margin: 0em auto 2em; }

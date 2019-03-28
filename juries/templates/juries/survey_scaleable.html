@@ -6,90 +6,148 @@
 
 
 <nav class="navbar navbar-expand-sm fixed-bottom panel justify-content-end">
-	<button class="btn btn-lg btn-secondary" disabled id="continue">Continue when completed</button>
+	<button class="btn btn-lg btn-primary" id="continue">Continue when completed</button>
 </nav>
 
 <main class="flex-shrink-0" role="main">
 	<section class="container-fluid">
 		<h3>Please complete the survey before continuing</h3>
 
-				<form class="survey question">
-					
+		<hr />
 
-					<div class="form-group">
-						<label for="scaleable1">This process is an effective way to protect users from unwanted or toxic content.</label>
+		<p>In this round, the Jury Process you saw was <b class="yellow">Blind Voting</b>, polling a jury of 6 individuals.</p>
 
-						<div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons" role="group" id="scaleable1">
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Strongly Disagree</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Disagree</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Agree</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Strongly Agree</label>
-						</div>
+		<!-- <p>You rated the content with a toxicity score of <b class="yellow" id="indivScore">0.00</b> and recommended to <b class="yellow" id="recommended">[ACTION]</b> the content and <b class="yellow" id="recommended">[ACTION]</b> the user.</p>
+
+		<p>The jury's average score rated the content with a toxicity score of <b class="yellow" id="indivScore">0.00</b> and recommended to <b class="yellow" id="recommended">[ACTION]</b> the content and <b class="yellow" id="recommended">[ACTION]</b> the user.</p> -->
+
+		<p>In answering the questions below, please evaluate your opinions on the process by which this outcome was reached.</p>
+
+		<img src={% static "juries/img/jury_scaleable.png" %} alt="Jury process" class="featured" />
+
+		<form class="survey question">
+			<div class="form-group">
+				<!-- Scaleable -->
+				<div class="form-group">
+					<label for="experiment1">Please explain your own decision.</label>
+
+					<textarea rows="3" id="mv1why" placeholder="Why"></textarea>
+				</div>
+
+				<div class="form-group">
+					<label for="difficulty_control">Did you have any difficulties making a decision for this case?<label>
+					<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="difficulty_control">
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Somewhat</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Very Much</label>
 					</div>
+				</div>
 
-					<div class="form-group">
-						<label for="scaleable2">This process cares about my preferences.</label>
-
-						<div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons" role="group" id="scaleable2">
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Strongly Disagree</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Disagree</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Agree</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Strongly Agree</label>
-						</div>
+				<div class="form-group">
+					<label for="time_control">Did you feel any time constraints doing this process?<label>
+					<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="time_control">
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Somewhat</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Very Much</label>
 					</div>
+				</div>
 
-					<div class="form-group">
-						<label for="scaleable3">This process is fair.</label>
+				<div class="form-group">
+					<label for="complete9">How satisfied are you with the jury's decision?</label>
 
-						<div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons" role="group" id="scaleable3">
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Strongly Disagree</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Disagree</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Agree</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Strongly Agree</label>
-						</div>
+					<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="experiment1">
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A little</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Somewhat</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Very much</label>
 					</div>
+				</div>
 
-					<div class="form-group">
-						<label for="scaleable4">This process values individual voices equally.</label>
+				<hr />
 
-						<div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons" role="group" id="scaleable4">
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Strongly Disagree</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Disagree</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Agree</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Strongly Agree</label>
-						</div>
-					</div>
+				<h3>Please reflect upon the <span class="yellow">process</span> for reaching the jury's <span class="yellow">outcome</span>.</h3>
 
-					<div class="form-group">
-						<label for="scaleable5">This process improves my trust in content moderation decisions.</label>
+				<hr />
 
-						<div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons" role="group" id="scaleable5">
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Strongly Disagree</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Disagree</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Agree</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Strongly Agree</label>
-						</div>
-					</div>
+			<div class="form-group">
+				<label for="scaleable1">This process is an effective way to protect users from unwanted or toxic content.</label>
 
-					<div class="form-group">
-						<label for="scaleable6">This process feels like a legitimate exercise of power.</label>
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="scaleable1">
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Strongly Disagree</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Disagree</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Agree</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Strongly Agree</label>
+				</div>
+			</div>
 
-						<div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons" role="group" id="scaleable6">
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Strongly Disagree</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Disagree</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Agree</label>
-							<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Strongly Agree</label>
-						</div>
-					</div>
+			<div class="form-group">
+				<label for="scaleable2">This process cares about my preferences.</label>
 
-					<button type="submit" class="btn btn-primary" id="submit">Submit</button>
-				</form>
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="scaleable2">
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Strongly Disagree</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Disagree</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Agree</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Strongly Agree</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="scaleable3">This process is fair.</label>
+
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="scaleable3">
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Strongly Disagree</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Disagree</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Agree</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Strongly Agree</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="scaleable4">This process values individual voices equally.</label>
+
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="scaleable4">
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Strongly Disagree</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Disagree</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Agree</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Strongly Agree</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="scaleable5">This process improves my trust in content moderation decisions.</label>
+
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="scaleable5">
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Strongly Disagree</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Disagree</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Agree</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Strongly Agree</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="scaleable6">This process feels like a legitimate exercise of the social media platform's power.</label>
+
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="scaleable6">
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Strongly Disagree</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Disagree</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Agree</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Strongly Agree</label>
+				</div>
+			</div>
+
+			<!-- <button type="submit" class="btn btn-primary" id="submit">Submit</button> -->
+		</form>
 	</section>
 
 </main>

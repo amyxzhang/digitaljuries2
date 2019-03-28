@@ -27,7 +27,7 @@
 
 						<p>Momo is a viral urban legend that has been associated with "suicide games", similar to the Blue Whale Challenge urban legend where children are reportedly being drawn into a game of escalating dares ending in self-harm. For both the Momo Challenge and Blue Whale Challenge, a number of teenage deaths have been accused of being tied to the challenge, though it has been debunked as a hoax and formal linkages between the events are not officially proven.</p>
 
-						<p>The user posted a link to an edited video depicting children's cartoon Peppa the Pig, showing a character being beheaded and shot at before cutting into a scene of Momo. We think this may violate the community standards because of:</p>
+						<p>The user posted a link to an edited video depicting children's cartoon Peppa the Pig, showing a character being beheaded and shot at before cutting into a scene of Momo.</p>
 
 						<p>We think this may violate community standards because of:</p>
 
@@ -87,17 +87,17 @@
 		<div class="card-header" style="z-index: 20;" data-toggle="collapse" data-target="#panelDecision">
 				<p id="instructions">In this round, you will be deciding a case along a jury of your peers through discussion.
 					You have at least 5 minutes to conduct discussion in the chat box below. Afterwards, you will make a vote.
-					After that, you will get an opportunity to continue discussion and resolve disagreements as well as 
+					After that, you will get an opportunity to continue discussion and resolve disagreements as well as
 					change your vote before moving on.
 					</p>
 
 				<button type="submit" class="btn btn-secondary" disabled value="Submit" id="submit">Submit Decision</button>
 
 		</div>
-		
+
 		<div class="card-group show" id="panelDecision" style="position: relative;">
-			
-			
+
+
 			<div class="card">
 
 				<!-- Chat window -->
@@ -119,17 +119,17 @@
 						</form> -->
 				</div>
 			</div>
-			
-			
-			
+
+
+
 			<div id="overlay" style="background: rgba(0, 0, 0, 0.5); z-index: 10; position: absolute; width: 50%; height:100%; top: 0; left: 50%;">
 				<button class="btn-sm" style="position:relative; top: 5%;  left:20%;">
-					Continue discussion for 
+					Continue discussion for
 					  <span id="time">5:00</span> minutes. <BR>
 					  	You can vote here once the timer is done.
 					  </button>
 			</div>
-		
+
 			<!-- INSTRUCTIONS -->
 			<div class="card">
 					<!-- SCORE -->
@@ -245,7 +245,7 @@
 	var id = getParameterByName('id');
 	var group = getParameterByName('group');
 	var condition = getParameterByName('condition');
-	
+
 	var countdown = getParameterByName('countdown');
 	if (countdown != '' && countdown != null) {
 		countdown = parseFloat(countdown);
@@ -254,7 +254,7 @@
 	}
 
 	var csrf = $('#csrf').text();
-	
+
 	var jury = getParameterByName('jury');
 	if (jury != '' && jury != null) {
 		jury = parseInt(jury);
@@ -266,12 +266,12 @@
 		half_jury += 1;
 	}
 
-	
+
 	$("#panelAction").show();
 
 	sliderJury.slider("disable");
-	
-	
+
+
 function turn_on_realtime_votes() {
 	$('#unlist_check_btn').on('click', function() {
 		var data = {
@@ -327,8 +327,8 @@ function turn_on_realtime_votes() {
 		  };
 		post_action(data);
 	});
-	
-	
+
+
 	sliderIndiv.slider().on('slideStop', function(event) {
 	    var vote = $('#sliderIndiv').val();
 	    var data = {
@@ -344,9 +344,9 @@ function turn_on_realtime_votes() {
 				}
 			});
 		});
-	
+
 	}
-	
+
 	function post_action(data) {
 		 $.ajax({
 				type: 'POST',
@@ -356,34 +356,34 @@ function turn_on_realtime_votes() {
 				}
 			});
 	}
-	
-	
+
+
 
 
 if ("{{ voted }}" == "True") {
-	
+
 	$('#overlay').hide();
     $('.card-header').click();
-	$('#instructions').text('You have already voted. Once all ' + jury + ' votes have come in from the jury, you can see results, resolve any disagreements, and change your vote before moving on.');               
+	$('#instructions').text('You have already voted. Once all ' + jury + ' votes have come in from the jury, you can see results, resolve any disagreements, and change your vote before moving on.');
 	poll();
 	turn_on_realtime_votes();
-	
+
 	var vote = parseFloat("{{ ui.immersive_vote }}");
-	
+
 	$("#indivScore").text(vote.toFixed(2));
     sliderIndiv.slider('setValue', vote);
-	
+
 	    $('#submit').text('Continue');
 
 	    $('#submit').attr('disabled', 'disabled');
 	    $("#submit").addClass("btn-secondary");
 	    $("#submit").removeClass("btn-primary");
-	    
+
 } else {
-	
-	
+
+
 		$('#submit').on('click', function() {
-	
+
 			var vote = $('#sliderIndiv').val();
 			var unlist = $('#unlist_check').is(":checked");
 			var del = $('#delete_check').is(":checked");
@@ -391,7 +391,7 @@ if ("{{ voted }}" == "True") {
 			var warn = $('#warn_check').is(":checked");
 			var ban = $('#ban_check').is(":checked");
 			var permaban = $('#permaban_check').is(":checked");
-	
+
 			var csrf = $('#csrf').text();
 			var data = {csrfmiddlewaretoken: csrf,
 						vote: vote,
@@ -415,7 +415,7 @@ if ("{{ voted }}" == "True") {
 			});
 			return false;
 		});
-	
+
 	var poll_obj = null;
 
 	// COUNTDOWN TIMER
@@ -424,30 +424,30 @@ if ("{{ voted }}" == "True") {
 	    poll_obj= setInterval(function () {
 	        minutes = parseInt(timer / 60, 10);
 	        seconds = parseInt(timer % 60, 10);
-	
+
 	        minutes = minutes < 10 ? "0" + minutes : minutes;
 	        seconds = seconds < 10 ? "0" + seconds : seconds;
-	
+
 	        display.text(minutes + ":" + seconds);
-	
+
 	        if (--timer < 0) {
 	            timer = 0;
-	            
+
 	            $('#overlay').hide();
 	            $("#panelAction").hide();
-	            
+
 	            $('#submit').removeClass('btn-secondary');
 	            $('#submit').addClass('btn-primary');
 	            $('#submit').removeAttr('disabled');
-	            
+
 	            poll();
-	            
+
 	            clearInterval(poll_obj);
-	            
+
 	        }
 	    }, 1000);
 	}
-	
+
 	jQuery(function ($) {
 	    var fiveMinutes = 60 * countdown,
 	        display = $('#time');
@@ -471,7 +471,7 @@ function after_vote() {
 	    $('#submit').attr('disabled', 'disabled');
 	    $("#submit").addClass("btn-secondary");
 	    $("#submit").removeClass("btn-primary");
-	   
+
 	}
 
 
@@ -481,22 +481,22 @@ function after_vote() {
 	        url: "/poll_immersive?group=" + group,
 	        type: "GET",
 	        success: function(data) {
-	        	
+
 	        	console.log(data.user_votes);
-	        	
-	        	
+
+
 	        	count = data.count;
 	        	$('#pending').html('Waiting... <span class="yellow" id="vote_count">' + count + '</span> out of <span id="count_jury">' + jury + '</span> people have voted</h4>');
-	        	
+
 	        	if (count >= jury) {
 
 	        		$('#pending').text("All " + jury + " jury members have voted");
 
 	        		$('#juryDecision').show();
-	        		
+
 	        		$("#juryScore").text(data.vote.toFixed(2));
         			sliderJury.slider('setValue', data.vote);
-        			
+
         		if (data.unlist >= half_jury) {
         			$('#unlist_button').removeClass('btn-secondary');
         			$('#unlist_button').addClass('btn-danger');
@@ -575,17 +575,17 @@ function after_vote() {
         		if (data.permaban != 1) {
         			$('#permaban').text(data.permaban + ' votes');
         		}
-        		
-        		
+
+
         			$('#submit').text("Continue");
 	        		$('#submit').removeAttr('disabled');
 	        		$("#submit").removeClass("btn-secondary");
 				    $("#submit").addClass("btn-primary");
-				    
-				    
+
+
 				   $('#instructions').text('All votes are in! Below you can continue discussion, and you can also change your vote. Your changes are reflected in real-time above. Click Continue when you are ready to move on.');
 
-			
+
 				    $('#submit').on('click', function() {
 				    	window.location = '/survey_immersive?group=' + group + '&condition=' + condition + '&id=' + id;
 				    });
@@ -626,7 +626,7 @@ function after_vote() {
   var typing = false;
   var lastTypingTime;
   var $currentInput = $usernameInput.focus();
-  
+
   if ("{{ ui.chat_username }}" != "None") {
   	$usernameInput.val("{{ ui.chat_username }}");
   	setUsername();

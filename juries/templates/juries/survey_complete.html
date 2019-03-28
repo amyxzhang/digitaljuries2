@@ -10,128 +10,157 @@
 
 <main class="flex-shrink-0" role="main">
 	<section class="container">
-		<h3>You're almost done!</h3>
+		<h2>You're almost done &mdash; last step!</h2>
+
+		<p class="big">This experiment evaluates the potential for "jury duty for the internet" as a way to help communities decide what content to show online.</p>
+
+		<hr />
 
 		<form class="survey question">
 			<!-- Overall -->
 			<div class="form-group">
-				<label for="complete1">Which version did you prefer?</label>
+				<label for="complete1">1. Which jury system did you <b>MOST PREFER</b> for making content moderation decisions?</label>
 
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete1">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> No Jury</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Voting</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Jury with Chat</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Round 1 (No Jury)</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Round 2 (Blind Voting)</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Round 3 (Deliberating)</label>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label for="complete2">Why did you prefer that version?</label>
-				<textarea rows="3" id="complete2"></textarea>
+				<label for="complete2">2. Why did you prefer that version?</label>
+				<textarea rows="3" id="complete2" placeholder="Enter explanation here"></textarea>
 			</div>
 
 			<div class="form-group">
-				<label for="complete10">This experiment evaluates the potential for "jury duty for the internet" as a way to help communities decide what content to show online. If this feature was rolled out on the social media platforms that you currently use, how likely would be to participate?</label>
+				<label for="complete1">3. Which jury system did you <b>LEAST PREFER</b> for making content moderation decisions?</label>
 
-				<select multiple class="form-control" id="complete10">
-					<option>Yes, I would volunteer for it</option>
-					<option>Yes, if I'm bored/have free time</option>
-					<option>Yes, if they pay me</option>
-					<option>Yes, if it's mandatory</option>
-					<option>Not likely at all</option>
-				</select>
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete1">
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Round 1 (No Jury)</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Round 2 (Blind Voting)</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Round 3 (Deliberating)</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="complete2">4. Why did you least prefer that version?</label>
+				<textarea rows="3" id="complete2" placeholder="Enter explanation here"></textarea>
+			</div>
+
+		<div class="form-group">
+			<label for="complete10">5. If this feature was rolled out on the social media platforms that you currently use, how likely would be to participate? Select all that apply.</label>
+
+			<div class="d-flex flex-wrap justify-content-start">
+				<label class="btn btn-outline-warning">
+					<input type="checkbox" autocomplete="off"> Yes, I would volunteer for it
+				</label>
+
+				<label class="btn btn-outline-warning">
+					<input type="checkbox" autocomplete="off"> Yes, if I'm bored/have free time
+				</label>
+
+				<label class="btn btn-outline-warning">
+					<input type="checkbox" autocomplete="off"> Yes, if I'm paid for my time
+				</label>
+
+				<label class="btn btn-outline-warning">
+					<input type="checkbox" autocomplete="off"> Yes, if it's mandatory
+				</label>
+
+				<label class="btn btn-outline-warning">
+					<input type="checkbox" autocomplete="off"> Not likely at all
+				</label>
 			</div>
 
 			<hr />
 
-			<h2>Policy Enforcement</h2>
-
-			<p>Imagine that this jury's decisions were given to the platform as a <span class="yellow">recommendation</span> (taken into advisement by policy teams, without binding action required).</p>
+			<h3>Enforcing your decisions</h3>
 
 			<div class="form-group">
-				<label for="complete3">I feel comfortable with the jury decisions being sent as a <span class="yellow">recommendation</span>.</label>
+				<label for="complete3">6. Imagine that this jury's decisions were given to the social media platform as a <span class="yellow">recommendation</span> (taken into advisement by policy teams, but no action required). How satisfied would you feel with this process?</label>
 
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete3">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Strongly Disagree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Disagree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Agree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Strongly Agree</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Somewhat</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Very Much</label>
 				</div>
 			</div>
 
-			<p>Imagine that this jury's decisions were given to the platform as a <span class="yellow">enforced decision</span> (taken as binding action by policy teams, directly implemented).</p>
 
 			<div class="form-group">
-				<label for="complete3">I feel comfortable with the jury decisions being sent as an <span class="yellow">enforced decision</span>.</label>
+				<label for="complete4">7. Imagine that this jury's decisions were given to the social media platform as an <span class="yellow">enforced decision</span> (taken as binding action by policy teams and directly implemented). How satisfied would you feel with this process?</label>
 
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete3">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Strongly Disagree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Disagree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Agree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Strongly Agree</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Somewhat</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Very Much</label>
 				</div>
 			</div>
+
+			<div class="form-group">
+				<label for="complete2">8. Please explain your reasoning for the above.</label>
+				<textarea rows="3" id="complete2" placeholder="Enter explanation here"></textarea>
+			</div>
+
+			<div class="form-group">
+				<label for="complete3">9. How important is it to you that your opinions are factored into decisions?</label>
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete3">
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Somewhat</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Very Much</label>
+				</div>
+			</div>
+
+
 
 			<hr />
 
-			<h2>About this Experiment</h2>
-
-			<!-- Experiment -->
-			<div class="form-group">
-				<label for="complete3">How invested did you feel in this experiment?</label>
-
-				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete3">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Very uninvested</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Uninvested</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Invested</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Very Invested</label>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="complete4">What could be changed to make you feel more invested?</label>
-				<textarea rows="3" id="complete4"></textarea>
-			</div>
+			<h3>About this Experiment</h3>
 
 			<!-- Content Moderation -->
 			<div class="form-group">
-				<label for="complete6">How much did you know about content moderation before this experiment?</label>
+				<label for="confidence2">10. How confident are you in your abilities to decide what content should be on a platform like Facebook?</label>
+
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="confidence2">
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Somewhat</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Very Much</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="complete6">11. How familiar were you with content moderation before this experiment?</label>
 
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete6">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Completely unfamiliar</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Somewhat unfamiliar</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately familiar</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Somewhat familiar</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Very familiar</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Somewhat</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Very Much</label>
 				</div>
 			</div>
 
-			<div class="form-group">
-				<label for="complete7">If you knew about content moderation before this survey, what did you know about it?<label>
-				<textarea rows="3" id="complete7"></textarea>
-			</div>
-
-			<div class="form-group">
-				<label for="complete8">Did you feel any time constraints doing this experiment?<label>
-				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete1">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> No constraints</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Some constraints</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Many constraints</label>
-				</div>
-			</div>
 
 			<!-- Concluding -->
+			<hr />
 			<div class="form-group">
-				<label for="complete11">Do you have any other thoughts on this experiment?<label>
+				<label for="complete11">12. Do you have any other thoughts or concerns?<label>
 				<textarea rows="3" id="complete11"></textarea>
 			</div>
 
 		  <div class="form-group">
-				 <label for="email">Email address (optional)</label>
+				 <label for="email">13. Email address (optional)</label>
 				 <input type="text" class="form-control" id="email" placeholder="email@example.com" id="complete12">
-				 <small>Please leave your email address if you are open to the researchers contacting you with follow-up questions about this experiment. Follow-up conversations will be compensated with a $25 Amazon gift card.</small>
+				 <small>Please leave your email address if you are open to the researchers contacting you with follow-up questions about this experiment. If you are selected for a follow-up conversation, you will be compensated with a $25 Amazon gift card.</small>
 		  </div>
 
 			<!-- <button type="submit" class="btn btn-primary" id="submit">Submit</button> -->
@@ -182,12 +211,12 @@
 			url: '/completesurvey_post',
 			data: data,
 			success: function(data) {
-				$('#continue').prop('disabled', false);
-				$('#continue').removeClass('btn-secondary');
-				$('#continue').addClass('btn-primary');
-				$('#continue').on('click', function() {
+				// $('#continue').prop('disabled', false);
+				// $('#continue').removeClass('btn-secondary');
+				// $('#continue').addClass('btn-primary');
+				// $('#continue').on('click', function() {
 					window.location = '/thankyou';
-				});
+				// });
 			}
 		});
 		return false;

@@ -9,38 +9,85 @@
 
 <main class="flex-shrink-0" role="main">
 	<section class="container">
-		<h1 class="headline">Instructions</h1>
+		<h2>Instructions</h2>
+
+		<hr class="p-3" />
 
 		<div class="row">
-			<div class="col-md-4">
-				<p>Thanks for completing the survey.</p>
+			<div class="col-md-5">
+				<h3 class="yellow mt-0">What you'll be doing</h3>
 
-				<p>In this experiment, you will be the <b>toxicity score</b> and <b>punitive actions</b> (if applicable) for the content moderation cases we present. For each case, we will be providing <b>background context</b> and <b>violation context</b> so you can understand why the platform in question flagged this content for review.</p>
+				<p>In this experiment, you will be rating content for:</p>
 
-				<p>In each round, you will be provided more information on how to give your evaluation. Some rounds will be individual, and some will be in panels of <b>6 jurors</b>.</p>
+				<ol>
+					<li><b>Toxicity score</b></li>
+					<li><b>Punitive actions on the content</b> (if applicable)</li>
+					<li><b>Punitive actions on the user</b> (if applicable)</li>
+				</ol>
+
+				<p>For each of the 3 cases, we will be providing <b>background context</b> and <b>violation context</b> so you can understand why the platform in question flagged this content for review.</p>
+
+				<h3 class="yellow">Jury Interface</h3>
+
+				<p>In each round, you will be provided more information on how to give your evaluation. Some rounds will be individual, and some will be in panels of <b>6 jurors</b>. The decision panel will be at the bottom of the page in each of the three rounds.</p>
 			</div>
-			<div class="col-md-8">
+			<div class="col-md-7">
 				<img src={% static "juries/img/instructions.jpg" %} border="0" alt="Instructional thumbnail" />
 			</div>
 		</div>
 
-		<hr />
+		<hr class="p-3">
 
 		<h2>What is toxic content?</h2>
 
-		<p>"Toxic content" can have many definitions, including hateful, aggressive, or disrespectful comments that may make it likely to encourage violence, exacerbate derogatory views towards a group of people, or make a reader feel emotional or psychological harm. Toxicity measures the degree that speech may have the potential to harm people, much like a toxic poisonous substance could cause harm. This may include slurs, epithets, profanity, insults, derogatory otherization, or explicit/implicit threats.</p>
+		<p>"Toxic content" can have many definitions, including <b>hateful, aggressive, or disrespectful comments</b> that may make it likely to <b>encourage violence, exacerbate derogatory views towards a group of people, or make a reader feel emotional or psychological harm</b>. Toxicity measures the degree that speech may have the potential to harm people, much like a toxic poisonous substance could cause harm. This may include slurs, epithets, profanity, insults, derogatory otherization, or explicit/implicit threats.</p>
 
-		<h3>Rating guide</h3>
+		<hr class="p-3">
 
-		<p>Please use the following benchmark when selecting the toxicity:</p>
-		<p><span class="yellow">0-4: OK</span> Unlikely to be cause harm<br>
-			<span class="yellow">4-8: Borderline</span> Ambiguous or hard to say, with the potential to cause harm<br>
-			<span class="yellow">8-10: Toxic</span> Likely to be perceived as aggressive, hateful, or with potential to cause harm</p>
+		<div class="row">
+			<div class="col-md-5">
+				<h3 class="yellow mt-0">How to rate Toxicity Score</h3>
 
-		<h3>Moral views</h3>
+				<p>Regardless of what you think should be done with the content, please use the following benchmark to select your <b>personal opinion</b> on how toxic the content is:</p>
 
-		<p>When going through the questions, please pay attention to your <b>personal moral views</b>, especially in balancing a safe, comfortable browsing experience with preserving the freedom of expression. We are interested in hearing your opinion on whether this result is one you would personally like when browsing the social media platform such as Facebook.</p>
+				<ul>
+					<li><span class="yellow">0-3:</span> <b>OK</b>, unlikely to be cause harm</li>
+					<li><span class="yellow">4-7:</span> <b>Borderline</b>, ambiguous or hard to say, with the potential to cause harm</li>
+					<li><span class="yellow">8-10:</span> <b>Toxic</b>, likely to be perceived as aggressive, hateful, or with potential to cause harm</li>
+				</ul>
+			</div>
+			<div class="col-md-7">
+				<img src={% static "juries/img/slider2.gif" %} border="0" alt="How to use the slider" />
+			</div>
+		</div>
 
+		<h3 class="yellow">How to rate Punitive Actions</h3>
+
+		<p>The platforms (social media companies like Facebook, Twitter, Reddit, etc.) have certain powers to control what <b>content</b> remain on their sites and what rights are given to the <b>users</b> of their sites. When suggesting punitive actions for toxic content, please select <em>all that apply</em> for what response you think it requires.</p>
+
+		<div class="row">
+			<div class="col-md-6">
+				<h4>Content Actions</h4>
+				<ul>
+					<li><span class="yellow">Unlist from search:</span> Still available via direct links, but not automatically pushed to users' feeds</li>
+					<li><span class="yellow">Delete:</span> Removed from the site, unaccessible by anyone</li>
+					<li><span class="yellow">Report to Authorities:</span> Removed from the site and forwarded to local authorities (e.g. police, child protection agencies)</li>
+				</ul>
+			</div>
+			<div class="col-md-6">
+				<h4>User Actions</h4>
+				<ul>
+					<li><span class="yellow">Warn:</span> Issue a written warning for users advising them of the potential harms of their post</li>
+					<li><span class="yellow">Ban for 1 week:</span> "Temporary timeout" for users as punishment</li>
+					<li><span class="yellow">Permanently ban:</span> Permanently remove user from site, block email and IP address</li>
+				</ul>
+			</div>
+		</div>
+
+		<h3 class="yellow">Personal views</h3>
+
+		<p>When going through the questions, please pay attention to your <b>personal moral views</b> on whether this result is one you would personally like when browsing the social media platform such as Facebook. We are interested in studying how users balance preserving freedom of expression while maintaining a safe, comfortable browsing experience.</p>
+<!--
 		<hr />
 
 		<h2>Background context</h2>
@@ -49,7 +96,7 @@
 
 		<div class="embed-responsive embed-responsive-16by9">
 			<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/IpqKRaKiG-w?start=102&end=238" allow="autoplay" allowfullscreen></iframe>
-		</div>
+		</div> -->
 	</section>
 </main>
 

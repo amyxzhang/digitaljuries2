@@ -89,7 +89,7 @@
 				and the final score will be an average and the actions will be determined by majority.</p>
 
 					<!-- <button type="submit" class="btn btn-secondary" value="Submit" disabled>Submit Decision</button> -->
-					<button class="btn btn-secondary" disabled id="submit">Submit Decision</a>
+					<button class="btn btn-secondary" disabled id="submit">Submit Decision</button>
 		</div>
 
 		<div class="card-group show" id="panelDecision">
@@ -157,10 +157,10 @@
 						</div>
 
 						<!-- JUSTIFICATION -->
-						<div id="panelJustification">
+						<!-- <div id="panelJustification">
 							<h4 class="dark">Why do you think so?</h4>
 							<textarea id="explanation" rows="3"></textarea>
-						</div>
+						</div> -->
 				</div>
 			</div>
 
@@ -215,7 +215,7 @@
 	var id = getParameterByName('id');
 	var group = getParameterByName('group');
 	var condition = getParameterByName('condition');
-	
+
 	var jury = getParameterByName('jury');
 	if (jury != '' && jury != null) {
 		jury = parseInt(jury);
@@ -228,7 +228,7 @@
 	}
 
 	$('#count_jury').text(jury);
-	
+
 	(function poll() {
 	    $.ajax({
 	        url: "/poll_scaleable?group=" + group + "&jury=" + jury,
@@ -335,7 +335,7 @@
 		var warn = $('#warn').is(":checked");
 		var ban = $('#ban').is(":checked");
 		var permaban = $('#permaban').is(":checked");
-		var explanation = $('#explanation').val();
+		// var explanation = $('#explanation').val();
 
 		var csrf = $('#csrf').text();
 		var data = {csrfmiddlewaretoken: csrf,
@@ -348,7 +348,7 @@
 					permaban: permaban,
 					group: group,
 					condition: condition,
-					explanation: explanation,
+					// explanation: explanation,
 					id: id};
 		$.ajax({
 			type: 'POST',
@@ -360,15 +360,15 @@
 		});
 		return false;
 	});
-	
-	
+
+
 	if ("{{ voted }}" == "True") {
 		after_vote();
 		 $('#instructions').text('You have already voted and cannot change your vote. Once all ' + jury + ' votes have come in from the jury, click to Continue.');
 
 	}
 
-	
+
 	function after_vote() {
 		$('.card-group').addClass('collapse');
 		$('.card-group').removeClass('show');
@@ -384,7 +384,7 @@
 	    $('#submit').attr('disabled', 'disabled');
 	    $("#submit").addClass("btn-secondary");
 	    $("#submit").removeClass("btn-primary");
-	   
+
 
 	    $('#submit').on('click', function() {
 	    	window.location = '/survey_scaleable?group=' + group + '&condition=' + condition + '&id=' + id;
