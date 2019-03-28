@@ -6,7 +6,7 @@
 
 
 <nav class="navbar navbar-expand-sm fixed-bottom panel justify-content-end">
-	<button class="btn btn-lg btn-secondary" id="continue" disabled>Continue when completed</button>
+	<button class="btn btn-lg btn-primary" id="continue">Continue when completed</button>
 </nav>
 
 <main class="flex-shrink-0" role="main">
@@ -15,6 +15,32 @@
 
 		<form class="survey question">
 			<div class="form-group">
+				<!-- Immersive -->
+				<div class="form-group">
+					<label for="experiment1">What was the quality of the conversation in the chatroom round?</label>
+
+					<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="experiment1">
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Very low quality</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Low quality</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderate</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> High quality</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Very high quality</label>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="complete9">How much did you trust the opinions of the other jury members?</label>
+
+					<div class="btn-group btn-group-sm" role="group" id="complete9">
+						<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Not at all</button>
+						<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">A little</button>
+						<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Neither trust nor distrust</button>
+						<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Somewhat</button>
+						<button type="button" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off">Very Much</button>
+					</div>
+				</div>
+
+
 				<label for="immersive1">This process is an effective way to protect users from unwanted or toxic content.</label>
 
 				<div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons" role="group" id="immersive1">
@@ -86,7 +112,7 @@
 				</div>
 			</div>
 
-			<button type="submit" class="btn btn-primary" id="submit">Submit</button>
+			<!-- <button type="submit" class="btn btn-primary" id="submit">Submit</button> -->
 		</form>
 	</section>
 
@@ -98,7 +124,7 @@
 
 <script>
 
-	$('#submit').on('click', function() {
+	$('#continue').on('click', function() {
 
 		var mv1 = $('#immersive1').val();
 		var mv2 = $('#immersive2').val();
@@ -122,13 +148,13 @@
 			url: '/immersivesurvey_post',
 			data: data,
 			success: function(data) {
-				$('#continue').prop('disabled', false);
-				$('#continue').removeClass('btn-secondary');
-				$('#continue').addClass('btn-primary');
+				// $('#continue').prop('disabled', false);
+				// $('#continue').removeClass('btn-secondary');
+				// $('#continue').addClass('btn-primary');
 				var next_url = data.url;
-				$('#continue').on('click', function() {
+				// $('#continue').on('click', function() {
 					window.location = next_url + '&id=' + id;
-				});
+				//});
 			}
 		});
 		return false;
