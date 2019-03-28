@@ -332,6 +332,7 @@ def poll_immersive(request):
     gi = GroupInfo.objects.get(id=group_id)
     ui = UserInfo.objects.filter(groupinfo=gi, immersive_vote__isnull=False)
 
+    user_votes = {}
     vote = 0.0
     unlist = 0
     delete = 0
@@ -341,6 +342,7 @@ def poll_immersive(request):
     permaban = 0
     
     for u in ui:
+        user_votes[u.chat_username] = u.immersive_vote
         vote += u.immersive_vote
         if u.immersive_content_unlist:
             unlist += 1
@@ -363,7 +365,8 @@ def poll_immersive(request):
                          'report': report,
                          'warn': warn,
                          'ban': ban,
-                         'permaban': permaban})
+                         'permaban': permaban,
+                         'user_votes': user_votes})
 
     
 
