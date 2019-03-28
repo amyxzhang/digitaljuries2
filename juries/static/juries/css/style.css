@@ -362,6 +362,7 @@ input {
 textarea {
   width: 100%;
   border-radius: 4px;
+  color: #fff;
   margin: 0.5em 0;
   padding: 0.5em;
   max-width: 480px; }
