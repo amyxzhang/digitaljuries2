@@ -213,8 +213,8 @@ def immersivesurvey_post(request):
     
     ui.immersive_justification = request.POST.get('immersive_justification')
     ui.immersive_difficulty = int(request.POST.get('immersive_difficulty') if request.POST.get('immersive_difficulty') else '0')
-    ui.immersive_time = int(request.POST.get('immersive_time') if request.POST.get('immersive_time') != '' else '0')
-    ui.immersive_satisfaction = int(request.POST.get('immersive_satisfaction') if request.POST.get('immersive_satisfaction')else '0')
+    ui.immersive_time = int(request.POST.get('immersive_time') if request.POST.get('immersive_time') else '0')
+    ui.immersive_satisfaction = int(request.POST.get('immersive_satisfaction') if request.POST.get('immersive_satisfaction') else '0')
     ui.immersive_convo = int(request.POST.get('immersive_convo') if request.POST.get('immersive_convo') else '0')
     ui.immersive_trust = int(request.POST.get('immersive_trust') if request.POST.get('immersive_trust')  else '0')
     
