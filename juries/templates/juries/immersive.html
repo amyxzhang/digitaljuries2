@@ -10,7 +10,7 @@
 {% block content %}
 
 <main class="flex-shrink-0" role="main">
-	<section id="control" class="container-fluid">
+	<section class="container-fluid">
 			<div class="row">
 
 				<!-- CASE -->
@@ -155,7 +155,7 @@
 						<div id="panelAction">
 								<!-- ACTION: CONTENT -->
 								<div id="actionContent">
-									<h4 class="dark">What action should the platform take on the content?</h4>
+									<h4 class="dark">What action (if any) should the platform take on the content?</h4>
 
 									<div class="btn-group-toggle" data-toggle="buttons">
 										<label class="btn btn-outline-secondary {% if ui.immersive_content_unlist %} active {% endif %}" id="unlist_check_btn">
@@ -177,7 +177,7 @@
 
 								<!-- ACTION: USER -->
 								<div id="actionUser">
-									<h4 class="dark">What action should the platform take on the user?</h4>
+									<h4 class="dark">What action (if any) should the platform take on the user?</h4>
 
 									<div class="btn-group-toggle" data-toggle="buttons">
 										<label class="btn btn-outline-secondary {% if ui.immersive_user_warn %} active {% endif %}" id="warn_check_btn">
