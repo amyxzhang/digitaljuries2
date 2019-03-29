@@ -2,10 +2,14 @@ from django.shortcuts import render
 from annoying.decorators import render_to
 from django.http import JsonResponse
 
+import random
+
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 
-from juries.models import UserInfo, GroupInfo, ChatMessage
+from juries.models import UserInfo, GroupInfo, ChatMessage, Case
+
+CASES = ['pepe','christchurch','momo']
 
 
 @render_to('juries/index.html')
@@ -56,71 +60,62 @@ def morals_post(request):
     
     user = User.objects.get(username=turk_id)
     ui = UserInfo.objects.get(mturk_user=user)
-    
-    ui.moral0 = int(request.POST.get('mv1') if request.POST.get('mv1') != '' else '0')
-    ui.moral1 = int(request.POST.get('mv2') if request.POST.get('mv2') != '' else '0')
-    ui.moral2 = int(request.POST.get('mv3') if request.POST.get('mv3') != '' else '0')
-    ui.moral3 = int(request.POST.get('mv4') if request.POST.get('mv4') != '' else '0')
-    ui.moral4 = int(request.POST.get('mv5') if request.POST.get('mv5') != '' else '0')
-    ui.moral5 = int(request.POST.get('mv6') if request.POST.get('mv6') != '' else '0')
+
+    ui.moral0 = int(request.POST.get('mv1') if request.POST.get('mv1') else '0')
+    ui.moral1 = int(request.POST.get('mv2') if request.POST.get('mv2') else '0')
+    ui.moral2 = int(request.POST.get('mv3') if request.POST.get('mv3') else '0')
+    ui.moral3 = int(request.POST.get('mv4') if request.POST.get('mv4') else '0')
+    ui.moral4 = int(request.POST.get('mv5') if request.POST.get('mv5') else '0')
+    ui.moral5 = int(request.POST.get('mv6') if request.POST.get('mv6') else '0')
     
     ui.save()
     
     return JsonResponse({})
 
 def controlsurvey_post(request):
-    turk_id = request.POST.get('id');
+    turk_id = request.POST.get('id')
+    round = int(request.POST.get('round'))
     
     user = User.objects.get(username=turk_id)
     ui = UserInfo.objects.get(mturk_user=user)
     
-    ui.control_difficulty = int(request.POST.get('control_difficulty') if request.POST.get('control_difficulty') != '' else '0')
-    ui.control_time = int(request.POST.get('control_time') if request.POST.get('control_time') != '' else '0')
-    ui.control_satisfaction = int(request.POST.get('control_satisfaction') if request.POST.get('control_satisfaction') != '' else '0')
+    ui.control_difficulty = int(request.POST.get('control_difficulty') if request.POST.get('control_difficulty') else '0')
+    ui.control_time = int(request.POST.get('control_time') if request.POST.get('control_time') else '0')
+    ui.control_satisfaction = int(request.POST.get('control_satisfaction') if request.POST.get('control_satisfaction') else '0')
     
     
-    ui.control0 = int(request.POST.get('control1') if request.POST.get('control1') != '' else '0')
-    ui.control1 = int(request.POST.get('control2') if request.POST.get('control2') != '' else '0')
-    ui.control2 = int(request.POST.get('control3') if request.POST.get('control3') != '' else '0')
-    ui.control3 = int(request.POST.get('control4') if request.POST.get('control4') != '' else '0')
-    ui.control4 = int(request.POST.get('control5') if request.POST.get('control5') != '' else '0')
-    ui.control5 = int(request.POST.get('control6') if request.POST.get('control6') != '' else '0')
+    ui.control0 = int(request.POST.get('control1') if request.POST.get('control1') else '0')
+    ui.control1 = int(request.POST.get('control2') if request.POST.get('control2') else '0')
+    ui.control2 = int(request.POST.get('control3') if request.POST.get('control3') else '0')
+    ui.control3 = int(request.POST.get('control4') if request.POST.get('control4') else '0')
+    ui.control4 = int(request.POST.get('control5') if request.POST.get('control5') else '0')
+    ui.control5 = int(request.POST.get('control6') if request.POST.get('control6') else '0')
     
     ui.save()
+    g2 = ui.groupinfo
     
-    if not ui.groupinfo:
-    
-        gcount = GroupInfo.objects.all().count()
+    next_round = None
+    next_case = None
+    next_round_num = None
+    if round == 1:
+        next_round = g2.round2
+        next_case = g2.case2
+        next_round_num = 2
+    elif round == 2:
+        next_round = g2.round3
+        next_case = g2.case3
+        next_round_num = 3
         
-        if gcount > 0:
-            g = GroupInfo.objects.latest('id')
-            num_users = UserInfo.objects.filter(groupinfo=g).count()
-        else:
-            g = GroupInfo.objects.create()
-            g.condition = 1
-            g.save()
-            num_users = 0
-        
-        if num_users >= 6:
-            g2 = GroupInfo.objects.create()
-            if g.condition == 2:
-                g2.condition = 1
-            else:
-                g2.condition = g.condition + 1
-            g2.save()
-        else:
-            g2 = g
-            
-        ui.groupinfo = g2
-        
-        ui.save()
+    if next_round:
+        if next_round == "No Jury":
+            return JsonResponse({'url': '/control?id=' + str(ui.mturk_user.username) + '&group=' + str(g2.id) + '&round=' + str(next_round_num) + '&case=' + next_case.name})
+        elif next_round == "Blind Voting":
+            return JsonResponse({'url': '/scaleable?id=' + str(ui.mturk_user.username) + '&group=' + str(g2.id) + '&round=' + str(next_round_num) + '&case=' + next_case.name })
+        elif next_round == "Deliberating":
+            return JsonResponse({'url': '/immersive?id=' + str(ui.mturk_user.username) + '&group=' + str(g2.id) + '&round=' + str(next_round_num) + '&case=' + next_case.name })
     else:
-        g2 = ui.groupinfo
+        return JsonResponse({'url': '/survey_complete?id=' + str(ui.mturk_user.username) + '&group=' + str(g2.id)})
     
-    if g2.condition == 1:
-        return JsonResponse({'url': '/scaleable?group=' + str(g2.id) + '&condition=' + str(g2.condition)})
-    else:
-        return JsonResponse({'url': '/immersive?group=' + str(g2.id) + '&condition=' + str(g2.condition)})
 
 def scaleable_post(request):
     turk_id = request.POST.get('id');
@@ -162,62 +157,102 @@ def immersive_post(request):
 
 
 def scaleablesurvey_post(request):
-    turk_id = request.POST.get('id');
+    turk_id = request.POST.get('id')
+    round = int(request.POST.get('round'))
     
     user = User.objects.get(username=turk_id)
     ui = UserInfo.objects.get(mturk_user=user)
     
     ui.scaleable_justification = request.POST.get('scaleable_justification')
-    ui.scaleable_difficulty = int(request.POST.get('scaleable_difficulty') if request.POST.get('scaleable_difficulty') != '' else '0')
-    ui.scaleable_time = int(request.POST.get('scaleable_time') if request.POST.get('scaleable_time') != '' else '0')
-    ui.scaleable_satisfaction = int(request.POST.get('scaleable_satisfaction') if request.POST.get('scaleable_satisfaction') != '' else '0')
+    ui.scaleable_difficulty = int(request.POST.get('scaleable_difficulty') if request.POST.get('scaleable_difficulty')  else '0')
+    ui.scaleable_time = int(request.POST.get('scaleable_time') if request.POST.get('scaleable_time') else '0')
+    ui.scaleable_satisfaction = int(request.POST.get('scaleable_satisfaction') if request.POST.get('scaleable_satisfaction')  else '0')
     
-    ui.scaleable0 = int(request.POST.get('scaleable1') if request.POST.get('scaleable1') != '' else '0')
-    ui.scaleable1 = int(request.POST.get('scaleable2') if request.POST.get('scaleable2') != '' else '0')
-    ui.scaleable2 = int(request.POST.get('scaleable3') if request.POST.get('scaleable3') != '' else '0')
-    ui.scaleable3 = int(request.POST.get('scaleable4') if request.POST.get('scaleable4') != '' else '0')
-    ui.scaleable4 = int(request.POST.get('scaleable5') if request.POST.get('scaleable5') != '' else '0')
-    ui.scaleable5 = int(request.POST.get('scaleable6') if request.POST.get('scaleable6') != '' else '0')
+    ui.scaleable0 = int(request.POST.get('scaleable1') if request.POST.get('scaleable1') else '0')
+    ui.scaleable1 = int(request.POST.get('scaleable2') if request.POST.get('scaleable2') else '0')
+    ui.scaleable2 = int(request.POST.get('scaleable3') if request.POST.get('scaleable3')  else '0')
+    ui.scaleable3 = int(request.POST.get('scaleable4') if request.POST.get('scaleable4')  else '0')
+    ui.scaleable4 = int(request.POST.get('scaleable5') if request.POST.get('scaleable5')  else '0')
+    ui.scaleable5 = int(request.POST.get('scaleable6') if request.POST.get('scaleable6')  else '0')
     
     ui.save()
     
     g2 = ui.groupinfo
     
-    if g2.condition == 2:
-        return JsonResponse({'url': '/survey_complete?group=' + str(g2.id) + '&condition=' + str(g2.condition)})
+    
+    next_round = None
+    next_case = None
+    next_round_num = None
+    if round == 1:
+        next_round = g2.round2
+        next_case = g2.case2
+        next_round_num = 2
+    elif round == 2:
+        next_round = g2.round3
+        next_case = g2.case3
+        next_round_num = 3
+        
+    if next_round:
+        if next_round == "No Jury":
+            return JsonResponse({'url': '/control?id=' + str(ui.mturk_user.username) + '&group=' + str(g2.id) + '&round=' + str(next_round_num) + '&case=' + next_case.name})
+        elif next_round == "Blind Voting":
+            return JsonResponse({'url': '/scaleable?id=' + str(ui.mturk_user.username) + '&group=' + str(g2.id) + '&round=' + str(next_round_num) + '&case=' + next_case.name })
+        elif next_round == "Deliberating":
+            return JsonResponse({'url': '/immersive?id=' + str(ui.mturk_user.username) + '&group=' + str(g2.id) + '&round=' + str(next_round_num) + '&case=' + next_case.name })
     else:
-        return JsonResponse({'url': '/immersive?group=' + str(g2.id) + '&condition=' + str(g2.condition)})
+        return JsonResponse({'url': '/survey_complete?id=' + str(ui.mturk_user.username) + '&group=' + str(g2.id)})
  
+
  
 def immersivesurvey_post(request):
-    turk_id = request.POST.get('id');
+    turk_id = request.POST.get('id')
+    round = int(request.POST.get('round'))
     
     user = User.objects.get(username=turk_id)
     ui = UserInfo.objects.get(mturk_user=user)
     
     ui.immersive_justification = request.POST.get('immersive_justification')
-    ui.immersive_difficulty = int(request.POST.get('immersive_difficulty') if request.POST.get('immersive_difficulty') != '' else '0')
+    ui.immersive_difficulty = int(request.POST.get('immersive_difficulty') if request.POST.get('immersive_difficulty') else '0')
     ui.immersive_time = int(request.POST.get('immersive_time') if request.POST.get('immersive_time') != '' else '0')
-    ui.immersive_satisfaction = int(request.POST.get('immersive_satisfaction') if request.POST.get('immersive_satisfaction') != '' else '0')
-    ui.immersive_convo = int(request.POST.get('immersive_convo') if request.POST.get('immersive_convo') != '' else '0')
-    ui.immersive_trust = int(request.POST.get('immersive_trust') if request.POST.get('immersive_trust') != '' else '0')
+    ui.immersive_satisfaction = int(request.POST.get('immersive_satisfaction') if request.POST.get('immersive_satisfaction')else '0')
+    ui.immersive_convo = int(request.POST.get('immersive_convo') if request.POST.get('immersive_convo') else '0')
+    ui.immersive_trust = int(request.POST.get('immersive_trust') if request.POST.get('immersive_trust')  else '0')
     
-    ui.immersive0 = int(request.POST.get('immersive1') if request.POST.get('immersive1') != '' else '0')
-    ui.immersive1 = int(request.POST.get('immersive2') if request.POST.get('immersive2') != '' else '0')
-    ui.immersive2 = int(request.POST.get('immersive3') if request.POST.get('immersive3') != '' else '0')
-    ui.immersive3 = int(request.POST.get('immersive4') if request.POST.get('immersive4') != '' else '0')
-    ui.immersive4 = int(request.POST.get('immersive5') if request.POST.get('immersive5') != '' else '0')
-    ui.immersive5 = int(request.POST.get('immersive6') if request.POST.get('immersive6') != '' else '0')
+    ui.immersive0 = int(request.POST.get('immersive1') if request.POST.get('immersive1') else '0')
+    ui.immersive1 = int(request.POST.get('immersive2') if request.POST.get('immersive2')  else '0')
+    ui.immersive2 = int(request.POST.get('immersive3') if request.POST.get('immersive3')  else '0')
+    ui.immersive3 = int(request.POST.get('immersive4') if request.POST.get('immersive4') else '0')
+    ui.immersive4 = int(request.POST.get('immersive5') if request.POST.get('immersive5') else '0')
+    ui.immersive5 = int(request.POST.get('immersive6') if request.POST.get('immersive6') else '0')
     
     ui.save()
     
     g2 = ui.groupinfo
     
-    if g2.condition == 2:
-        return JsonResponse({'url': '/scaleable?group=' + str(g2.id) + '&condition=' + str(g2.condition)})
+     
+    next_round = None
+    next_case = None
+    next_round_num = None
+    if round == 1:
+        next_round = g2.round2
+        next_case = g2.case2
+        next_round_num = 2
+    elif round == 2:
+        next_round = g2.round3
+        next_case = g2.case3
+        next_round_num = 3
+        
+    if next_round:
+        if next_round == "No Jury":
+            return JsonResponse({'url': '/control?id=' + str(ui.mturk_user.username) + '&group=' + str(g2.id) + '&round=' + str(next_round_num) + '&case=' + next_case.name})
+        elif next_round == "Blind Voting":
+            return JsonResponse({'url': '/scaleable?id=' + str(ui.mturk_user.username) + '&group=' + str(g2.id) + '&round=' + str(next_round_num) + '&case=' + next_case.name })
+        elif next_round == "Deliberating":
+            return JsonResponse({'url': '/immersive?id=' + str(ui.mturk_user.username) + '&group=' + str(g2.id) + '&round=' + str(next_round_num) + '&case=' + next_case.name })
     else:
-        return JsonResponse({'url': '/survey_complete?group=' + str(g2.id) + '&condition=' + str(g2.condition)})
+        return JsonResponse({'url': '/survey_complete?id=' + str(ui.mturk_user.username) + '&group=' + str(g2.id)})
  
+
     
 
 def completesurvey_post(request):
@@ -447,11 +482,92 @@ def survey_morals(request):
 
 @render_to('juries/instructions.html')
 def instructions(request):
-    return {}
+    
+    turk_id = request.GET.get('id')
+    user = User.objects.get(username=turk_id)
+    ui = UserInfo.objects.get(mturk_user=user)
+    
+    if not ui.groupinfo:
+    
+        gcount = GroupInfo.objects.all().count()
+        
+        if gcount > 0:
+            g = GroupInfo.objects.latest('id')
+            num_users = UserInfo.objects.filter(groupinfo=g).count()
+        else:
+            g = GroupInfo.objects.create()
+            g.round1 = "No Jury" # can be "No Jury", "Blind Voting", "Deliberating"
+            g.round2 = "Blind Voting"
+            g.round3 = "Deliberating"
+            
+            random.shuffle(CASES) 
+            g.case1 = Case.objects.get(name=CASES[0])
+            g.case2 = Case.objects.get(name=CASES[1])
+            g.case3 = Case.objects.get(name=CASES[2])   
+            
+            g.save()
+            num_users = 0
+        
+        if num_users >= 6:
+            g2 = GroupInfo.objects.create()
+            
+            id = g2.id
+            
+            rem = id % 6
+            if rem == 0:
+                g2.round1 = "Deliberating"
+                g2.round2 = "Blind Voting"
+                g2.round3 = "No Jury"
+            elif rem == 1:
+                g2.round1 = "No Jury"
+                g2.round2 = "Blind Voting"
+                g2.round3 = "Deliberating"
+            elif rem == 2:
+                g2.round1 = "No Jury"
+                g2.round2 = "Deliberating"
+                g2.round3 = "Blind Voting"
+            elif rem == 3:
+                g2.round1 = "Blind Voting"
+                g2.round2 = "No Jury"
+                g2.round3 = "Deliberating"
+            elif rem == 4:
+                g2.round1 = "Blind Voting"
+                g2.round2 = "Deliberating"
+                g2.round3 = "No Jury"
+            elif rem == 5:
+                g2.round1 = "Deliberating"
+                g2.round2 = "No Jury"
+                g2.round3 = "Blind Voting"
+
+            #1 = ABC, 2 = ACB, 3 = BAC, 4 = BCA, 5 = CAB, 6 = CBA
+            
+            random.shuffle(CASES) 
+            g2.case1 = Case.objects.get(name=CASES[0])
+            g2.case2 = Case.objects.get(name=CASES[1])
+            g2.case3 = Case.objects.get(name=CASES[2])   
+            
+            g2.save()
+        else:
+            g2 = g
+            
+        ui.groupinfo = g2
+        
+        ui.save()
+    else:
+        g2 = ui.groupinfo
+
+    if g2.round1 == "No Jury":
+        return {'url': '/control?id=' + str(ui.mturk_user.username) + '&group=' + str(g2.id) + '&round=1&case=' + g2.case1.name}
+    elif g2.round1 == "Blind Voting":
+        return {'url': '/scaleable?id=' + str(ui.mturk_user.username) + '&group=' + str(g2.id) + '&round=1&case=' + g2.case1.name }
+    elif g2.round1 == "No Jury":
+        return {'url': '/immersive?id=' + str(ui.mturk_user.username) + '&group=' + str(g2.id) + '&round=1&case=' + g2.case1.name }
 
 @render_to('juries/control.html')
 def control(request):
-    return {}
+    case = request.GET.get('case')
+    c = Case.objects.get(name=case)
+    return {'case': c}
 
 @render_to('juries/survey_control.html')
 def survey_control(request):
@@ -463,10 +579,13 @@ def scaleable(request):
     user = User.objects.get(username=turk_id)
     ui = UserInfo.objects.get(mturk_user=user)
     
+    case = request.GET.get('case')
+    c = Case.objects.get(name=case)
+    
     if ui.scaleable_vote:
-        return {'voted': True}
+        return {'voted': True, 'case': c}
     else:
-        return {'voted': False}
+        return {'voted': False, 'case': c}
 
 @render_to('juries/survey_scaleable.html')
 def survey_scaleable(request):
@@ -478,12 +597,17 @@ def immersive(request):
     user = User.objects.get(username=turk_id)
     ui = UserInfo.objects.get(mturk_user=user)
     
+    case = request.GET.get('case')
+    c = Case.objects.get(name=case)
+    
     if ui.immersive_vote:
         return {'voted': True,
-                'ui': ui}
+                'ui': ui,
+                'case': c}
     else:
         return {'voted': False,
-                'ui': ui}
+                'ui': ui,
+                'case': c}
     
     return {}
 

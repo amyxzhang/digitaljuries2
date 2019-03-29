@@ -106,7 +106,7 @@
 <script>
 	$('#continue').on('click', function() {
 		var id = getParameterByName('id');
-		window.location = '/control?id=' + id;
+		window.location = "{{ url | safe }}";
 	});
 </script>
 {% endblock %}

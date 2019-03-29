@@ -16,7 +16,7 @@
 				<!-- CASE -->
 				<div class="col-md-4 col-sm-12" id="case">
 					<!-- CASE: Slideshow -->
-					<img src={% static "juries/cases/momo.jpg" %} border="0" alt="" />
+					<img src="/static/{{ case.image | safe}}" border="0" alt="" />
 				</div>
 
 				<div class="col-md-5 col-sm-12">
@@ -25,20 +25,12 @@
 
 						<h4 class="yellow">Context</h4>
 
-						<p>Momo is a viral urban legend that has been associated with "suicide games", similar to the Blue Whale Challenge urban legend where children are reportedly being drawn into a game of escalating dares ending in self-harm. For both the Momo Challenge and Blue Whale Challenge, a number of teenage deaths have been accused of being tied to the challenge, though it has been debunked as a hoax and formal linkages between the events are not officially proven.</p>
-
-						<p>The user posted a link to an edited video depicting children's cartoon Peppa the Pig, showing a character being beheaded and shot at before cutting into a scene of Momo.</p>
-
+						{{ case.context | safe }}
 						<p>We think this may violate community standards because of:</p>
 
 						<div class="btngroup" role="group" aria-label="Violations">
-							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" data-html="true" title="we remove content that encourages suicide or self-injury, including certain graphic imagery and real-time depictions that experts tell us might lead others to engage in similar behavior. Self-injury is defined as the intentional and direct injuring of the body, including self-mutilation and eating disorders." data-content="Definition">Suicide and self-injury</button>
-
-							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" title="Our harassment policy applies to both public and private individuals because we want to prevent unwanted or malicious contact on the platform. Context and intent matter, and we allow people to share and re-share posts if it is clear that something was shared in order to condemn or draw attention to harassment." data-html="true" data-content="Definition">Harrassment</button>
-
-							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" title="We remove content that glorifies violence or celebrates the suffering or humiliation of others because it may create an environment that discourages participation." data-html="true" data-content="Definition">Violence and Graphic Content</button>
-
-							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" data-html="true" title="We believe that people share and connect more freely when they do not feel targeted based on their vulnerabilities. As such, we have higher expectations for content that we call cruel and insensitive, which we define as content that targets victims of serious physical or emotional harm." data-content="Definition">Cruel and Insensitive</button>
+							{{ case.violations | safe }}
+						
 						</div>
 					</div>
 
@@ -244,7 +236,8 @@
 <script>
 	var id = getParameterByName('id');
 	var group = getParameterByName('group');
-	var condition = getParameterByName('condition');
+	var round = getParameterByName('round');
+	var cas = getParameterByName('case');
 
 	var countdown = getParameterByName('countdown');
 	if (countdown != '' && countdown != null) {
@@ -402,7 +395,6 @@ if ("{{ voted }}" == "True") {
 						ban: ban,
 						permaban: permaban,
 						group: group,
-						condition: condition,
 						id: id};
 			$.ajax({
 				type: 'POST',
@@ -587,7 +579,7 @@ function after_vote() {
 
 
 				    $('#submit').on('click', function() {
-				    	window.location = '/survey_immersive?group=' + group + '&condition=' + condition + '&id=' + id;
+				    	window.location = '/survey_scaleable?id=' + id + '&group=' + group + '&round=' + round + '&case=' + cas;
 				    });
 
 			 }

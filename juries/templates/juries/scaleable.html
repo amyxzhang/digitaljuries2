@@ -15,7 +15,7 @@
 				<!-- CASE -->
 				<div class="col-md-4 col-sm-12" id="case">
 					<!-- CASE: Slideshow -->
-					<img src={% static "juries/cases/manifesto.jpg" %} border="0" alt="" />
+					<img src='/static/{{ case.image | safe}}' border="0" alt="" />
 				</div>
 
 				<div class="col-md-5 col-sm-12">
@@ -24,21 +24,14 @@
 
 						<h4 class="yellow">Context</h4>
 
-						<p>On March 15, 2019, a man who was described as a white supremacist and member of the alt-right committed two consecutive terrorist attacks in Christchurch, New Zealand, targeting Muslims during Friday prayer. The attacks killed 50 people and injured 50 others. As part of his attack, he released a manifesto and live-streamed the event on Facebook, where it remained online and was viewed over 4,000 times <a href=" https://newsroom.fb.com/news/2019/03/technical-update-on-new-zealand/">before being removed</a>.</p>
-
-						<p>While New Zealand has <a href="http://www.legislation.govt.nz/act/public/1990/0109/latest/DLM225513.html">laws</a> protecting freedom of speech, in the days following the attack, the government has pressed <a href="https://www.classificationoffice.govt.nz/news/latest-news/christchurch-attacks-press-releases/#christchurch-shooting-video-officially-objectionable">criminal charges</a> for individuals sharing the video or manifesto in violation of local laws forbidding <a href="https://www.dia.govt.nz/Censorship-Objectionable-and-Restricted-Material ">objectionable materials</a> including content promoting or encouraging acts of terrorism.</p>
-
-						<p>The user is an America-based user who posted a link to the shooter's manifesto (hosted on a different website) with a mixed reaction comment. We think this may violate the community standards because of:</p>
+						{{ case.context | safe}}
+						
+						<p></p>We think this may violate the community standards because of:</p>
 
 						<div class="btngroup" role="group" aria-label="Violations">
-							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" data-html="true" title="We define hate speech as a direct attack on people based on what we call protected characteristics — race, ethnicity, national origin, religious affiliation, sexual orientation, caste, sex, gender, gender identity, and serious disease or disability." data-content="Definition">Hate speech</button>
-
-							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" title="We prohibit people from promoting or publicizing violent crime, theft, and/or fraud because we do not want to condone this activity and because there is a risk of copycat behavior. We also do not allow people to depict criminal activity or admit to crimes they or their associates have committed. We do, however, allow people to debate or advocate for the legality of criminal activities, as well as address them in a rhetorical or satirical way." data-html="true" data-content="Definition">Promoting Or Publicizing Crime</button>
-
-							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" title="We remove content that glorifies violence or celebrates the suffering or humiliation of others because it may create an environment that discourages participation." data-html="true" data-content="Definition">Violence and Graphic Content</button>
-
-							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" data-html="true" title="We do not allow organizations or content supporting organizations that proclaim a violent mission or are engaged in violence, including terrorist activity, organized hate, mass or serial murder, human trafficking,organized violence or criminal activity." data-content="Definition">Dangerous Individuals and Organizations</button>
-						</div>
+							
+							{{ case.violations | safe}}
+							</div>
 					</div>
 
 				</div>
@@ -214,7 +207,9 @@
 	var count;
 	var id = getParameterByName('id');
 	var group = getParameterByName('group');
-	var condition = getParameterByName('condition');
+	var round = getParameterByName('round');
+	var cas = getParameterByName('case');
+	
 
 	var jury = getParameterByName('jury');
 	if (jury != '' && jury != null) {
@@ -387,7 +382,7 @@
 
 
 	    $('#submit').on('click', function() {
-	    	window.location = '/survey_scaleable?group=' + group + '&condition=' + condition + '&id=' + id;
+	    	window.location = '/survey_scaleable?id=' + id + '&group=' + group + '&round=' + round + '&case=' + cas;
 	    });
 	}
 </script>

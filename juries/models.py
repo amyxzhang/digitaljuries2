@@ -5,9 +5,35 @@ from django.db import models
 from django.db import models
 from django.contrib.auth.models import User
 
+class Case(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.TextField(null=True) # can be "pepe", "christchurch", "momo"
+    context = models.TextField(null=True)
+    violations = models.TextField(null=True)
+    image = models.TextField(null=True)
+    
+    decision_score = models.FloatField(default=None, null=True)
+    decision_content_action = models.TextField(null=True)
+    decision_user_action = models.TextField(null=True)
+    decision_justification = models.TextField(null=True)
+    
+    def __unicode__(self):
+        return self.name
+     
+    
+
 class GroupInfo(models.Model):
     id = models.AutoField(primary_key=True)
-    condition = models.IntegerField(default=0) # 1-4 (from the paper)
+    round1 = models.TextField(null=True) # can be "No Jury", "Blind Voting", "Deliberating"
+    round2 = models.TextField(null=True)
+    round3 = models.TextField(null=True)
+    
+    #1 = ABC, 2 = ACB, 3 = BAC, 4 = BCA, 5 = CAB, 6 = CBA
+    
+    case1 = models.ForeignKey(Case, null=True, related_name="case1") 
+    case2 = models.ForeignKey(Case, null=True, related_name="case2")
+    case3 = models.ForeignKey(Case, null=True, related_name="case3")
+    
      
 class UserInfo(models.Model):
  
