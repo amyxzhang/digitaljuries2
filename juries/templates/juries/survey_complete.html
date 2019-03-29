@@ -22,9 +22,9 @@
 				<label for="complete_pref">1. Which jury system did you <b>MOST PREFER</b> for making content moderation decisions?</label>
 
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete_pref">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Round 1 (No Jury)</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Round 2 (Blind Voting)</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Round 3 (Deliberating)</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options1" value="round1" autocomplete="off"> Round 1 ({{ group.round1 }})</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options1" value="round2" autocomplete="off"> Round 2 ({{ group.round2 }})</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options1" value="round3" autocomplete="off"> Round 3 ({{ group.round3 }})</label>
 				</div>
 			</div>
 
@@ -37,9 +37,9 @@
 				<label for="complete_nonpref">3. Which jury system did you <b>LEAST PREFER</b> for making content moderation decisions?</label>
 
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete_nonpref">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Round 1 (No Jury)</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Round 2 (Blind Voting)</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Round 3 (Deliberating)</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options2" value="round1" autocomplete="off"> Round 1 ({{ group.round1 }})</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options2" value="round2" autocomplete="off"> Round 2 ({{ group.round2 }})</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options2" value="round3" autocomplete="off"> Round 3 ({{ group.round3 }})</label>
 				</div>
 			</div>
 
@@ -51,25 +51,25 @@
 		<div class="form-group">
 			<label for="complete_participate">5. If this feature was rolled out on the social media platforms that you currently use, how likely would be to participate? Select all that apply.</label>
 
-			<div class="d-flex flex-wrap justify-content-start" id="complete_participate">
+			<div class="d-flex flex-wrap justify-content-start">
 				<label class="btn btn-outline-warning">
-					<input type="checkbox" autocomplete="off"> Yes, I would volunteer for it
+					<input type="checkbox" autocomplete="off" id="complete_participate0"> Yes, I would volunteer for it
 				</label>
 
 				<label class="btn btn-outline-warning">
-					<input type="checkbox" autocomplete="off"> Yes, if I'm bored/have free time
+					<input type="checkbox" autocomplete="off"  id="complete_participate1"> Yes, if I'm bored/have free time
 				</label>
 
 				<label class="btn btn-outline-warning">
-					<input type="checkbox" autocomplete="off"> Yes, if I'm paid for my time
+					<input type="checkbox" autocomplete="off"  id="complete_participate2"> Yes, if I'm paid for my time
 				</label>
 
 				<label class="btn btn-outline-warning">
-					<input type="checkbox" autocomplete="off"> Yes, if it's mandatory
+					<input type="checkbox" autocomplete="off" id="complete_participate3"> Yes, if it's mandatory
 				</label>
 
 				<label class="btn btn-outline-warning">
-					<input type="checkbox" autocomplete="off"> Not likely at all
+					<input type="checkbox" autocomplete="off"  id="complete_participate4"> Not likely at all
 				</label>
 			</div>
 
@@ -81,11 +81,11 @@
 				<label for="complete_enf_rec">6. Imagine that this jury's decisions were given to the social media platform as a <span class="yellow">recommendation</span> (taken into advisement by policy teams, but no action required). How satisfied would you feel with this process?</label>
 
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete_enf_rec">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Somewhat</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Very Much</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options3" value="1" autocomplete="off"> Not at all</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options3" value="2" autocomplete="off"> A Little</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options3" value="3" autocomplete="off"> Moderately</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options3" value="4" autocomplete="off"> Somewhat</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options3" value="5" autocomplete="off"> Very Much</label>
 				</div>
 			</div>
 
@@ -94,12 +94,12 @@
 				<label for="complete_enf_enf">7. Imagine that this jury's decisions were given to the social media platform as an <span class="yellow">enforced decision</span> (taken as binding action by policy teams and directly implemented). How satisfied would you feel with this process?</label>
 
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete_enf_enf">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Somewhat</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Very Much</label>
-				</div>
+				<label class="btn btn-outline-warning"><input type="radio" name="options4" value="1" autocomplete="off"> Not at all</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options4" value="2" autocomplete="off"> A Little</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options4" value="3" autocomplete="off"> Moderately</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options4" value="4" autocomplete="off"> Somewhat</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options4" value="5" autocomplete="off"> Very Much</label>
+					</div>
 			</div>
 
 			<div class="form-group">
@@ -110,12 +110,12 @@
 			<div class="form-group">
 				<label for="complete3">9. How important is it to you that your opinions are factored into decisions?</label>
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete3">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Somewhat</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Very Much</label>
-				</div>
+				<label class="btn btn-outline-warning"><input type="radio" name="options5" value="1" autocomplete="off"> Not at all</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options5" value="2" autocomplete="off"> A Little</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options5" value="3" autocomplete="off"> Moderately</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options5" value="4" autocomplete="off"> Somewhat</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options5" value="5" autocomplete="off"> Very Much</label>
+					</div>
 			</div>
 
 			<hr />
@@ -127,11 +127,11 @@
 				<label for="confidence2">10. How confident are you in your abilities to decide what content should be on a platform like Facebook?</label>
 
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="confidence2">
-						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
-						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
-						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
-						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Somewhat</label>
-						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Very Much</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options6" value="1" autocomplete="off"> Not at all</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options6" value="2" autocomplete="off"> A Little</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options6" value="3" autocomplete="off"> Moderately</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options6" value="4" autocomplete="off"> Somewhat</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options6" value="5" autocomplete="off"> Very Much</label>
 				</div>
 			</div>
 
@@ -139,11 +139,11 @@
 				<label for="complete_familiarity">11. How familiar were you with content moderation before this experiment?</label>
 
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete_familiarity">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Somewhat</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Very Much</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options7" value="1" autocomplete="off"> Not at all</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options7" value="2" autocomplete="off"> A Little</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options7" value="3" autocomplete="off"> Moderately</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options7" value="4" autocomplete="off"> Somewhat</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options7" value="5" autocomplete="off"> Very Much</label>
 				</div>
 			</div>
 
@@ -175,17 +175,23 @@
 
 	$('#continue').on('click', function() {
 
-		var complete_pref = $('#complete_pref').val();
+		var complete_pref = $('#complete_pref input[name=options1]:checked').val();
 		var complete_prefwhy = $('#complete_prefwhy').val();
-		var complete_nonpref = $('#complete_nonpref').val();
+		var complete_nonpref = $('#complete_nonpref input[name=options2]:checked').val();
 		var complete_nonprefwhy = $('#complete_nonprefwhy').val();
-		var complete_participate = $('#complete_participate').val();
-		var complete_enf_rec = $('#complete_enf_rec').val();
-		var complete_enf_enf = $('#complete_enf_enf').val();
+		var complete_participate0 = $('#complete_participate0').is(':checked');
+		var complete_participate1 = $('#complete_participate1').is(':checked');
+		var complete_participate2 = $('#complete_participate2').is(':checked');
+		var complete_participate3 = $('#complete_participate3').is(':checked');
+		var complete_participate4 = $('#complete_participate4').is(':checked');
+		
+		var complete_enf_rec = $('#complete_enf_rec input[name=options3]:checked').val();
+		var complete_enf_enf = $('#complete_enf_enf input[name=options4]:checked').val();
 		var complete_enf_why = $('#complete_enf_why').val();
-		var confidence2 = $('#confidence2').val();
-		var familiarity = $('#complete_familiarity').val();
-		var complete_comments = $('#complete_comment').val();
+		var complete3 = $('#complete3 input[name=options5]:checked').val();
+		var complete_confidence = $('#confidence2 input[name=options6]:checked').val();
+		var complete_familiarity = $('#complete_familiarity input[name=options7]:checked').val();
+		var complete_comments = $('#complete_comments').val();
 		var email = $('#email').val();
 		var id = getParameterByName('id');
 
@@ -195,11 +201,16 @@
 					complete_prefwhy: complete_prefwhy,
 					complete_nonpref: complete_nonpref,
 					complete_nonprefwhy: complete_nonprefwhy,
-					complete_participate: complete_participate,
+					complete_participate0: complete_participate0,
+					complete_participate1: complete_participate1,
+					complete_participate2: complete_participate2,
+					complete_participate3: complete_participate3,
+					complete_participate4: complete_participate4,
 					complete_enf_rec: complete_enf_rec,
 					complete_enf_enf: complete_enf_enf,
 					complete_enf_why: complete_enf_why,
-					confidence2: confidence2,
+					complete3: complete3,
+					complete_confidence: complete_confidence,
 					complete_familiarity: complete_familiarity,
 					complete_comments: complete_comments,
 					email: email,

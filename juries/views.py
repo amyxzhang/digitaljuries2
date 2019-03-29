@@ -261,19 +261,26 @@ def completesurvey_post(request):
     user = User.objects.get(username=turk_id)
     ui = UserInfo.objects.get(mturk_user=user)
     
-    ui.complete0 = request.POST.get('mv1')
-    ui.complete1 = request.POST.get('mv2')
-    ui.complete2 = request.POST.get('mv3')
-    ui.complete3 = request.POST.get('mv4')
-    ui.complete4 = request.POST.get('mv5')
-    ui.complete5 = request.POST.get('mv6')
-    ui.complete6 = request.POST.get('mv7')
-    ui.complete7 = request.POST.get('mv8')
-    ui.complete8 = request.POST.get('mv9')
-    ui.complete9 = request.POST.get('mv10')
-    ui.complete10 = request.POST.get('mv11')
-    ui.complete11 = request.POST.get('mv12')
+    ui.complete_pref = request.POST.get('complete_pref')
+    ui.complete_prefwhy = request.POST.get('complete_prefwhy')
+    ui.complete_nonpref = request.POST.get('complete_nonpref')
+    ui.complete_nonprefwhy = request.POST.get('complete_nonprefwhy')
     
+    ui.complete_participate0 = True if request.POST.get('complete_participate0') == 'true' else False
+    ui.complete_participate1 = True if request.POST.get('complete_participate1') == 'true' else False
+    ui.complete_participate2 = True if request.POST.get('complete_participate2') == 'true' else False
+    ui.complete_participate3 = True if request.POST.get('complete_participate3') == 'true' else False
+    ui.complete_participate4 = True if request.POST.get('complete_participate4') == 'true' else False
+    
+    ui.complete_enf_rec = int(request.POST.get('complete_enf_rec') if request.POST.get('complete_enf_rec') else '0')
+    ui.complete_enf_enf = int(request.POST.get('complete_enf_enf') if request.POST.get('complete_enf_enf') else '0')
+    ui.complete_enf_why = request.POST.get('complete_enf_why')
+    
+    ui.complete3 = int(request.POST.get('complete3') if request.POST.get('complete3') else '0')
+    ui.complete_confidence = int(request.POST.get('complete_confidence') if request.POST.get('complete_confidence') else '0')
+    ui.complete_familiarity = int(request.POST.get('complete_familiarity') if request.POST.get('complete_familiarity') else '0')
+    ui.complete_comments = request.POST.get('complete_comments')
+    ui.email = request.POST.get('email')
     
     ui.save()
     return JsonResponse({})
@@ -617,7 +624,12 @@ def survey_immersive(request):
 
 @render_to('juries/survey_complete.html')
 def survey_complete(request):
-    return {}
+    turk_id = request.GET.get('id')
+    user = User.objects.get(username=turk_id)
+    ui = UserInfo.objects.get(mturk_user=user)
+    group = ui.groupinfo
+    
+    return {'group': group}
 
 @render_to('juries/thankyou.html')
 def thankyou(request):

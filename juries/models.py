@@ -112,19 +112,28 @@ class UserInfo(models.Model):
     immersive4 = models.IntegerField(default=0)
     immersive5 = models.IntegerField(default=0)
     
-    complete0 = models.TextField(null=True)
-    complete1 = models.TextField(null=True)
-    complete2 = models.TextField(null=True)
-    complete3 = models.TextField(null=True)
-    complete4 = models.TextField(null=True)
-    complete5 = models.TextField(null=True)
-    complete6 = models.TextField(null=True)
-    complete7 = models.TextField(null=True)
-    complete8 = models.TextField(null=True)
-    complete9 = models.TextField(null=True)
-    complete10 = models.TextField(null=True)
-    complete11 = models.TextField(null=True)
+
+    complete_pref = models.TextField(null=True)
+    complete_prefwhy = models.TextField(null=True)
+    complete_nonpref = models.TextField(null=True)
+    complete_nonprefwhy = models.TextField(null=True)
+
+    complete_participate0 = models.BooleanField(default=False)
+    complete_participate1 = models.BooleanField(default=False)
+    complete_participate2 = models.BooleanField(default=False)
+    complete_participate3 = models.BooleanField(default=False)
+    complete_participate4 = models.BooleanField(default=False)
     
+    complete_enf_rec = models.IntegerField(default=0)
+    complete_enf_enf = models.IntegerField(default=0)
+    complete_enf_why = models.TextField(null=True)
+
+    complete3 = models.IntegerField(default=0)
+    complete_confidence = models.IntegerField(default=0)
+    complete_familiarity = models.IntegerField(default=0)
+    complete_comments = models.TextField(null=True)
+    email = models.TextField(null=True)
+
     def __unicode__(self):
         return self.mturk_user.username
      
