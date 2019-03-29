@@ -15,7 +15,7 @@
 
 		<hr />
 
-		<p>In this round, the Jury Process you saw was <b class="yellow">Deliberating</b>, chatting with a jury of 6 individuals before voting. You were freely allowed to change your vote during the deliberating and voting process.</p>
+		<p>In this round, the Jury Process you saw was <b class="yellow">Deliberating</b>, chatting with a jury of 6 individuals before voting. You were also freely allowed to change your vote after the deliberating and voting process.</p>
 
 		<img src={% static "juries/img/jury_immersive.png" %} alt="Jury process" class="featured" />
 
@@ -29,34 +29,34 @@
 			<div class="form-group">
 				<label for="immersive_difficulty">Did you have any difficulties making a decision for this case?<label>
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="immersive_difficulty">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Somewhat</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Very Much</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="optionsA" value="1" autocomplete="off"> Not at all</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="optionsA" value="2" autocomplete="off"> A Little</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="optionsA" value="3" autocomplete="off"> Moderately</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="optionsA" value="4" autocomplete="off"> Somewhat</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="optionsA" value="5" autocomplete="off"> Very Much</label>
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="immersive_time">Did you feel any time constraints doing this process?<label>
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="immersive_time">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Somewhat</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Very Much</label>
-				</div>
+				<label class="btn btn-outline-warning"><input type="radio" name="optionsB" value="1" autocomplete="off"> Not at all</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="optionsB" value="2" autocomplete="off"> A Little</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="optionsB" value="3" autocomplete="off"> Moderately</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="optionsB" value="4" autocomplete="off"> Somewhat</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="optionsB" value="5" autocomplete="off"> Very Much</label>
+			</div>
 			</div>
 
 			<div class="form-group">
 				<label for="immersive_satisfaction">How satisfied are you with the jury's decision?</label>
 
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="immersive_satisfaction">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A little</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Somewhat</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Very much</label>
+			<label class="btn btn-outline-warning"><input type="radio" name="optionsC" value="1" autocomplete="off"> Not at all</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="optionsC" value="2" autocomplete="off"> A Little</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="optionsC" value="3" autocomplete="off"> Moderately</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="optionsC" value="4" autocomplete="off"> Somewhat</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="optionsC" value="5" autocomplete="off"> Very Much</label>
 				</div>
 			</div>
 
@@ -64,11 +64,11 @@
 				<label for="immersive_convo">How helpful was the conversation in the chatroom round?</label>
 
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="immersive_convo">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A little</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Somewhat</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Very much</label>
+			<label class="btn btn-outline-warning"><input type="radio" name="optionsD" value="1" autocomplete="off"> Not at all</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="optionsD" value="2" autocomplete="off"> A Little</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="optionsD" value="3" autocomplete="off"> Moderately</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="optionsD" value="4" autocomplete="off"> Somewhat</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="optionsD" value="5" autocomplete="off"> Very Much</label>
 				</div>
 			</div>
 
@@ -76,11 +76,11 @@
 				<label for="immersive_trust">How much did you trust the opinions of the other jury members?</label>
 
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="immersive_trust">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A little</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Somewhat</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Very much</label>
+			<label class="btn btn-outline-warning"><input type="radio" name="optionsE" value="1" autocomplete="off"> Not at all</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="optionsE" value="2" autocomplete="off"> A Little</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="optionsE" value="3" autocomplete="off"> Moderately</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="optionsE" value="4" autocomplete="off"> Somewhat</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="optionsE" value="5" autocomplete="off"> Very Much</label>
 				</div>
 			</div>
 
@@ -94,72 +94,72 @@
 				<label for="immersive1">This process is an effective way to protect users from unwanted or toxic content.</label>
 
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="immersive1">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Strongly Disagree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Disagree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Agree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Strongly Agree</label>
-				</div>
+				<label class="btn btn-outline-warning"><input type="radio" name="options1" value="1" autocomplete="off"> Not at all</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options1" value="2" autocomplete="off"> A Little</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options1" value="3" autocomplete="off"> Moderately</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options1" value="4" autocomplete="off"> Somewhat</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options1" value="5" autocomplete="off"> Very Much</label>
+			</div>
 			</div>
 
 			<div class="form-group">
 				<label for="immersive2">This process cares about my preferences.</label>
 
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="immersive2">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Strongly Disagree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Disagree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Agree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Strongly Agree</label>
-				</div>
+				<label class="btn btn-outline-warning"><input type="radio" name="options2" value="1" autocomplete="off"> Not at all</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options2" value="2" autocomplete="off"> A Little</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options2" value="3" autocomplete="off"> Moderately</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options2" value="4" autocomplete="off"> Somewhat</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options2" value="5" autocomplete="off"> Very Much</label>
+			</div>
 			</div>
 
 			<div class="form-group">
 				<label for="immersive3">This process is fair.</label>
 
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="immersive3">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Strongly Disagree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Disagree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Agree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Strongly Agree</label>
-				</div>
+				<label class="btn btn-outline-warning"><input type="radio" name="options3" value="1" autocomplete="off"> Not at all</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options3" value="2" autocomplete="off"> A Little</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options3" value="3" autocomplete="off"> Moderately</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options3" value="4" autocomplete="off"> Somewhat</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options3" value="5" autocomplete="off"> Very Much</label>
+			</div>
 			</div>
 
 			<div class="form-group">
 				<label for="immersive4">This process values individual voices equally.</label>
 
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="immersive4">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Strongly Disagree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Disagree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Agree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Strongly Agree</label>
-				</div>
+				<label class="btn btn-outline-warning"><input type="radio" name="options4" value="1" autocomplete="off"> Not at all</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options4" value="2" autocomplete="off"> A Little</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options4" value="3" autocomplete="off"> Moderately</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options4" value="4" autocomplete="off"> Somewhat</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options4" value="5" autocomplete="off"> Very Much</label>
+			</div>
 			</div>
 
 			<div class="form-group">
 				<label for="immersive5">This process improves my trust in content moderation decisions.</label>
 
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="immersive5">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Strongly Disagree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Disagree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Agree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Strongly Agree</label>
-				</div>
+				<label class="btn btn-outline-warning"><input type="radio" name="options5" value="1" autocomplete="off"> Not at all</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options5" value="2" autocomplete="off"> A Little</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options5" value="3" autocomplete="off"> Moderately</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options5" value="4" autocomplete="off"> Somewhat</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options5" value="5" autocomplete="off"> Very Much</label>
+			</div>
 			</div>
 
 			<div class="form-group">
 				<label for="immersive6">This process feels like a legitimate exercise of the social media platform's power.</label>
 
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="immersive6">
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Strongly Disagree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Disagree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Neutral</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Agree</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Strongly Agree</label>
-				</div>
+				<label class="btn btn-outline-warning"><input type="radio" name="options6" value="1" autocomplete="off"> Not at all</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options6" value="2" autocomplete="off"> A Little</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options6" value="3" autocomplete="off"> Moderately</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options6" value="4" autocomplete="off"> Somewhat</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options6" value="5" autocomplete="off"> Very Much</label>
+			</div>
 			</div>
 
 			<!-- <button type="submit" class="btn btn-primary" id="submit">Submit</button> -->
@@ -177,21 +177,22 @@
 	$('#continue').on('click', function() {
 
 		var immersive_justification = $('#immersive_justification').val();
-		var immersive_difficulty = $('#immersive_difficulty').val();
-		var immersive_time = $('#immersive_time').val();
-		var immersive_satisfaction = $('#immersive_satisfaction').val();
-		var immersive_convo = $('#immersive_convo').val();
-		var immersive_trust = $('#immersive_trust').val();
-		var immersive1 = $('#immersive1').val();
-		var immersive2 = $('#immersive2').val();
-		var immersive3 = $('#immersive3').val();
-		var immersive4 = $('#immersive4').val();
-		var immersive5 = $('#immersive5').val();
-		var immersive6 = $('#immersive6').val();
+		var immersive_difficulty = $('#immersive_difficulty input[name=optionsA]:checked').val(); 
+		var immersive_time = $('#immersive_time input[name=optionsB]:checked').val(); 
+		var immersive_satisfaction = $('#immersive_satisfaction input[name=optionsC]:checked').val(); 
+		var immersive_convo = $('#immersive_convo input[name=optionsD]:checked').val(); 
+		var immersive_trust = $('#immersive_trust input[name=optionsE]:checked').val(); 
+		var immersive1 = $('#immersive1 input[name=options1]:checked').val(); 
+		var immersive2 = $('#immersive2 input[name=options2]:checked').val(); 
+		var immersive3 = $('#immersive3 input[name=options3]:checked').val(); 
+		var immersive4 = $('#immersive4 input[name=options4]:checked').val(); 
+		var immersive5 = $('#immersive5 input[name=options5]:checked').val(); 
+		var immersive6 = $('#immersive6 input[name=options6]:checked').val(); 
 		var id = getParameterByName('id');
 
 		var csrf = $('#csrf').text();
 		var data = {csrfmiddlewaretoken: csrf,
+					immersive_justification: immersive_justification,
 					immersive_difficulty: immersive_difficulty,
 					immersive_time: immersive_time,
 					immersive_satisfaction: immersive_satisfaction,

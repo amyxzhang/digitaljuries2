@@ -23,6 +23,7 @@ class UserInfo(models.Model):
     education = models.TextField(null=True)
     political = models.TextField(null=True)
     political_engage = models.TextField(null=True)
+    confidence = models.TextField(null=True)
     
     moral0 = models.IntegerField(default=0) # Likert 1-5
     moral1 = models.IntegerField(default=0)
@@ -30,6 +31,11 @@ class UserInfo(models.Model):
     moral3 = models.IntegerField(default=0)
     moral4 = models.IntegerField(default=0)
     moral5 = models.IntegerField(default=0)
+    
+    
+    control_difficulty = models.IntegerField(default=0)
+    control_time = models.IntegerField(default=0)
+    control_satisfaction = models.IntegerField(default=0)
     
     control0 = models.IntegerField(default=0)
     control1 = models.IntegerField(default=0)
@@ -45,7 +51,11 @@ class UserInfo(models.Model):
     scaleable_user_warn = models.BooleanField(default=False)
     scaleable_user_ban = models.BooleanField(default=False)
     scaleable_user_permaban = models.BooleanField(default=False)
-    scaleable_explanation = models.TextField(null=True)
+    
+    scaleable_justification = models.TextField(null=True)
+    scaleable_difficulty = models.IntegerField(default=0)
+    scaleable_time = models.IntegerField(default=0)
+    scaleable_satisfaction = models.IntegerField(default=0)
     
     scaleable0 = models.IntegerField(default=0)
     scaleable1 = models.IntegerField(default=0)
@@ -62,6 +72,12 @@ class UserInfo(models.Model):
     immersive_user_ban = models.BooleanField(default=False)
     immersive_user_permaban = models.BooleanField(default=False)
     
+    immersive_justification = models.TextField(null=True)
+    immersive_difficulty = models.IntegerField(default=0)
+    immersive_time = models.IntegerField(default=0)
+    immersive_satisfaction = models.IntegerField(default=0)
+    immersive_convo = models.IntegerField(default=0)
+    immersive_trust = models.IntegerField(default=0)
     
     immersive0 = models.IntegerField(default=0)
     immersive1 = models.IntegerField(default=0)
