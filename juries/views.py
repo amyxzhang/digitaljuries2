@@ -567,7 +567,7 @@ def instructions(request):
         return {'url': '/control?id=' + str(ui.mturk_user.username) + '&group=' + str(g2.id) + '&round=1&case=' + g2.case1.name}
     elif g2.round1 == "Blind Voting":
         return {'url': '/scaleable?id=' + str(ui.mturk_user.username) + '&group=' + str(g2.id) + '&round=1&case=' + g2.case1.name }
-    elif g2.round1 == "No Jury":
+    elif g2.round1 == "Deliberating":
         return {'url': '/immersive?id=' + str(ui.mturk_user.username) + '&group=' + str(g2.id) + '&round=1&case=' + g2.case1.name }
 
 @render_to('juries/control.html')
