@@ -30,7 +30,7 @@
 
 						<div class="btngroup" role="group" aria-label="Violations">
 							{{ case.violations | safe }}
-						
+					
 						</div>
 					</div>
 
@@ -39,7 +39,7 @@
 
 				<!-- JURY -->
 				<div class="col-md-3 col-sm-12 jury" id="jury">
-				<h3>Jury Decision</h3>
+				<h3 class="mt-2">Jury Decision</h3>
 
 				<h4 id="pending">Waiting for discussion to conclude to vote</h4>
 
@@ -54,16 +54,31 @@
 						<input type="text" id="sliderJury">
 					</div>
 
+					<ul id="juryVotes">
+					</ul>
+
+
 				<!-- JURY: Delib Module -->
 				<div class="subsection">
 					<h4 class="yellow">Content Actions Voted On:</h4>
-					<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="unlist_button">Unlist from Search</button> <span id="unlist">0 votes</span><BR>
-					<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="delete_button">Delete Content</button>  <span id="delete">0 votes</span><BR>
-					<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="report_button">Report Content</button> <span id="report">0 votes</span><BR>
+
+					<div class="d-flex flex-column">
+						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="unlist_button">Unlist (<span id="unlist">0 votes</span>)</button>
+
+						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="delete_button">Delete (<span id="delete">0 votes</span>)</button>
+
+						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="report_button">Report (<span id="report">0 votes</span>)</button>
+					</div>
+
 					<h4 class="yellow">User Actions Voted On:</h4>
-					<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="warn_button">Warn User</button>  <span id="warn">0 votes</span><BR>
-					<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="ban_button">Ban for 1 Week</button> <span id="ban">0 votes</span><BR>
-					<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="permaban_button">Permanently Ban</button>  <span id="permaban">0 votes</span><BR>
+
+					<div class="d-flex flex-column">
+						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="warn_button">Warn  (<span id="warn">0 votes</span>)</button>
+
+						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="ban_button">Ban for One Week (<span id="ban">0 votes</span>)</button>
+
+						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="permaban_button">Permanently Ban (<span id="permaban">0 votes</span>)</button>
+					</div>
 
 				</div>
 			</div>
@@ -474,7 +489,16 @@ function after_vote() {
 	        type: "GET",
 	        success: function(data) {
 
-	        	console.log(data.user_votes);
+						// get jurors
+						jurors = Object.entries(data.user_votes);
+
+						var juryVotes = [];
+
+						for (var i in jurors) {
+							var entry = '<li><b>' + jurors[i][0] + ':</b> ' + jurors[i][1] + '</li>';
+							juryVotes.push(entry);
+					  }
+						$('#juryVotes').html(juryVotes);
 
 
 	        	count = data.count;
@@ -568,10 +592,9 @@ function after_vote() {
         			$('#permaban').text(data.permaban + ' votes');
         		}
 
-
-        			$('#submit').text("Continue");
-	        		$('#submit').removeAttr('disabled');
-	        		$("#submit").removeClass("btn-secondary");
+      			$('#submit').text("Continue");
+        		$('#submit').removeAttr('disabled');
+        		$("#submit").removeClass("btn-secondary");
 				    $("#submit").addClass("btn-primary");
 
 
