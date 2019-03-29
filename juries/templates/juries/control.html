@@ -25,10 +25,10 @@
 						<p>We think this may violate community standards because of:</p>
 
 						<div class="btngroup" role="group" aria-label="Violations">
-						
+
 						{{ case.violations | safe}}
-						
-						
+
+
 						</div>
 					</div>
 
@@ -57,8 +57,8 @@
 					<div id="juryDelib" class="subsection">
 						<h4 class="yellow">Justification:</h4>
 						{{ case.decision_justification | safe }}
-						
-						
+
+
 					</div>
 				</div>
 				<!-- // END JURY -->
@@ -77,38 +77,28 @@
 	</div>
 </footer>
 
-<!-- ENFORCEMENT MODAL -->
-<!-- <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="enforcement" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+
+<!-- MODAL -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="instructions" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="dark m-0" id="modalHeader">Thank you for voting</h3>
+        <h3 class="dark m-0" id="modalHeader">Starting Round <span id="roundnum"></span> of 3</h3>
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body dark">
-				<h4>Toxicity: <span id="juryScore" class="score dark"></span></h4>
-				<h4>Content Action: <span id="juryScore" class="score dark"></span></h4>
-				<h4>User Action: <span id="juryScore" class="score dark"></span></h4>
+				<p>In this round, you will be shown flagged content along with the platform’s decision. You do NOT have to make any selections in this round.</p>
 
-				<!-- Recommendation -->
-				<!-- <p>Your decision will be <b>passed along as a recommendation</b> to the platform policy teams.</p> -->
-
-				<!-- Enforced -->
-				<!-- <p>Your decision will be <b>enforced</b> by the platform policy teams.</p> -->
-
-
-      <!-- </div>
+      </div>
       <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-        <!-- <button type="button" class="btn btn-primary" id="continue">Continue</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Ready!</button>
       </div>
     </div>
   </div>
-</div> -->
-<!-- // END ENFORCEMENT MODAL -->
+</div>
 
 
 {% endblock %}
@@ -116,6 +106,11 @@
 
 {% block js %}
 <script>
+	$(document).ready(function() {
+		$('#modal').modal('show');
+		$('#roundnum').text(getParameterByName('round'));
+	})
+
 	$('#continue').on('click', function() {
 		var id = getParameterByName('id');
 		var group = getParameterByName('group');
