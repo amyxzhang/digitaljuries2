@@ -21,14 +21,14 @@
 
 		<form class="survey question">
 			<div class="form-group">
-				<label for="experiment1">Please explain your own decision.</label>
+				<label for="immersive_justification">Please explain your own decision.</label>
 
-				<textarea rows="3" id="mv1why" placeholder="Why"></textarea>
+				<textarea rows="3" id="immersive_justification" placeholder="Why"></textarea>
 			</div>
 
 			<div class="form-group">
-				<label for="difficulty_control">Did you have any difficulties making a decision for this case?<label>
-				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="difficulty_control">
+				<label for="immersive_difficulty">Did you have any difficulties making a decision for this case?<label>
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="immersive_difficulty">
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
@@ -38,8 +38,8 @@
 			</div>
 
 			<div class="form-group">
-				<label for="time_control">Did you feel any time constraints doing this process?<label>
-				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="time_control">
+				<label for="immersive_time">Did you feel any time constraints doing this process?<label>
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="immersive_time">
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
@@ -49,9 +49,9 @@
 			</div>
 
 			<div class="form-group">
-				<label for="complete9">How satisfied are you with the jury's decision?</label>
+				<label for="immersive_satisfaction">How satisfied are you with the jury's decision?</label>
 
-				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="experiment1">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="immersive_satisfaction">
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A little</label>
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
@@ -61,9 +61,9 @@
 			</div>
 
 			<div class="form-group">
-				<label for="experiment1">How helpful was the conversation in the chatroom round?</label>
+				<label for="immersive_convo">How helpful was the conversation in the chatroom round?</label>
 
-				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="experiment1">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="immersive_convo">
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A little</label>
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
@@ -73,9 +73,9 @@
 			</div>
 
 			<div class="form-group">
-				<label for="complete9">How much did you trust the opinions of the other jury members?</label>
+				<label for="immersive_trust">How much did you trust the opinions of the other jury members?</label>
 
-				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="experiment1">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="immersive_trust">
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A little</label>
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
@@ -176,22 +176,33 @@
 
 	$('#continue').on('click', function() {
 
-		var mv1 = $('#immersive1').val();
-		var mv2 = $('#immersive2').val();
-		var mv3 = $('#immersive3').val();
-		var mv4 = $('#immersive4').val();
-		var mv5 = $('#immersive5').val();
-		var mv6 = $('#immersive6').val();
+		var immersive_justification = $('#immersive_justification').val();
+		var immersive_difficulty = $('#immersive_difficulty').val();
+		var immersive_time = $('#immersive_time').val();
+		var immersive_satisfaction = $('#immersive_satisfaction').val();
+		var immersive_convo = $('#immersive_convo').val();
+		var immersive_trust = $('#immersive_trust').val();
+		var immersive1 = $('#immersive1').val();
+		var immersive2 = $('#immersive2').val();
+		var immersive3 = $('#immersive3').val();
+		var immersive4 = $('#immersive4').val();
+		var immersive5 = $('#immersive5').val();
+		var immersive6 = $('#immersive6').val();
 		var id = getParameterByName('id');
 
 		var csrf = $('#csrf').text();
 		var data = {csrfmiddlewaretoken: csrf,
-					mv1: mv1,
-					mv2: mv2,
-					mv3: mv3,
-					mv4: mv4,
-					mv5: mv5,
-					mv6: mv6,
+					immersive_difficulty: immersive_difficulty,
+					immersive_time: immersive_time,
+					immersive_satisfaction: immersive_satisfaction,
+					immersive_convo: immersive_convo,
+					immersive_trust: immersive_trust,
+					immersive1: immersive1,
+					immersive2: immersive2,
+					immersive3: immersive3,
+					immersive4: immersive4,
+					immersive5: immersive5,
+					immersive6: immersive6,
 					id: id};
 		$.ajax({
 			type: 'POST',

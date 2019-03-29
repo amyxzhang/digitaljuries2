@@ -28,7 +28,7 @@
 	<form class="survey question">
 
 		<div class="form-group">
-			<label for="difficulty_control">Did you have any difficulties making a decision for this case?<label>
+			<label for="control_difficulty">Did you have any difficulties making a decision for this case?<label>
 			<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="difficulty_control">
 				<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
 				<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
@@ -39,13 +39,25 @@
 		</div>
 
 		<div class="form-group">
-			<label for="time_control">Did you feel any time constraints doing this process?<label>
-			<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="time_control">
+			<label for="control_time">Did you feel any time constraints doing this process?<label>
+			<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="control_time">
 				<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
 				<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
 				<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
 				<label class="btn btn-outline-warning"><input type="radio" name="options" id="option4" autocomplete="off"> Somewhat</label>
 				<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Very Much</label>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="control_satisfaction">How satisfied are you with the jury's decision?</label>
+
+			<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="control_satisfaction">
+				<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
+				<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A little</label>
+				<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
+				<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Somewhat</label>
+				<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Very much</label>
 			</div>
 		</div>
 
@@ -136,7 +148,10 @@
 <script>
 
 	$('#continue').on('click', function() {
-
+		
+		var control_difficulty = $('#control_difficulty').val();
+		var control_time = $('#control_time').val();
+		var control_satisfaction = $('#control_satisfaction').val();
 		var control1 = $('#control1').val();
 		var control2 = $('#control2').val();
 		var control3 = $('#control3').val();
@@ -147,6 +162,9 @@
 
 		var csrf = $('#csrf').text();
 		var data = {csrfmiddlewaretoken: csrf,
+					control_difficulty: control_difficulty,
+					control_time: control_time,
+					control_satisfaction: control_satisfaction,
 					control1: control1,
 					control2: control2,
 					control3: control3,

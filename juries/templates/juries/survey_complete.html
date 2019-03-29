@@ -19,9 +19,9 @@
 		<form class="survey question">
 			<!-- Overall -->
 			<div class="form-group">
-				<label for="complete1">1. Which jury system did you <b>MOST PREFER</b> for making content moderation decisions?</label>
+				<label for="complete_pref">1. Which jury system did you <b>MOST PREFER</b> for making content moderation decisions?</label>
 
-				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete1">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete_pref">
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Round 1 (No Jury)</label>
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Round 2 (Blind Voting)</label>
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Round 3 (Deliberating)</label>
@@ -29,14 +29,14 @@
 			</div>
 
 			<div class="form-group">
-				<label for="complete2">2. Why did you prefer that version?</label>
-				<textarea rows="3" id="complete2" placeholder="Enter explanation here"></textarea>
+				<label for="complete_prefwhy">2. Why did you prefer that version?</label>
+				<textarea rows="3" id="complete_prefwhy" placeholder="Enter explanation here"></textarea>
 			</div>
 
 			<div class="form-group">
-				<label for="complete1">3. Which jury system did you <b>LEAST PREFER</b> for making content moderation decisions?</label>
+				<label for="complete_nonpref">3. Which jury system did you <b>LEAST PREFER</b> for making content moderation decisions?</label>
 
-				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete1">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete_nonpref">
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Round 1 (No Jury)</label>
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> Round 2 (Blind Voting)</label>
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Round 3 (Deliberating)</label>
@@ -44,14 +44,14 @@
 			</div>
 
 			<div class="form-group">
-				<label for="complete2">4. Why did you least prefer that version?</label>
-				<textarea rows="3" id="complete2" placeholder="Enter explanation here"></textarea>
+				<label for="complete_nonprefwhy">4. Why did you least prefer that version?</label>
+				<textarea rows="3" id="complete_nonprefwhy" placeholder="Enter explanation here"></textarea>
 			</div>
 
 		<div class="form-group">
-			<label for="complete10">5. If this feature was rolled out on the social media platforms that you currently use, how likely would be to participate? Select all that apply.</label>
+			<label for="complete_participate">5. If this feature was rolled out on the social media platforms that you currently use, how likely would be to participate? Select all that apply.</label>
 
-			<div class="d-flex flex-wrap justify-content-start">
+			<div class="d-flex flex-wrap justify-content-start" id="complete_participate">
 				<label class="btn btn-outline-warning">
 					<input type="checkbox" autocomplete="off"> Yes, I would volunteer for it
 				</label>
@@ -78,9 +78,9 @@
 			<h3>Enforcing your decisions</h3>
 
 			<div class="form-group">
-				<label for="complete3">6. Imagine that this jury's decisions were given to the social media platform as a <span class="yellow">recommendation</span> (taken into advisement by policy teams, but no action required). How satisfied would you feel with this process?</label>
+				<label for="complete_enf_rec">6. Imagine that this jury's decisions were given to the social media platform as a <span class="yellow">recommendation</span> (taken into advisement by policy teams, but no action required). How satisfied would you feel with this process?</label>
 
-				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete3">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete_enf_rec">
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
@@ -91,9 +91,9 @@
 
 
 			<div class="form-group">
-				<label for="complete4">7. Imagine that this jury's decisions were given to the social media platform as an <span class="yellow">enforced decision</span> (taken as binding action by policy teams and directly implemented). How satisfied would you feel with this process?</label>
+				<label for="complete_enf_enf">7. Imagine that this jury's decisions were given to the social media platform as an <span class="yellow">enforced decision</span> (taken as binding action by policy teams and directly implemented). How satisfied would you feel with this process?</label>
 
-				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete3">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete_enf_enf">
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
@@ -103,8 +103,8 @@
 			</div>
 
 			<div class="form-group">
-				<label for="complete2">8. Please explain your reasoning for the above.</label>
-				<textarea rows="3" id="complete2" placeholder="Enter explanation here"></textarea>
+				<label for="complete_enf_why">8. Please explain your reasoning for the above.</label>
+				<textarea rows="3" id="complete_enf_why" placeholder="Enter explanation here"></textarea>
 			</div>
 
 			<div class="form-group">
@@ -117,8 +117,6 @@
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option5" autocomplete="off"> Very Much</label>
 				</div>
 			</div>
-
-
 
 			<hr />
 
@@ -138,9 +136,9 @@
 			</div>
 
 			<div class="form-group">
-				<label for="complete6">11. How familiar were you with content moderation before this experiment?</label>
+				<label for="complete_familiarity">11. How familiar were you with content moderation before this experiment?</label>
 
-				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete6">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete_familiarity">
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
 					<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
@@ -153,13 +151,13 @@
 			<!-- Concluding -->
 			<hr />
 			<div class="form-group">
-				<label for="complete11">12. Do you have any other thoughts or concerns?<label>
-				<textarea rows="3" id="complete11"></textarea>
+				<label for="complete_comments">12. Do you have any other thoughts or concerns?<label>
+				<textarea rows="3" id="complete_comments"></textarea>
 			</div>
 
 		  <div class="form-group">
 				 <label for="email">13. Email address (optional)</label>
-				 <input type="text" class="form-control" id="email" placeholder="email@example.com" id="complete12">
+				 <input type="text" class="form-control" id="email" placeholder="email@example.com">
 				 <small>Please leave your email address if you are open to the researchers contacting you with follow-up questions about this experiment. If you are selected for a follow-up conversation, you will be compensated with a $25 Amazon gift card.</small>
 		  </div>
 
@@ -177,34 +175,34 @@
 
 	$('#continue').on('click', function() {
 
-		var mv1 = $('#complete1').val();
-		var mv2 = $('#complete2').val();
-		var mv3 = $('#complete3').val();
-		var mv4 = $('#complete4').val();
-		var mv5 = $('#complete5').val();
-		var mv6 = $('#complete6').val();
-		var mv7 = $('#complete7').val();
-		var mv8 = $('#complete8').val();
-		var mv9 = $('#complete9').val();
-		var mv10 = $('#complete10').val();
-		var mv11 = $('#complete11').val();
-		var mv12 = $('#complete12').val();
+		var complete_pref = $('#complete_pref').val();
+		var complete_prefwhy = $('#complete_prefwhy').val();
+		var complete_nonpref = $('#complete_nonpref').val();
+		var complete_nonprefwhy = $('#complete_nonprefwhy').val();
+		var complete_participate = $('#complete_participate').val();
+		var complete_enf_rec = $('#complete_enf_rec').val();
+		var complete_enf_enf = $('#complete_enf_enf').val();
+		var complete_enf_why = $('#complete_enf_why').val();
+		var confidence2 = $('#confidence2').val();
+		var familiarity = $('#complete_familiarity').val();
+		var complete_comments = $('#complete_comment').val();
+		var email = $('#email').val();
 		var id = getParameterByName('id');
 
 		var csrf = $('#csrf').text();
 		var data = {csrfmiddlewaretoken: csrf,
-					mv1: mv1,
-					mv2: mv2,
-					mv3: mv3,
-					mv4: mv4,
-					mv5: mv5,
-					mv6: mv6,
-					mv7: mv7,
-					mv8: mv8,
-					mv9: mv9,
-					mv10: mv10,
-					mv11: mv11,
-					mv12: mv12,
+					complete_pref: complete_pref,
+					complete_prefwhy: complete_prefwhy,
+					complete_nonpref: complete_nonpref,
+					complete_nonprefwhy: complete_nonprefwhy,
+					complete_participate: complete_participate,
+					complete_enf_rec: complete_enf_rec,
+					complete_enf_enf: complete_enf_enf,
+					complete_enf_why: complete_enf_why,
+					confidence2: confidence2,
+					complete_familiarity: complete_familiarity,
+					complete_comments: complete_comments,
+					email: email,
 					id: id};
 		$.ajax({
 			type: 'POST',

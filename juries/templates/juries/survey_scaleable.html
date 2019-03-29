@@ -29,14 +29,14 @@
 			<div class="form-group">
 				<!-- Scaleable -->
 				<div class="form-group">
-					<label for="experiment1">Please explain your own decision.</label>
+					<label for="scaleable_justification">Please explain your own decision.</label>
 
-					<textarea rows="3" id="mv1why" placeholder="Why"></textarea>
+					<textarea rows="3" id="scaleable_justification" placeholder="Why"></textarea>
 				</div>
 
 				<div class="form-group">
-					<label for="difficulty_control">Did you have any difficulties making a decision for this case?<label>
-					<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="difficulty_control">
+					<label for="scaleable_difficulty">Did you have any difficulties making a decision for this case?<label>
+					<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="scaleable_difficulty">
 						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
 						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
 						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
@@ -46,8 +46,8 @@
 				</div>
 
 				<div class="form-group">
-					<label for="time_control">Did you feel any time constraints doing this process?<label>
-					<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="time_control">
+					<label for="scaleable_time">Did you feel any time constraints doing this process?<label>
+					<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="scaleable_time">
 						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
 						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A Little</label>
 						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
@@ -57,9 +57,9 @@
 				</div>
 
 				<div class="form-group">
-					<label for="complete9">How satisfied are you with the jury's decision?</label>
+					<label for="scaleable_satisfaction">How satisfied are you with the jury's decision?</label>
 
-					<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="experiment1">
+					<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="scaleable_satisfaction">
 						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option1" autocomplete="off"> Not at all</label>
 						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option2" autocomplete="off"> A little</label>
 						<label class="btn btn-outline-warning"><input type="radio" name="options" id="option3" autocomplete="off"> Moderately</label>
@@ -163,8 +163,12 @@
 	var group = getParameterByName('group');
 	var condition = getParameterByName('condition');
 
-	$('#submit').on('click', function() {
+	$('#continue').on('click', function() {
 
+		var scaleable_justification = $('#scaleable_justification').val();
+		var scaleable_difficulty = $('#scaleable_difficulty').val();
+		var scaleable_time = $('#scaleable_time').val();
+		var scaleable_satisfaction = $('#scaleable_satisfaction').val();
 		var scaleable1 = $('#scaleable1').val();
 		var scaleable2 = $('#scaleable2').val();
 		var scaleable3 = $('#scaleable3').val();
@@ -175,6 +179,9 @@
 
 		var csrf = $('#csrf').text();
 		var data = {csrfmiddlewaretoken: csrf,
+					scaleable_difficulty: scaleable_difficulty,
+					scaleable_time: scaleable_time,
+					scaleable_satisfaction: scaleable_satisfaction,
 					scaleable1: scaleable1,
 					scaleable2: scaleable2,
 					scaleable3: scaleable3,
@@ -187,14 +194,14 @@
 			url: '/scaleablesurvey_post',
 			data: data,
 			success: function(data) {
-				$('#continue').prop('disabled', false);
-				$('#continue').removeClass('btn-secondary');
-				$('#continue').addClass('btn-primary');
+				// $('#continue').prop('disabled', false);
+				// $('#continue').removeClass('btn-secondary');
+				// $('#continue').addClass('btn-primary');
 
 				var next_url = data.url;
-				$('#continue').on('click', function() {
+				// $('#continue').on('click', function() {
 					window.location = next_url + '&id=' + id;
-				});
+				// });
 			}
 		});
 		return false;
