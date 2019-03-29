@@ -53,16 +53,20 @@
 					<div class="slider">
 						<input type="text" id="sliderJury">
 					</div>
+					
 
 				<!-- JURY: Delib Module -->
 				<div class="subsection">
 					<h4 class="yellow">Recommended Actions (passed majority):</h4>
-					<span id="recommended">
+
+					<span id="recommended" class="d-flex flex-column">
 
 					</span>
-					<h4 class="yellow">Not Recommended (failed majority):</h4>
-					<span id="nonrecommend">
 
+
+					<h4 class="yellow">Not Recommended (failed majority):</h4>
+
+					<span id="nonrecommend" class="d-flex flex-column">
 					</span>
 				</div>
 
@@ -245,62 +249,62 @@
 	        		sliderJury.slider("disable");
 
 	        		if (data.unlist >= half_jury) {
-	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Unlist from Search</button> ' + data.unlist + ' votes <BR>');
+	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Unlist from Search (' + data.unlist + ' votes)</button>');
 	        		} else {
 	        			if (data.unlist == 1) {
-	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Unlist from Search</button> ' + data.unlist + ' vote <BR>');
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Unlist from Search (' + data.unlist + ' vote)</button>');
 	        			} else {
-	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Unlist from Search</button> ' + data.unlist + ' votes <BR>');
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Unlist from Search (' + data.unlist + ' votes)</button>');
 	        			}
 	        		}
 
 	        		if (data.del >= half_jury) {
-	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Delete Content</button> ' + data.del + ' votes <BR>');
+	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Delete Content (' + data.del + ' votes)</button>');
 	        		} else {
 	        			if (data.del == 1) {
-	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Delete Content</button> ' + data.del + ' vote <BR>');
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Delete Content (' + data.del + ' vote)</button>');
 	        			} else {
-	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Delete Content</button> ' + data.del + ' votes <BR>');
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Delete Content (' + data.del + ' votes)</button>');
 	        			}
 	        		}
 
 	        		if (data.report >= half_jury) {
-	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Report Content</button> ' + data.report + ' votes <BR>');
+	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Report Content (' + data.report + ' votes)</button>');
 	        		} else {
 	        			if (data.report == 1) {
-	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Report Content</button> ' + data.report + ' vote <BR>');
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Report Content (' + data.report + ' vote)</button>');
 	        			} else {
-	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Report Content</button> ' + data.report + ' votes <BR>');
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Report Content (' + data.report + ' votes)</button>');
 	        			}
 	        		}
 
 	        		if (data.warn >= half_jury) {
-	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Warn User</button> ' + data.warn + ' votes <BR>');
+	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Warn User (' + data.warn + ' votes)</button>');
 	        		} else {
 	        			if (data.warn == 1) {
-	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Warn User</button> ' + data.warn + ' vote <BR>');
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Warn User ' + data.warn + ' vote)</button>');
 	        			} else {
-	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Warn User</button> ' + data.warn + ' votes <BR>');
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Warn User ' + data.warn + ' votes)</button>');
 	        			}
 	        		}
 
 	        		if (data.ban >= half_jury) {
-	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Ban User for 1 Week</button> ' + data.ban + ' votes <BR>');
+	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Ban User for 1 Week (' + data.ban + ' votes)</button>');
 	        		} else {
 	        			if (data.ban == 1) {
-	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Ban User for 1 Week</button> ' + data.ban + ' vote <BR>');
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Ban User for 1 Week (' + data.ban + ' vote)</button>');
 	        			} else {
-	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Ban User for 1 Week</button> ' + data.ban + ' votes <BR>');
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Ban User for 1 Week (' + data.ban + ' votes)</button>');
 	        			}
 	        		}
 
 	        		if (data.permaban >= half_jury) {
-	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Permanently Ban User</button> ' + data.permaban + ' votes <BR>');
+	        			$('#recommended').append('<button type="button" class="btn btn-danger active" role="button" data-toggle="tooltip" title="" data-content="">Permanently Ban User (' + data.permaban + ' votes)</button>');
 	        		} else {
 	        			if (data.permaban == 1) {
-	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Permanently Ban User</button> ' + data.permaban + ' vote <BR>');
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Permanently Ban User (' + data.permaban + ' vote)</button>');
 	        			} else {
-	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Permanently Ban User</button> ' + data.permaban + ' votes <BR>');
+	        				$('#nonrecommend').append('<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="">Permanently Ban User (' + data.permaban + ' votes)</button>');
 	        			}
 	        		}
 
