@@ -45,6 +45,7 @@ def demographics_post(request):
     ui.education = request.POST.get('education')
     ui.political = request.POST.get('political')
     ui.political_engage = request.POST.get('engagement')
+    ui.confidence = request.POST.get('confidence1')
     
     ui.save()
     
@@ -56,12 +57,12 @@ def morals_post(request):
     user = User.objects.get(username=turk_id)
     ui = UserInfo.objects.get(mturk_user=user)
     
-    ui.morals0 = int(request.POST.get('mv1') if request.POST.get('mv1') != '' else '0')
-    ui.morals1 = int(request.POST.get('mv2') if request.POST.get('mv2') != '' else '0')
-    ui.morals2 = int(request.POST.get('mv3') if request.POST.get('mv3') != '' else '0')
-    ui.morals3 = int(request.POST.get('mv4') if request.POST.get('mv4') != '' else '0')
-    ui.morals4 = int(request.POST.get('mv5') if request.POST.get('mv5') != '' else '0')
-    ui.morals5 = int(request.POST.get('mv6') if request.POST.get('mv6') != '' else '0')
+    ui.moral0 = int(request.POST.get('mv1') if request.POST.get('mv1') != '' else '0')
+    ui.moral1 = int(request.POST.get('mv2') if request.POST.get('mv2') != '' else '0')
+    ui.moral2 = int(request.POST.get('mv3') if request.POST.get('mv3') != '' else '0')
+    ui.moral3 = int(request.POST.get('mv4') if request.POST.get('mv4') != '' else '0')
+    ui.moral4 = int(request.POST.get('mv5') if request.POST.get('mv5') != '' else '0')
+    ui.moral5 = int(request.POST.get('mv6') if request.POST.get('mv6') != '' else '0')
     
     ui.save()
     
@@ -72,6 +73,11 @@ def controlsurvey_post(request):
     
     user = User.objects.get(username=turk_id)
     ui = UserInfo.objects.get(mturk_user=user)
+    
+    ui.control_difficulty = int(request.POST.get('control_difficulty') if request.POST.get('control_difficulty') != '' else '0')
+    ui.control_time = int(request.POST.get('control_time') if request.POST.get('control_time') != '' else '0')
+    ui.control_satisfaction = int(request.POST.get('control_satisfaction') if request.POST.get('control_satisfaction') != '' else '0')
+    
     
     ui.control0 = int(request.POST.get('control1') if request.POST.get('control1') != '' else '0')
     ui.control1 = int(request.POST.get('control2') if request.POST.get('control2') != '' else '0')
@@ -129,7 +135,7 @@ def scaleable_post(request):
     ui.scaleable_user_warn = (request.POST.get('warn')  == "true")
     ui.scaleable_user_ban = (request.POST.get('ban') == "true")
     ui.scaleable_user_permaban = (request.POST.get('permaban') == "true")
-    ui.scaleable_explanation = request.POST.get('explanation')
+#     ui.scaleable_explanation = request.POST.get('explanation')
     
     ui.save()
     
@@ -161,6 +167,11 @@ def scaleablesurvey_post(request):
     user = User.objects.get(username=turk_id)
     ui = UserInfo.objects.get(mturk_user=user)
     
+    ui.scaleable_justification = request.POST.get('scaleable_justification')
+    ui.scaleable_difficulty = int(request.POST.get('scaleable_difficulty') if request.POST.get('scaleable_difficulty') != '' else '0')
+    ui.scaleable_time = int(request.POST.get('scaleable_time') if request.POST.get('scaleable_time') != '' else '0')
+    ui.scaleable_satisfaction = int(request.POST.get('scaleable_satisfaction') if request.POST.get('scaleable_satisfaction') != '' else '0')
+    
     ui.scaleable0 = int(request.POST.get('scaleable1') if request.POST.get('scaleable1') != '' else '0')
     ui.scaleable1 = int(request.POST.get('scaleable2') if request.POST.get('scaleable2') != '' else '0')
     ui.scaleable2 = int(request.POST.get('scaleable3') if request.POST.get('scaleable3') != '' else '0')
@@ -184,12 +195,19 @@ def immersivesurvey_post(request):
     user = User.objects.get(username=turk_id)
     ui = UserInfo.objects.get(mturk_user=user)
     
-    ui.immersive0 = int(request.POST.get('mv1') if request.POST.get('mv1') != '' else '0')
-    ui.immersive1 = int(request.POST.get('mv2') if request.POST.get('mv2') != '' else '0')
-    ui.immersive2 = int(request.POST.get('mv3') if request.POST.get('mv3') != '' else '0')
-    ui.immersive3 = int(request.POST.get('mv4') if request.POST.get('mv4') != '' else '0')
-    ui.immersive4 = int(request.POST.get('mv5') if request.POST.get('mv5') != '' else '0')
-    ui.immersive5 = int(request.POST.get('mv6') if request.POST.get('mv6') != '' else '0')
+    ui.immersive_justification = request.POST.get('immersive_justification')
+    ui.immersive_difficulty = int(request.POST.get('immersive_difficulty') if request.POST.get('immersive_difficulty') != '' else '0')
+    ui.immersive_time = int(request.POST.get('immersive_time') if request.POST.get('immersive_time') != '' else '0')
+    ui.immersive_satisfaction = int(request.POST.get('immersive_satisfaction') if request.POST.get('immersive_satisfaction') != '' else '0')
+    ui.immersive_convo = int(request.POST.get('immersive_convo') if request.POST.get('immersive_convo') != '' else '0')
+    ui.immersive_trust = int(request.POST.get('immersive_trust') if request.POST.get('immersive_trust') != '' else '0')
+    
+    ui.immersive0 = int(request.POST.get('immersive1') if request.POST.get('immersive1') != '' else '0')
+    ui.immersive1 = int(request.POST.get('immersive2') if request.POST.get('immersive2') != '' else '0')
+    ui.immersive2 = int(request.POST.get('immersive3') if request.POST.get('immersive3') != '' else '0')
+    ui.immersive3 = int(request.POST.get('immersive4') if request.POST.get('immersive4') != '' else '0')
+    ui.immersive4 = int(request.POST.get('immersive5') if request.POST.get('immersive5') != '' else '0')
+    ui.immersive5 = int(request.POST.get('immersive6') if request.POST.get('immersive6') != '' else '0')
     
     ui.save()
     

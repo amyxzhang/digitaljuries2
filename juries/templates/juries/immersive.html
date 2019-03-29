@@ -38,7 +38,7 @@
 
 							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" title="We remove content that glorifies violence or celebrates the suffering or humiliation of others because it may create an environment that discourages participation." data-html="true" data-content="Definition">Violence and Graphic Content</button>
 
-							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" data-html="true" title="We believe that people share and connect more freely when they do not feel targeted based on their vulnerabilities. As such, we have higher expectations for content that we call cruel and insensitive, which we define as content that targets victims of serious physical or emotional harm." data-content="Definition">Cruel and Insensitive</button>
+							<button type="button" class="btn btn-outline-secondary" role="button" data-toggle="tooltip" data-html="true" title="We believe that people share and connect more freefly when they do not feel targeted based on their vulnerabilities. As such, we have higher expectations for content that we call cruel and insensitive, which we define as content that targets victims of serious physical or emotional harm." data-content="Definition">Cruel and Insensitive</button>
 						</div>
 					</div>
 
@@ -62,16 +62,31 @@
 						<input type="text" id="sliderJury">
 					</div>
 
+					<ul id="juryVotes">
+					</ul>
+
+
 				<!-- JURY: Delib Module -->
 				<div class="subsection">
 					<h4 class="yellow">Content Actions Voted On:</h4>
-					<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="unlist_button">Unlist from Search</button> <span id="unlist">0 votes</span><BR>
-					<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="delete_button">Delete Content</button>  <span id="delete">0 votes</span><BR>
-					<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="report_button">Report Content</button> <span id="report">0 votes</span><BR>
+
+					<div class="d-flex flex-column">
+						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="unlist_button">Unlist (<span id="unlist">0 votes</span>)</button>
+
+						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="delete_button">Delete (<span id="delete">0 votes</span>)</button>
+
+						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="report_button">Report (<span id="report">0 votes</span>)</button>
+					</div>
+
 					<h4 class="yellow">User Actions Voted On:</h4>
-					<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="warn_button">Warn User</button>  <span id="warn">0 votes</span><BR>
-					<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="ban_button">Ban for 1 Week</button> <span id="ban">0 votes</span><BR>
-					<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="permaban_button">Permanently Ban</button>  <span id="permaban">0 votes</span><BR>
+
+					<div class="d-flex flex-column">
+						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="warn_button">Warn  (<span id="warn">0 votes</span>)</button>
+
+						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="ban_button">Ban for One Week (<span id="ban">0 votes</span>)</button>
+
+						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="permaban_button">Permanently Ban (<span id="permaban">0 votes</span>)</button>
+					</div>
 
 				</div>
 			</div>
@@ -482,7 +497,16 @@ function after_vote() {
 	        type: "GET",
 	        success: function(data) {
 
-	        	console.log(data.user_votes);
+						// get jurors
+						jurors = Object.entries(data.user_votes);
+
+						var juryVotes = [];
+
+						for (var i in jurors) {
+							var entry = '<li><b>' + jurors[i][0] + ':</b> ' + jurors[i][1] + '</li>';
+							juryVotes.push(entry);
+					  }
+						$('#juryVotes').html(juryVotes);
 
 
 	        	count = data.count;
@@ -576,10 +600,9 @@ function after_vote() {
         			$('#permaban').text(data.permaban + ' votes');
         		}
 
-
-        			$('#submit').text("Continue");
-	        		$('#submit').removeAttr('disabled');
-	        		$("#submit").removeClass("btn-secondary");
+      			$('#submit').text("Continue");
+        		$('#submit').removeAttr('disabled');
+        		$("#submit").removeClass("btn-secondary");
 				    $("#submit").addClass("btn-primary");
 
 
