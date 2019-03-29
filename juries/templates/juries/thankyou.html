@@ -15,7 +15,7 @@
 		<p>Thank you for taking this survey and helping contribute to our research! We are a team of researchers working on a study of how people perceive digital juries as content moderation systems. This study investigates whether different forms of democratic input improve perceptions of justice on online social media sites. For any follow-up questions or concerns, please contact the researchers: <a href="mailto:jfan@mde.harvard.edu">Jenny</a> or <a href="mailto:axz@mit.edu">Amy</a>.</p>
 
 		<h3>Mechanical Turk Completion Code</h3>
-		<p>Please enter the code <code>JUSTICE-<span id="group"></span>-<span id="condition"></span>-<span id="id"></span></code> to complete the experiment.</p>
+		<p>Please enter the code <code>JUSTICE-<span id="group"></span>-<span id="id"></span></code> to complete the experiment.</p>
 
 	</section>
 </main>
@@ -26,11 +26,9 @@
 
 <script>
 var group = getParameterByName('group');
-var condition = getParameterByName('condition');
 var id = getParameterByName('id');
 
 $('#group').text(group);
-$('#condition').text(condition);
 $('#id').text(id);
 </script>
 
