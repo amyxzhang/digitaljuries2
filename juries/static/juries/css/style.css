@@ -489,11 +489,11 @@ img {
 }
 #case img {
   position: relative;
-  z-index: 999;
   transform-origin: left top;
-  transition: transform .3s; /* Animation */
+  transition: transform .2s; /* Animation */
 }
 #case img:hover {
+z-index: 999;
   transform-origin: left top;
   transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
