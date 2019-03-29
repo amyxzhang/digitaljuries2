@@ -30,7 +30,7 @@
 
 						<div class="btngroup" role="group" aria-label="Violations">
 							{{ case.violations | safe }}
-					
+
 						</div>
 					</div>
 
@@ -211,25 +211,23 @@
 </footer>
 
 
-
-<!-- ENFORCEMENT MODAL -->
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="enforcement" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<!-- MODAL -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="instructions" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="dark m-0" id="modalHeader">Starting Round</h3>
+        <h3 class="dark m-0" id="modalHeader">Starting Round <span id="roundnum"></span> of 3</h3>
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body dark">
-				<h3>Instructions</h3>
 				<p>In this round, you will be deciding a case along a jury of your peers through discussion. You have at least 5 minutes to conduct discussion in the chat box below. Afterwards, you will make a vote. After that, you will get an opportunity to continue discussion and resolve disagreements as well as change your vote before moving on.</p>
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Start</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Ready!</button>
       </div>
     </div>
   </div>
@@ -246,6 +244,12 @@
 
 {% block js %}
 <script>
+
+	$(document).ready(function() {
+		$('#modal').modal('show');
+		$('#roundnum').text(getParameterByName('round'));
+	})
+
 	var id = getParameterByName('id');
 	var group = getParameterByName('group');
 	var round = getParameterByName('round');
