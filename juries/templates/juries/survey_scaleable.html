@@ -177,6 +177,7 @@
 		var scaleable5 = $('#scaleable5 input[name=options5]:checked').val(); 
 		var scaleable6 = $('#scaleable6 input[name=options6]:checked').val(); 
 		var id = getParameterByName('id');
+		var round = getParameterByName('round');
 
 		var csrf = $('#csrf').text();
 		var data = {csrfmiddlewaretoken: csrf,
@@ -190,6 +191,7 @@
 					scaleable4: scaleable4,
 					scaleable5: scaleable5,
 					scaleable6: scaleable6,
+					round: round,
 					id: id};
 		$.ajax({
 			type: 'POST',
@@ -202,7 +204,7 @@
 
 				var next_url = data.url;
 				// $('#continue').on('click', function() {
-					window.location = next_url + '&id=' + id;
+					window.location = next_url;
 				// });
 			}
 		});

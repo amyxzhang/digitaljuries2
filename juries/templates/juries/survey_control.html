@@ -159,6 +159,7 @@
 		var control5 = $('#control5 input[name=options5]:checked').val();
 		var control6 = $('#control6 input[name=options6]:checked').val();
 		var id = getParameterByName('id');
+		var round = getParameterByName('round');
 
 		var csrf = $('#csrf').text();
 		var data = {csrfmiddlewaretoken: csrf,
@@ -171,6 +172,7 @@
 					control4: control4,
 					control5: control5,
 					control6: control6,
+					round: round,
 					id: id};
 		$.ajax({
 			type: 'POST',
@@ -183,7 +185,7 @@
 
 				var next_url = data.url;
 				// $('#continue').on('click', function() {
-					window.location = next_url + '&id=' + id;
+					window.location = next_url;
 				// });
 			}
 		});
