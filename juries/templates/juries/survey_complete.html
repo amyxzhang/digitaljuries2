@@ -197,40 +197,53 @@ var group = getParameterByName('group');
 		var complete_comments = $('#complete_comments').val();
 		var email = $('#email').val();
 		
-
-		var csrf = $('#csrf').text();
-		var data = {csrfmiddlewaretoken: csrf,
-					complete_pref: complete_pref,
-					complete_prefwhy: complete_prefwhy,
-					complete_nonpref: complete_nonpref,
-					complete_nonprefwhy: complete_nonprefwhy,
-					complete_participate0: complete_participate0,
-					complete_participate1: complete_participate1,
-					complete_participate2: complete_participate2,
-					complete_participate3: complete_participate3,
-					complete_participate4: complete_participate4,
-					complete_enf_rec: complete_enf_rec,
-					complete_enf_enf: complete_enf_enf,
-					complete_enf_why: complete_enf_why,
-					complete3: complete3,
-					complete_confidence: complete_confidence,
-					complete_familiarity: complete_familiarity,
-					complete_comments: complete_comments,
-					email: email,
-					id: id};
-		$.ajax({
-			type: 'POST',
-			url: '/completesurvey_post',
-			data: data,
-			success: function(data) {
-				// $('#continue').prop('disabled', false);
-				// $('#continue').removeClass('btn-secondary');
-				// $('#continue').addClass('btn-primary');
-				// $('#continue').on('click', function() {
-					window.location = '/thankyou?id=' + id + '&group=' + group;
-				// });
-			}
-		});
+		if ($('#complete_pref input[name=options1]:checked').val() == undefined || 
+			$('#complete_prefwhy').val() == '' ||
+			$('#complete_nonpref input[name=options2]:checked').val() == undefined ||
+			$('#complete_nonprefwhy').val() == '' ||
+			$('#complete_enf_rec input[name=options3]:checked').val() == undefined ||
+			$('#complete_enf_why').val() == '' ||
+			$('#complete3 input[name=options5]:checked').val() == undefined ||
+			$('#confidence2 input[name=options6]:checked').val() == undefined ||
+			$('#complete_familiarity input[name=options7]:checked').val() == undefined) {
+			alert('Sorry, please answer all of the questions before continuing.');
+		} else {
+		
+	
+			var csrf = $('#csrf').text();
+			var data = {csrfmiddlewaretoken: csrf,
+						complete_pref: complete_pref,
+						complete_prefwhy: complete_prefwhy,
+						complete_nonpref: complete_nonpref,
+						complete_nonprefwhy: complete_nonprefwhy,
+						complete_participate0: complete_participate0,
+						complete_participate1: complete_participate1,
+						complete_participate2: complete_participate2,
+						complete_participate3: complete_participate3,
+						complete_participate4: complete_participate4,
+						complete_enf_rec: complete_enf_rec,
+						complete_enf_enf: complete_enf_enf,
+						complete_enf_why: complete_enf_why,
+						complete3: complete3,
+						complete_confidence: complete_confidence,
+						complete_familiarity: complete_familiarity,
+						complete_comments: complete_comments,
+						email: email,
+						id: id};
+			$.ajax({
+				type: 'POST',
+				url: '/completesurvey_post',
+				data: data,
+				success: function(data) {
+					// $('#continue').prop('disabled', false);
+					// $('#continue').removeClass('btn-secondary');
+					// $('#continue').addClass('btn-primary');
+					// $('#continue').on('click', function() {
+						window.location = '/thankyou?id=' + id + '&group=' + group;
+					// });
+				}
+			});
+		}
 		return false;
 	});
 

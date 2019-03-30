@@ -138,6 +138,16 @@
 
 		var id = getParameterByName('id');
 
+
+	if ($('#mv1 input[name=options1]:checked').val() == undefined ||
+		$('#mv2 input[name=options2]:checked').val() == undefined ||
+		$('#mv3 input[name=options3]:checked').val() == undefined ||
+		$('#mv4 input[name=options4]:checked').val() == undefined ||
+		$('#mv5 input[name=options5]:checked').val() == undefined ||
+		$('#mv6 input[name=options6]:checked').val() == undefined ) {
+			alert('Sorry, please answer all of the questions before continuing.');
+		} else {
+
 		var csrf = $('#csrf').text();
 		var data = {csrfmiddlewaretoken: csrf,
 					mv1: mv1,
@@ -166,6 +176,7 @@
 				// });
 			}
 		});
+		}
 		return false;
 	});
 

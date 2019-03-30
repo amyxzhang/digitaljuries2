@@ -178,6 +178,19 @@
 		var scaleable6 = $('#scaleable6 input[name=options6]:checked').val(); 
 		var id = getParameterByName('id');
 		var round = getParameterByName('round');
+		
+		if ($('#scaleable_justification').val() == '' ||
+			$('#scaleable_difficulty input[name=optionsA]:checked').val() == undefined || 
+			$('#scaleable_time input[name=optionsB]:checked').val() == undefined ||
+			$('#scaleable_satisfaction input[name=optionsC]:checked').val() == undefined ||
+			$('#scaleable1 input[name=options1]:checked').val() == undefined ||
+			$('#scaleable2 input[name=options2]:checked').val() == undefined ||
+			$('#scaleable3 input[name=options3]:checked').val() == undefined ||
+			$('#scaleable4 input[name=options4]:checked').val() == undefined ||
+			$('#scaleable5 input[name=options5]:checked').val() == undefined ||
+			$('#scaleable6 input[name=options6]:checked').val() == undefined ) {
+			alert('Sorry, please answer all of the questions before continuing.');
+		} else {
 
 		var csrf = $('#csrf').text();
 		var data = {csrfmiddlewaretoken: csrf,
@@ -208,6 +221,7 @@
 				// });
 			}
 		});
+		}
 		return false;
 	});
 

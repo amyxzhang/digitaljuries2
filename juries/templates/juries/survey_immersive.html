@@ -190,6 +190,21 @@
 		var immersive6 = $('#immersive6 input[name=options6]:checked').val(); 
 		var id = getParameterByName('id');
 		var round = getParameterByName('round');
+		
+		if ($('#immersive_justification').val() == '' ||
+			$('#immersive_difficulty input[name=optionsA]:checked').val() == undefined || 
+			$('#immersive_time input[name=optionsB]:checked').val() == undefined ||
+			$('#immersive_satisfaction input[name=optionsC]:checked').val() == undefined ||
+			$('#immersive_convo input[name=optionsD]:checked').val()  == undefined ||
+			$('#immersive_trust input[name=optionsE]:checked').val()  == undefined || 
+			$('#immersive1 input[name=options1]:checked').val() == undefined ||
+			$('#immersive2 input[name=options2]:checked').val() == undefined ||
+			$('#immersive3 input[name=options3]:checked').val() == undefined ||
+			$('#immersive4 input[name=options4]:checked').val() == undefined ||
+			$('#immersive5 input[name=options5]:checked').val() == undefined ||
+			$('#immersive6 input[name=options6]:checked').val() == undefined ) {
+			alert('Sorry, please answer all of the questions before continuing.');
+		} else {
 
 		var csrf = $('#csrf').text();
 		var data = {csrfmiddlewaretoken: csrf,
@@ -221,6 +236,7 @@
 				//});
 			}
 		});
+		}
 		return false;
 	});
 
