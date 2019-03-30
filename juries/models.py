@@ -38,7 +38,7 @@ class GroupInfo(models.Model):
     case3 = models.ForeignKey(Case, null=True, related_name="case3")
     
     def __unicode__(self):
-        return str(id) + ': 1-' + self.round1 + ' 2-' + self.round2 + ' 3-' + self.round3
+        return str(self.id) + ': 1-' + self.round1 + ' 2-' + self.round2 + ' 3-' + self.round3
      
 class UserInfo(models.Model):
  
