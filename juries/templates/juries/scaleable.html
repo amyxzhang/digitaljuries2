@@ -238,7 +238,7 @@
 	        	
 	        	num_times_polling += 1;
 
-	        	if (count >= jury || num_times_polling >= 36) {
+	        	if (count >= jury || num_times_polling >= 24) {
 	        		
 	        		
         			half_jury = Math.ceil(count/2.0);
@@ -324,7 +324,7 @@
 	        },
 	        dataType: "json",
 	        complete: setTimeout(function() { 
-	        		if (count < jury && num_times_polling < 36) {
+	        		if (count < jury && num_times_polling < 24) {
 	        			poll();
 	        		}
 	        	}, 5000),
