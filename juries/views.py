@@ -311,7 +311,7 @@ def post_chat_message(request):
     
     user = User.objects.get(username=turk_id)
     ui = UserInfo.objects.get(mturk_user=user)
-    group = Group.objects.get(id=g_id)
+    group = GroupInfo.objects.get(id=g_id)
     
     c = ChatMessage.objects.create(user=ui, 
                                    group=group, 
