@@ -7,14 +7,19 @@ import random
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 
-from juries.models import UserInfo, GroupInfo, ChatMessage, Case
+from juries.models import UserInfo, GroupInfo, ChatMessage, Case, Experiment
 
 CASES = ['pepe','christchurch','momo']
 
 
 @render_to('juries/index.html')
 def index(request):
-    return {}
+    e = Experiment.objects.all()
+    if e.count():
+        active = e[0].active
+    else:
+        active = True
+    return {'active': active}
 
 @render_to('juries/consent.html')
 def consent(request):
@@ -437,44 +442,40 @@ def poll_scaleable(request):
     
     gi = GroupInfo.objects.get(id=group_id)
     ui = UserInfo.objects.filter(groupinfo=gi, scaleable_vote__isnull=False)
-    if ui.count() >= jury:
-        
-        vote = 0.0
-        unlist = 0
-        delete = 0
-        report = 0
-        warn = 0
-        ban = 0
-        permaban = 0
-        
-        for u in ui:
-            vote += u.scaleable_vote
-            if u.scaleable_content_unlist:
-                unlist += 1
-            if u.scaleable_content_delete:
-                delete += 1
-            if u.scaleable_content_report:
-                report += 1
-            if u.scaleable_user_warn:
-                warn += 1
-            if u.scaleable_user_ban:
-                ban += 1
-            if u.scaleable_user_permaban:
-                permaban += 1
-        
-        vote = float(float(vote)/float(jury))
-        return JsonResponse({'count': ui.count(),
-                             'vote': vote,
-                             'unlist': unlist,
-                             'del': delete,
-                             'report': report,
-                             'warn': warn,
-                             'ban': ban,
-                             'permaban': permaban})
 
-    else:
-        return JsonResponse({'count': ui.count()})
+    vote = 0.0
+    unlist = 0
+    delete = 0
+    report = 0
+    warn = 0
+    ban = 0
+    permaban = 0
     
+    for u in ui:
+        vote += u.scaleable_vote
+        if u.scaleable_content_unlist:
+            unlist += 1
+        if u.scaleable_content_delete:
+            delete += 1
+        if u.scaleable_content_report:
+            report += 1
+        if u.scaleable_user_warn:
+            warn += 1
+        if u.scaleable_user_ban:
+            ban += 1
+        if u.scaleable_user_permaban:
+            permaban += 1
+    
+    vote = float(float(vote)/float(jury))
+    return JsonResponse({'count': ui.count(),
+                         'vote': vote,
+                         'unlist': unlist,
+                         'del': delete,
+                         'report': report,
+                         'warn': warn,
+                         'ban': ban,
+                         'permaban': permaban})
+
 
     
 

@@ -22,9 +22,9 @@
 				<label for="complete_pref">1. Which jury system did you <b>MOST PREFER</b> for making content moderation decisions?</label>
 
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete_pref">
-					<label class="btn btn-outline-warning"><input type="radio" name="options1" value="round1" autocomplete="off"> Round 1 ({{ group.round1 }})</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options1" value="round2" autocomplete="off"> Round 2 ({{ group.round2 }})</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options1" value="round3" autocomplete="off"> Round 3 ({{ group.round3 }})</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options1" value="Round 1 ({{ group.round1 }})" autocomplete="off"> Round 1 ({{ group.round1 }})</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options1" value="Round 2 ({{ group.round2 }})" autocomplete="off"> Round 2 ({{ group.round2 }})</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options1" value="Round 3 ({{ group.round3 }})" autocomplete="off"> Round 3 ({{ group.round3 }})</label>
 				</div>
 			</div>
 
@@ -37,9 +37,9 @@
 				<label for="complete_nonpref">3. Which jury system did you <b>LEAST PREFER</b> for making content moderation decisions?</label>
 
 				<div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" id="complete_nonpref">
-						<label class="btn btn-outline-warning"><input type="radio" name="options2" value="round1" autocomplete="off"> Round 1 ({{ group.round1 }})</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options2" value="round2" autocomplete="off"> Round 2 ({{ group.round2 }})</label>
-					<label class="btn btn-outline-warning"><input type="radio" name="options2" value="round3" autocomplete="off"> Round 3 ({{ group.round3 }})</label>
+						<label class="btn btn-outline-warning"><input type="radio" name="options2" value="Round 1 ({{ group.round1 }})" autocomplete="off"> Round 1 ({{ group.round1 }})</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options2" value="Round 2 ({{ group.round2 }})" autocomplete="off"> Round 2 ({{ group.round2 }})</label>
+					<label class="btn btn-outline-warning"><input type="radio" name="options2" value="Round 3 ({{ group.round3 }})" autocomplete="off"> Round 3 ({{ group.round3 }})</label>
 				</div>
 			</div>
 
@@ -173,6 +173,9 @@
 
 <script>
 
+var id = getParameterByName('id');
+var group = getParameterByName('group');
+
 	$('#continue').on('click', function() {
 
 		var complete_pref = $('#complete_pref input[name=options1]:checked').val();
@@ -193,7 +196,7 @@
 		var complete_familiarity = $('#complete_familiarity input[name=options7]:checked').val();
 		var complete_comments = $('#complete_comments').val();
 		var email = $('#email').val();
-		var id = getParameterByName('id');
+		
 
 		var csrf = $('#csrf').text();
 		var data = {csrfmiddlewaretoken: csrf,
@@ -224,7 +227,7 @@
 				// $('#continue').removeClass('btn-secondary');
 				// $('#continue').addClass('btn-primary');
 				// $('#continue').on('click', function() {
-					window.location = '/thankyou';
+					window.location = '/thankyou?id=' + id + '&group=' + group;
 				// });
 			}
 		});

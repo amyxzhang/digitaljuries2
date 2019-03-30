@@ -5,6 +5,9 @@ from django.db import models
 from django.db import models
 from django.contrib.auth.models import User
 
+class Experiment(models.Model):
+    active = models.BooleanField(default=True)
+
 class Case(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.TextField(null=True) # can be "pepe", "christchurch", "momo"
@@ -34,6 +37,8 @@ class GroupInfo(models.Model):
     case2 = models.ForeignKey(Case, null=True, related_name="case2")
     case3 = models.ForeignKey(Case, null=True, related_name="case3")
     
+    def __unicode__(self):
+        return str(id) + ': 1-' + self.round1 + ' 2-' + self.round2 + ' 3-' + self.round3
      
 class UserInfo(models.Model):
  

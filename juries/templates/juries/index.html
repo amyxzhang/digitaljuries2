@@ -38,7 +38,11 @@
 					<p>We are researchers looking for volunteers to test out a new system to make decisions around how content moderation rules are formed. Like doing jury duty, you will join a panel of “netizens” in deciding the hard questions on how content moderation rules should be formed using real cases.</p>
 					<p>We’re at the frontier of building something new. We need your help.</p>
 
-					<a href="/consent" class="btn btn-lg btn-primary">Join the Experiment</a>
+					{% if active %}
+						<a href="/consent" class="btn btn-lg btn-primary">Join the Experiment</a>
+					{% else %}
+						<button class="btn btn-lg btn-danger">Sorry, we are not taking participants right now.</button>
+					{% endif %}
 				</div>
 			</div>
 

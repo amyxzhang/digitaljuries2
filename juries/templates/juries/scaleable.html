@@ -223,12 +223,10 @@
 	} else {
 		jury = 6;
 	}
-	half_jury = Math.ceil(jury/2.0);
-	if (half_jury * 2 == jury) {
-		half_jury += 1;
-	}
 
 	$('#count_jury').text(jury);
+	
+	var num_times_polling = 0;
 
 	(function poll() {
 	    $.ajax({
@@ -237,10 +235,18 @@
 	        success: function(data) {
 	        	count = data.count;
 	        	$('#vote_count').text(count);
+	        	
+	        	num_times_polling += 1;
 
-	        	if (count == jury) {
+	        	if (count >= jury || num_times_polling >= 36) {
+	        		
+	        		
+        			half_jury = Math.ceil(count/2.0);
+					if (half_jury * 2 == count) {
+						half_jury += 1;
+					}
 
-	        		$('#pending').text("All " + jury + " jury members have voted");
+	        		$('#pending').text("All jury members have voted");
 
 	        		$('#juryDecision').show();
 
@@ -317,8 +323,8 @@
 
 	        },
 	        dataType: "json",
-	        complete: setTimeout(function() {
-	        		if (count < jury) {
+	        complete: setTimeout(function() { 
+	        		if (count < jury && num_times_polling < 36) {
 	        			poll();
 	        		}
 	        	}, 5000),
