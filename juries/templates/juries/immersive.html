@@ -93,7 +93,7 @@
 	<div class="card">
 		<div class="card-header" style="z-index: 20;" data-toggle="collapse" data-target="#panelDecision">
 				<p id="instructions">In this round, you will be deciding a case along a jury of your peers through discussion.
-					You have at least 5 minutes to conduct discussion in the chat box below. Afterwards, you will make a vote.
+					You have at least 4 minutes to conduct discussion in the chat box below. Afterwards, you will make a vote.
 					After that, you will get an opportunity to continue discussion and resolve disagreements as well as
 					change your vote before moving on.
 					</p>
@@ -132,7 +132,7 @@
 			<div id="overlay" style="background: rgba(0, 0, 0, 0.5); z-index: 10; position: absolute; width: 50%; height:100%; top: 0; left: 50%;">
 				<button class="btn-sm" style="position:relative; top: 5%;  left:20%;">
 					Continue discussion for
-					  <span id="time">5:00</span> minutes. <BR>
+					  <span id="time">4:00</span> minutes. <BR>
 					  	You can vote here once the timer is done.
 					  </button>
 			</div>
@@ -223,7 +223,7 @@
         </button>
       </div>
       <div class="modal-body dark">
-				<p>In this round, you will be deciding a case along a jury of your peers through discussion. You have at least 5 minutes to conduct discussion in the chat box below. Afterwards, you will make a vote. After that, you will get an opportunity to continue discussion and resolve disagreements as well as change your vote before moving on.</p>
+				<p>In this round, you will be deciding a case along a jury of your peers through discussion. You have at least 4 minutes to conduct discussion in the chat box below. Afterwards, you will make a vote. After that, you will get an opportunity to continue discussion and resolve disagreements as well as change your vote before moving on.</p>
 
       </div>
       <div class="modal-footer">
@@ -751,6 +751,7 @@ function after_vote() {
 	  	username: username,
 	  	message: message,
 	  	id: id,
+	  	group: group,
 	  };
 
 	  $.ajax({

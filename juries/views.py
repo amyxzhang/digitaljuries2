@@ -307,12 +307,14 @@ def chat_username(request):
     
 def post_chat_message(request):
     turk_id = request.POST.get('id')
+    g_id = request.POST.get('group')
     
     user = User.objects.get(username=turk_id)
     ui = UserInfo.objects.get(mturk_user=user)
+    group = Group.objects.get(id=g_id)
     
     c = ChatMessage.objects.create(user=ui, 
-                                   group=ui.groupinfo, 
+                                   group=group, 
                                    text=request.POST.get('message'))
     
     return JsonResponse({'id': c.id})
