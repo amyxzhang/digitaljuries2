@@ -246,7 +246,7 @@ def immersivesurvey_post(request):
         next_round = g2.round3
         next_case = g2.case3
         next_round_num = 3
-        
+
     if next_round:
         if next_round == "No Jury":
             return JsonResponse({'url': '/control?id=' + str(ui.mturk_user.username) + '&group=' + str(g2.id) + '&round=' + str(next_round_num) + '&case=' + next_case.name})
