@@ -75,6 +75,7 @@ main {
   width: 90vw;
   max-width: 1600px;
   min-height: 100vh;
+  margin-bottom: 106px;
   overflow-y: auto; }
 
 section, header {
