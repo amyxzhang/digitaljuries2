@@ -79,7 +79,7 @@ for row in csvfile:
     except Exception, e:
         pass
     
-    if row['immersive_difficulty'].strip() != '0':
+    if row['immersive_difficulty'].strip() != '0' and row['immersive_difficulty'].strip() != '':
         immersive['immersive_difficulty'].append(int(row['immersive_difficulty']))
     if row['immersive_time'].strip() != '0':
         immersive['immersive_time'].append(int(row['immersive_time']))
