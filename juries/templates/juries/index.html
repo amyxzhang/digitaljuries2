@@ -14,7 +14,8 @@
 		<div class="row">
 			<div class="col-sm-1 col-xs-12"></div>
 			<div class="col-sm-5 col-xs-12">
-				<h1 class="headline">Help us build a fairer, safer internet</h1>
+				<!-- <h1 class="headline">Help us build a fairer, safer internet</h1> -->
+				<h1 class="headline">How can we build a fairer, safer internet?</h1>
 			</div>
 			<div class="col-sm-6 col-xs-12"></div>
 		</div>
@@ -33,19 +34,39 @@
 
 			<div class="col-md-4 col-sm-12">
 				<div class="callout">
-					<h3 class="yellow mt-0">Call for Volunteers</h3>
 
-					<p>We are researchers looking for volunteers to test out a new system to make decisions around how content moderation rules are formed. Like doing jury duty, you will join a panel of “netizens” in deciding the hard questions on how content moderation rules should be formed using real cases.</p>
-					<p>We’re at the frontier of building something new. We need your help.</p>
+					<h3 class="yellow mt-0">Join a "Digital Jury"</h3>
+
+					<p>We are researchers building a new system to make decisions around how content moderation rules are formed. Like doing jury duty, you will join a panel of “netizens” in deciding the hard questions on how content moderation rules should be formed using real cases.</p>
+					<!-- <p>We’re at the frontier of building something new. We need your help.</p> -->
 
 					{% if active %}
-						<a href="/consent" class="btn btn-lg btn-primary">Join the Experiment</a>
+						<a href="/consent" class="btn btn-lg btn-primary">Start Experiment</a>
 					{% else %}
-						<button class="btn btn-lg btn-danger">Sorry, we are not taking participants right now.</button>
+						<p class="text-warning">Sorry, we are not taking participants right now.</p>
 					{% endif %}
 				</div>
 			</div>
+		</div>
 
+
+		<div class="row">
+			<div class="col-md-1 col-sm-12"></div>
+			<div class="col-md-10 col-sm-12">
+
+				<hr />
+				
+				<h3>Abstract</h3>
+
+				<span class="yellow">Thank you for participating in this experiment! Our results and final paper have been seelected to be published in <a href="https://chi2020.acm.org/" target="_blank">ACM CHI (Conference on Human Factors in Computing Systems)</a> in April 2020.</span>
+
+				<p><em>As concerns have grown regarding harmful content spread on social media, platform mechanisms for content moderation have become increasingly significant. However, many existing platform governance structures lack formal processes for democratic participation by users of the platform. Drawing inspiration from constitutional jury trials in many legal systems, this paper proposes digital juries as a civics-oriented approach for adjudicating content moderation cases. Building on existing theoretical models of jury decision-making, we outline a 5-stage model characterizing the space of design considerations in a digital jury process. We implement two examples of jury designs involving blind-voting and deliberation. From users who participate in our jury implementations, we gather informed judgments of the democratic legitimacy of a jury process for content moderation. We find that digital juries are perceived as more procedurally just than existing common platform moderation practices, but also find disagreement over whether jury decisions should be enforced or used as recommendations.</em></p>
+
+				<p><a href={% static "juries/Digital_Juries__CHI2020.pdf" %}>Download the full paper (PDF)</a></p>
+
+				<iframe src={% static "juries/Digital_Juries__CHI2020.pdf" %} width="100%" height="500px" frameborder="0">
+				</iframe>
+			</div>
 		</div>
 	</section>
 
