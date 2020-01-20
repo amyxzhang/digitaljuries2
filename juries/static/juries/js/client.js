@@ -1,9 +1,10 @@
+console.log("load client.js");
 
 $(function() {
 
 
   function addParticipantsMessage (data) {
-    // console.log("addParticipantsMessage");
+    console.log("addParticipantsMessage");
     var message = '';
     if (data.numUsers === 1) {
       message += "1 participant online";
@@ -33,6 +34,9 @@ $(function() {
     console.log("addChatTyping");
     data.typing = true;
     data.message = ' is typing';
+    // Change title of page when someone is typing
+    document.title = 'Someone is typing...';
+    console.log("change typing title");
     addChatMessage(data);
   }
 
@@ -42,6 +46,7 @@ $(function() {
     getTypingMessages(data).fadeOut(function () {
       $(this).remove();
     });
+    document.title = 'Digital Juries | Experiments with New Civic Models Online';
   }
 
 
@@ -126,15 +131,6 @@ $(function() {
 
   socket.on('user left', function (data) {
     log(data.username + ' left');
-  });
-
-  // user_requested_help
-  socket.on('user_requested_help', function (data) {
-
-    log(data.username + ' needs help');
-
-    console.log(data);
-    addParticipantsMessage(data);
   });
 
   // Whenever the server emits 'typing', show the typing message

@@ -236,10 +236,11 @@ h3 {
   margin: 2em auto 1em; }
 
 h4 {
-  font-family: "Space Mono", "Roboto", monospace;
+  font-family: "Roboto", monospace;
   font-size: 16px;
   line-height: 1em;
-  text-transform: uppercase;
+  font-weight: 700;
+  /* text-transform: uppercase; */
   margin: 1em 0 0.5em 0; }
 
 h5 {
@@ -351,13 +352,15 @@ hr {
 }
 /**** BUTTONS ****/
 .btn {
-  font-family: "Space Mono", "Roboto", monospace;
+  font-family: "Roboto", monospace;
   border-radius: 8px;
   font-size: 16px;
-  text-transform: uppercase;
   text-align: center;
   margin: 0.5em 0.5em 0.5em 0; }
-
+.btn active {
+  background-color: #007bff;
+  border: 1px solid #007bff;
+}
 .badge {
   font-family: "Space Mono", "Roboto", monospace;
   font-size: 14px;

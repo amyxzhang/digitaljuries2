@@ -41,43 +41,43 @@
 				<div class="col-md-3 col-sm-12 jury" id="jury">
 				<h3 class="mt-2">Jury Decision</h3>
 
-				<h4 id="pending">Waiting for discussion to conclude to vote</h4>
+				<p id="pending"><em>Waiting for discussion to conclude to vote</em></p>
 
 				<!-- JURY: Score -->
 				<div id="juryDecision" class="subsection" style="display: none;">
-					<h4 class="yellow">Average Toxicity Score:
+					<ul id="juryVotes">
+					</ul>
+
+
+					<p class="yellow">Average Toxicity Score:
 					<span id="juryScore" class="score light text-right"></span>
-					</h4>
+					</p>
 
 					<!-- SCORE SLIDER -->
 					<div class="slider">
 						<input type="text" id="sliderJury">
 					</div>
 
-					<ul id="juryVotes">
-					</ul>
-
-
 				<!-- JURY: Delib Module -->
 				<div class="subsection">
 					<h4 class="yellow">Content Actions Voted On:</h4>
 
 					<div class="d-flex flex-column">
-						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="unlist_button">Unlist (<span id="unlist">0 votes</span>)</button>
+						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="unlist_button">Unlist: <span id="unlist">0 votes</span></button>
 
-						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="delete_button">Delete (<span id="delete">0 votes</span>)</button>
+						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="delete_button">Delete: <span id="delete">0 votes</span></button>
 
-						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="report_button">Report (<span id="report">0 votes</span>)</button>
+						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="report_button">Report: <span id="report">0 votes</span></button>
 					</div>
 
 					<h4 class="yellow">User Actions Voted On:</h4>
 
 					<div class="d-flex flex-column">
-						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="warn_button">Warn  (<span id="warn">0 votes</span>)</button>
+						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="warn_button">Warn: <span id="warn">0 votes</span></button>
 
-						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="ban_button">Ban for One Week (<span id="ban">0 votes</span>)</button>
+						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="ban_button">Ban for a Week: <span id="ban">0 votes</span></button>
 
-						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="permaban_button">Permanently Ban (<span id="permaban">0 votes</span>)</button>
+						<button type="button" class="btn btn-secondary active" role="button" data-toggle="tooltip" title="" data-content="" id="permaban_button">Permanently Ban: <span id="permaban">0 votes</span></button>
 					</div>
 
 				</div>
@@ -155,20 +155,20 @@
 						<div id="panelAction">
 								<!-- ACTION: CONTENT -->
 								<div id="actionContent">
-									<h4 class="dark">What action (if any) should the platform take on the content?</h4>
+									<p class="dark">What action (if any) should the platform take on the content?</p>
 
 									<div class="btn-group-toggle" data-toggle="buttons">
-										<label class="btn btn-outline-secondary {% if ui.immersive_content_unlist %} active {% endif %}" id="unlist_check_btn">
+										<label class="btn btn-outline-primary {% if ui.immersive_content_unlist %} active {% endif %}" id="unlist_check_btn">
 											<input type="checkbox" autocomplete="off" id="unlist_check" {% if ui.immersive_content_unlist %} checked="checked" {% endif %}>
 											Unlist from search
 										</label>
 
-										<label class="btn btn-outline-secondary {% if ui.immersive_content_delete %} active {% endif %}" id="delete_check_btn">
+										<label class="btn btn-outline-primary {% if ui.immersive_content_delete %} active {% endif %}" id="delete_check_btn">
 											<input type="checkbox" autocomplete="off" id="delete_check" {% if ui.immersive_content_delete %} checked="checked" {% endif %}>
 											Delete
 										</label>
 
-										<label class="btn btn-outline-secondary {% if ui.immersive_content_report %} active {% endif %}" id="report_check_btn">
+										<label class="btn btn-outline-primary {% if ui.immersive_content_report %} active {% endif %}" id="report_check_btn">
 											<input type="checkbox" autocomplete="off" id="report_check" {% if ui.immersive_content_report %} checked="checked" {% endif %}>
 											Report to authorities
 										</label>
@@ -177,20 +177,20 @@
 
 								<!-- ACTION: USER -->
 								<div id="actionUser">
-									<h4 class="dark">What action (if any) should the platform take on the user?</h4>
+									<p class="dark">What action (if any) should the platform take on the user?</h4>
 
 									<div class="btn-group-toggle" data-toggle="buttons">
-										<label class="btn btn-outline-secondary {% if ui.immersive_user_warn %} active {% endif %}" id="warn_check_btn">
+										<label class="btn btn-outline-primary {% if ui.immersive_user_warn %} active {% endif %}" id="warn_check_btn">
 											<input type="checkbox" autocomplete="off" id="warn_check" {% if ui.immersive_user_warn %} checked="checked" {% endif %}>
 											Warn
 										</label>
 
-										<label class="btn btn-outline-secondary {% if ui.immersive_user_ban %} active {% endif %}" id="ban_check_btn">
+										<label class="btn btn-outline-primary {% if ui.immersive_user_ban %} active {% endif %}" id="ban_check_btn">
 											<input type="checkbox" autocomplete="off" id="ban_check" {% if ui.immersive_user_ban %} checked="checked" {% endif %}>
 											Ban for 1 week
 										</label>
 
-										<label class="btn btn-outline-secondary {% if ui.immersive_user_permaban %} active {% endif %}" id="permaban_check_btn">
+										<label class="btn btn-outline-primary {% if ui.immersive_user_permaban %} active {% endif %}" id="permaban_check_btn">
 											<input type="checkbox" autocomplete="off" id="permaban_check" {% if ui.immersive_user_permaban %} checked="checked" {% endif %}>
 											Permanently Ban
 										</label>
@@ -258,6 +258,7 @@
 	var countdown = getParameterByName('countdown');
 	if (countdown != '' && countdown != null) {
 		countdown = parseFloat(countdown);
+		console.log(countdown);
 	} else {
 		countdown = 4.0;
 	}
@@ -668,7 +669,7 @@ function after_vote() {
   });
 
   function polling_messages() {
-  		var last_m = $('.messages').children().last().attr('id');
+		var last_m = $('.messages').children().last().attr('id');
 
 	    $.ajax({
 	        url: "/poll_chat?group=" + group + '&last_m=' + last_m,
@@ -679,12 +680,14 @@ function after_vote() {
 				        username: data.messages[i].username,
 				        message: data.messages[i].message,
 				        id: data.messages[i].id,
-				      });
+					  });
+					
+					console.log("post chat message");
 				}
 	        },
 	        dataType: "json",
 	        complete: setTimeout(function() {
-	        			polling_messages();
+						polling_messages();
 	        	}, 5000),
 	        timeout: 2000
 	    });
@@ -765,7 +768,8 @@ function after_vote() {
 			        username: username,
 			        message: message,
 			        id: data.id
-			      });
+				  });
+			
 			}
 		});
 
@@ -786,7 +790,8 @@ function after_vote() {
     var $messageBodyDiv = $('<span class="messageBody">')
       .text(data.message);
 
-    var typingClass = data.typing ? 'typing' : '';
+	var typingClass = data.typing ? 'typing' : '';
+	
     var $messageDiv = $('<li id="message_' + data.id + '" class="message"/>')
       .data('username', data.username)
       .addClass(typingClass)
@@ -844,8 +849,6 @@ function after_vote() {
 
     $("#messagebox").scrollTop($messages[0].scrollHeight);
   }
-
-
 
 
 
